@@ -261,10 +261,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 7847816976165349170}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 452.92993, y: 142.21997}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7796843820294200156
 CanvasRenderer:
@@ -294,9 +294,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1047536075809737294, guid: 39efd6a4c55103a4f8d51758c7d85c46, type: 3}
-  m_Type: 1
-  m_PreserveAspect: 0
+  m_Sprite: {fileID: 8305481377298368769, guid: f16fb00074c8a744eb4f336ed74138f8, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -448,10 +448,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 7847816976165349170}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 452.92993, y: 142.21997}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5661826191261524457
 CanvasRenderer:
@@ -481,9 +481,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1047536075809737294, guid: 39efd6a4c55103a4f8d51758c7d85c46, type: 3}
-  m_Type: 1
-  m_PreserveAspect: 0
+  m_Sprite: {fileID: 8305481377298368769, guid: f16fb00074c8a744eb4f336ed74138f8, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -598,14 +598,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   posibleConversations:
   - dialogs:
-    - speaker: 1
+    - typeSpeaker: 0
       textDialogs:
       - Que te jodan payaso
       - Yo no he hecho nada de lo que pone en ese papelito
-    - speaker: 0
+    - typeSpeaker: 0
       textDialogs:
       - "Se\xF1or, en este papelito pone lo que usted a declarado"
-    - speaker: 1
+    - typeSpeaker: 0
       textDialogs:
       - a
       - Upsiiiii
@@ -760,8 +760,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 452.92993, y: 142.21997}
+  m_AnchoredPosition: {x: 0.8819, y: 0}
+  m_SizeDelta: {x: 330.6013, y: 142.22}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1243666971230242193
 CanvasRenderer:

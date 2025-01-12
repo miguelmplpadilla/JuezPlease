@@ -38,22 +38,28 @@ public class DialogController : MonoBehaviour
                 {
                     foreach (var lastDialogObj in lastDialogObjs)
                     {
-                        if (lastDialogObj.numSpeaker != dialog.numSpeaker) continue;
+                        if (lastDialogObj.lastTypeSpeaker != dialog.typeSpeaker) continue;
                         float yLocalPosition = lastDialogObj.dialogObj.transform.localPosition.y;
-                        lastDialogObj.dialogObj.transform.DOLocalMoveY(yLocalPosition + 75, 0.3f);
+                        lastDialogObj.dialogObj.transform.DOLocalMoveY(yLocalPosition + speakers[(int)dialog.typeSpeaker].sumY, 0.3f);
                     }
                 }
+                
+                EventBus<LookToEvent>.Raise(new LookToEvent
+                {
+                    lookToJudge = dialog.typeSpeaker == Dialog.TypeSpeaker.JUDGE,
+                    objToLook = speakers[(int)dialog.typeSpeaker].speakerObj
+                });
 
                 GameObject dialogObj = Instantiate(prefabDialog,
-                    speakers[dialog.numSpeaker].speakerObj.transform);
+                    speakers[(int)dialog.typeSpeaker].speakerObj.transform);
                 dialogObj.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = text;
-                dialogObj.transform.localScale = speakers[dialog.numSpeaker].scaleDialog * Vector3.one;
-                dialogObj.transform.DOLocalMoveY(110, 0.3f);
+                dialogObj.transform.localScale = speakers[(int)dialog.typeSpeaker].scaleDialog * Vector3.one;
+                dialogObj.transform.DOLocalMoveY(speakers[(int)dialog.typeSpeaker].sumYFirst, 0.3f);
                 
                 DialogObj dialogObjClass = new DialogObj
                 {
                     dialogObj = dialogObj,
-                    numSpeaker = dialog.numSpeaker
+                    lastTypeSpeaker = dialog.typeSpeaker
                 };
                 StartCoroutine(DestroyDialogObj(dialogObjClass));
                 lastDialogObjs.Add(dialogObjClass);
@@ -65,9 +71,10 @@ public class DialogController : MonoBehaviour
 
     private IEnumerator DestroyDialogObj(DialogObj dialog)
     {
-        yield return new WaitForSeconds(5);
-        
-        yield return dialog.dialogObj.GetComponent<CanvasGroup>().DOFade(0, 1).AsyncWaitForCompletion();
+        yield return new WaitForSeconds(3);
+
+        dialog.dialogObj.GetComponent<CanvasGroup>().DOFade(0, 1);
+        yield return new WaitForSeconds(1);
 
         lastDialogObjs.Remove(dialog);
         Destroy(dialog.dialogObj);
@@ -83,7 +90,13 @@ public class Conversation
 [Serializable]
 public class Dialog
 {
-    [Range(1, 4)] public int numSpeaker;
+    public enum TypeSpeaker
+    {
+        JUDGE, LAWYERLEFT, NPCLEFT, LAWYERRIGHT, NPCRIGHT
+    }
+    
+    public TypeSpeaker typeSpeaker;
+    [TextArea(3, 10)]
     public List<string> textDialogs = new List<string>();
 }
 
@@ -92,10 +105,12 @@ public class Speaker
 {
     public GameObject speakerObj;
     public float scaleDialog;
+    public float sumYFirst = 110;
+    public float sumY = 75;
 }
 
 public class DialogObj
 {
     public GameObject dialogObj;
-    public int numSpeaker;
+    public Dialog.TypeSpeaker lastTypeSpeaker;
 }

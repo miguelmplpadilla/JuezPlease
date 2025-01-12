@@ -136,8 +136,8 @@ public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandl
             {
                 EventBus<InteractNPCEvent>.Raise(new InteractNPCEvent
                 {
-                    conversation = posibleConversations[Random.Range(0, posibleConversations.Count)],
-                    obj = obj.gameObject
+                    obj = obj.gameObject,
+                    objConversation = gameObject
                 });
                 
                 return;

@@ -4,6 +4,6 @@ using UnityEngine;
 using XNode;
 
 [CreateAssetMenu]
-public class NewNodeGraph : NodeGraph { 
+public class JudgmentCreator : NodeGraph { 
 	
 }
