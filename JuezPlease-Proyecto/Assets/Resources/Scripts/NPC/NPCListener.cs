@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class SendDialogEvent : IEvent
 {
-    public Conversation conversation;
+    public DialogueCreator dialogue;
 }
 
 public class InteractNPCEvent : IEvent
 {
     public GameObject obj;
-    public GameObject objConversation;
+    public DialogueCreator dialogue;
 }
 
 public class LookToEvent : IEvent

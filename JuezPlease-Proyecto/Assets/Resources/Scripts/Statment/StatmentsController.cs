@@ -1,10 +1,14 @@
 using System;
+using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class StatmentsController : MonoBehaviour
 {
+    public GameObject statmentPrefab;
+    public List<Statment> startStatments = new List<Statment>();
+    
     public bool isAnimating = false;
     public bool isShowed = false;
     
@@ -15,6 +19,18 @@ public class StatmentsController : MonoBehaviour
 
     private void Start()
     {
+        for (int i = 0; i < startStatments.Count; i++)
+        {
+            Statment statment = startStatments[i];
+            GameObject statmentObject = Instantiate(statmentPrefab, continerStatments.transform);
+            
+            DragStatmentController dragStatmentController = statmentObject.GetComponent<DragStatmentController>();
+            dragStatmentController.document = statment;
+            
+            dragStatmentController.textStatment.text = statment.textStatment.value;
+            dragStatmentController.textNumber.text = (i + 1).ToString();
+        }
+        
         dropDownButton.onClick.AddListener(() =>
         { ShowStatments(); });
     }

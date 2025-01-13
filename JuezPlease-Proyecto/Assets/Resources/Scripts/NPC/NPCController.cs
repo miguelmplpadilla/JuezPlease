@@ -8,8 +8,6 @@ using Random = UnityEngine.Random;
 
 public class NPCController : MonoBehaviour
 {
-    public List<ConversationNPC> conversationsNPC = new List<ConversationNPC>();
-
     public Image imageNPC;
 
     public Sprite spriteNoBlink;
@@ -37,17 +35,8 @@ public class NPCController : MonoBehaviour
         
         EventBus<SendDialogEvent>.Raise(new SendDialogEvent
         {
-            conversation = GetConversation(i.objConversation)
+            dialogue = i.dialogue
         });
-    }
-
-    private Conversation GetConversation(GameObject objConversation)
-    {
-        foreach (var conversation in conversationsNPC)
-            if (conversation.objConversation.Equals(objConversation))
-                return conversation.conversations[UnityEngine.Random.Range(0, conversation.conversations.Count)];
-
-        return null;
     }
 
     private IEnumerator Blink()
@@ -72,11 +61,4 @@ public class NPCController : MonoBehaviour
 
         eyesRt.DOAnchorPosX(l.objToLook.transform.position.x > transform.position.x ? 12 : 7.4f, 0);
     }
-}
-
-[Serializable]
-public class ConversationNPC
-{
-    public GameObject objConversation;
-    public List<Conversation> conversations = new List<Conversation>();
 }

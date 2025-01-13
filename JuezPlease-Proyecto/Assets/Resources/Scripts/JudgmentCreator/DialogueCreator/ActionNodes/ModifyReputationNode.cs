@@ -1,4 +1,4 @@
-﻿public class ModifyReputationNode : BaseNode
+﻿public class ModifyReputationNode : ConectionsNode
 {
     public TypeFaction faction;
     public float cantReputation;

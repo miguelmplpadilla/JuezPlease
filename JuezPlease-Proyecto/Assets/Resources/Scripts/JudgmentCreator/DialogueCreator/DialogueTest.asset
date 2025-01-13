@@ -1,5 +1,56 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-5806932421116377563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88fd2d03caa0fe64683ec841772ec40d, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1208, y: -88}
+  ports:
+    keys:
+    - baseInput
+    - baseOutput
+    values:
+    - _fieldName: baseInput
+      _node: {fileID: -5806932421116377563}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: baseOutput
+        node: {fileID: 204709665863077654}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: baseOutput
+      _node: {fileID: -5806932421116377563}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: baseInput
+        node: {fileID: 2768522139243189569}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  baseInput: {fileID: 0}
+  baseOutput: {fileID: 2768522139243189569}
+  speaker: 4
+  dialogues:
+  - emotion: 0
+    text:
+      valueSpanish: Pajero de mierda
+      valueEnglish: 
 --- !u!114 &-5327902852691879795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9,76 +60,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c3789268bb565c42b5fec825abd5ccd, type: 3}
+  m_Script: {fileID: 11500000, guid: 3cc87b2419b442f5a996b9588961959d, type: 3}
   m_Name: Statment
   m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: -632, y: -104}
-  ports:
-    keys:
-    - dialogueOutput
-    values:
-    - _fieldName: dialogueOutput
-      _node: {fileID: -5327902852691879795}
-      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      connections:
-      - fieldName: baseInput
-        node: {fileID: 253781883772540003}
-        reroutePoints: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-  dialogueOutput: {fileID: 253781883772540003}
-  speakersAsigned: 0200000001000000
+  speakersAssigned: 
+  posibleDialogues: []
   textStatment:
-    valueSpanish: "Se ha hecho pajas en la secci\xF3n de congelados del Mercadona."
-    valueEnglish: He has jerked off in the frozen food section at Mercadona.
---- !u!114 &-4288312123275257730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92fa016307f342d6b8f729bee93d0bad, type: 3}
-  m_Name: Modify Reputation
-  m_EditorClassIdentifier: 
-  graph: {fileID: 11400000}
-  position: {x: 664, y: -56}
-  ports:
-    keys:
-    - baseInput
-    - baseOutput
-    values:
-    - _fieldName: baseInput
-      _node: {fileID: -4288312123275257730}
-      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      connections:
-      - fieldName: baseOutput
-        node: {fileID: 4688673917346663744}
-        reroutePoints: []
-      _direction: 0
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-    - _fieldName: baseOutput
-      _node: {fileID: -4288312123275257730}
-      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      connections: []
-      _direction: 1
-      _connectionType: 0
-      _typeConstraint: 0
-      _dynamic: 0
-  baseInput: {fileID: 0}
-  baseOutput: {fileID: 0}
-  faction: 0
-  cantReputation: 0
+    valueSpanish: 
+    valueEnglish: 
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,9 +82,67 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodes:
   - {fileID: 253781883772540003}
-  - {fileID: 6169989805233280735}
-  - {fileID: 4688673917346663744}
-  - {fileID: -4288312123275257730}
+  - {fileID: 781331241705913965}
+  - {fileID: 204709665863077654}
+  - {fileID: -5806932421116377563}
+  - {fileID: 8034226983653310322}
+  - {fileID: 2768522139243189569}
+  - {fileID: 0}
+--- !u!114 &204709665863077654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88fd2d03caa0fe64683ec841772ec40d, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 776, y: -104}
+  ports:
+    keys:
+    - baseInput
+    - baseOutput
+    values:
+    - _fieldName: baseInput
+      _node: {fileID: 204709665863077654}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: baseOutput
+        node: {fileID: 781331241705913965}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: baseOutput
+      _node: {fileID: 204709665863077654}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: baseInput
+        node: {fileID: -5806932421116377563}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  baseInput: {fileID: 0}
+  baseOutput: {fileID: -5806932421116377563}
+  speaker: 2
+  dialogues:
+  - emotion: 0
+    text:
+      valueSpanish: A
+      valueEnglish: 
+  - emotion: 0
+    text:
+      valueSpanish: Upsiiiiii
+      valueEnglish: 
 --- !u!114 &253781883772540003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,7 +156,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -136, y: -104}
+  position: {x: -152, y: -88}
   ports:
     keys:
     - baseInput
@@ -121,7 +168,7 @@ MonoBehaviour:
         PublicKeyToken=null
       connections:
       - fieldName: baseOutput
-        node: {fileID: 6169989805233280735}
+        node: {fileID: 8034226983653310322}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -133,21 +180,29 @@ MonoBehaviour:
         PublicKeyToken=null
       connections:
       - fieldName: baseInput
-        node: {fileID: 4688673917346663744}
+        node: {fileID: 781331241705913965}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
   baseInput: {fileID: 0}
-  baseOutput: {fileID: 4688673917346663744}
+  baseOutput: {fileID: 781331241705913965}
   speaker: 2
   dialogues:
   - emotion: 0
     text:
-      valueSpanish: 
+      valueSpanish: Nada de lo que
       valueEnglish: 
---- !u!114 &4688673917346663744
+  - emotion: 0
+    text:
+      valueSpanish: 'diga ese papel '
+      valueEnglish: 
+  - emotion: 0
+    text:
+      valueSpanish: puede ser real
+      valueEnglish: 
+--- !u!114 &781331241705913965
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -156,18 +211,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53ebbd7a863e49908a4025138c9fa346, type: 3}
-  m_Name: Unlock Document
+  m_Script: {fileID: 11500000, guid: 88fd2d03caa0fe64683ec841772ec40d, type: 3}
+  m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 328, y: -72}
+  position: {x: 312, y: -104}
   ports:
     keys:
     - baseInput
     - baseOutput
     values:
     - _fieldName: baseInput
-      _node: {fileID: 4688673917346663744}
+      _node: {fileID: 781331241705913965}
       _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
       connections:
@@ -179,21 +234,57 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
     - _fieldName: baseOutput
-      _node: {fileID: 4688673917346663744}
+      _node: {fileID: 781331241705913965}
       _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
       connections:
       - fieldName: baseInput
-        node: {fileID: -4288312123275257730}
+        node: {fileID: 204709665863077654}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
   baseInput: {fileID: 0}
-  baseOutput: {fileID: -4288312123275257730}
-  documentToUnlock: {fileID: 0}
---- !u!114 &6169989805233280735
+  baseOutput: {fileID: 204709665863077654}
+  speaker: 0
+  dialogues:
+  - emotion: 0
+    text:
+      valueSpanish: "Se\xF1or, esto lo acaba de declarar unsted mismo"
+      valueEnglish: 
+--- !u!114 &2768522139243189569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 758678eda6a840be9555562f41368e82, type: 3}
+  m_Name: End Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1656, y: -88}
+  ports:
+    keys:
+    - baseInput
+    values:
+    - _fieldName: baseInput
+      _node: {fileID: 2768522139243189569}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: baseOutput
+        node: {fileID: -5806932421116377563}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  baseInput: {fileID: 0}
+--- !u!114 &8034226983653310322
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -206,13 +297,13 @@ MonoBehaviour:
   m_Name: Start Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -376, y: -104}
+  position: {x: -504, y: -88}
   ports:
     keys:
     - baseOutput
     values:
     - _fieldName: baseOutput
-      _node: {fileID: 6169989805233280735}
+      _node: {fileID: 8034226983653310322}
       _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
       connections:

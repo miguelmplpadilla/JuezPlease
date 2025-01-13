@@ -7,6 +7,11 @@ using UnityEngine;
 
 public class DialogController : MonoBehaviour
 {
+    public enum TypeSpeaker
+    {
+        JUDGE, LAWYERLEFT, NPCLEFT, LAWYERRIGHT, NPCRIGHT
+    }
+    
     public GameObject prefabDialog;
     
     private List<DialogObj> lastDialogObjs = new List<DialogObj>();
@@ -30,42 +35,58 @@ public class DialogController : MonoBehaviour
 
     private IEnumerator ShowDialog(SendDialogEvent s)
     {
-        foreach (var dialog in s.conversation.dialogs)
+        DialogueNode dialogueNode = null;
+        foreach (var node in s.dialogue.nodes)
         {
-            foreach (var text in dialog.textDialogs)
+            if (node is StartDialogueNode)
+            {
+                dialogueNode = (node as StartDialogueNode).baseOutput as DialogueNode;
+                break;
+            }
+        }
+
+        while (true)
+        {
+            yield return null;
+            
+            foreach (var dialogue in dialogueNode.dialogues)
             {
                 if (lastDialogObjs.Count > 0)
                 {
                     foreach (var lastDialogObj in lastDialogObjs)
                     {
-                        if (lastDialogObj.lastTypeSpeaker != dialog.typeSpeaker) continue;
+                        if (lastDialogObj.lastTypeSpeaker != dialogueNode.speaker) continue;
                         float yLocalPosition = lastDialogObj.dialogObj.transform.localPosition.y;
-                        lastDialogObj.dialogObj.transform.DOLocalMoveY(yLocalPosition + speakers[(int)dialog.typeSpeaker].sumY, 0.3f);
+                        lastDialogObj.dialogObj.transform.DOLocalMoveY(yLocalPosition + speakers[(int)dialogueNode.speaker].sumY, 0.3f);
                     }
                 }
-                
+            
                 EventBus<LookToEvent>.Raise(new LookToEvent
                 {
-                    lookToJudge = dialog.typeSpeaker == Dialog.TypeSpeaker.JUDGE,
-                    objToLook = speakers[(int)dialog.typeSpeaker].speakerObj
+                    lookToJudge = dialogueNode.speaker == TypeSpeaker.JUDGE,
+                    objToLook = speakers[(int)dialogueNode.speaker].speakerObj
                 });
 
                 GameObject dialogObj = Instantiate(prefabDialog,
-                    speakers[(int)dialog.typeSpeaker].speakerObj.transform);
-                dialogObj.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = text;
-                dialogObj.transform.localScale = speakers[(int)dialog.typeSpeaker].scaleDialog * Vector3.one;
-                dialogObj.transform.DOLocalMoveY(speakers[(int)dialog.typeSpeaker].sumYFirst, 0.3f);
-                
+                    speakers[(int)dialogueNode.speaker].speakerObj.transform);
+                dialogObj.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = dialogue.text.value;
+                dialogObj.transform.localScale = speakers[(int)dialogueNode.speaker].scaleDialog * Vector3.one;
+                dialogObj.transform.DOLocalMoveY(speakers[(int)dialogueNode.speaker].sumYFirst, 0.3f);
+            
                 DialogObj dialogObjClass = new DialogObj
                 {
                     dialogObj = dialogObj,
-                    lastTypeSpeaker = dialog.typeSpeaker
+                    lastTypeSpeaker = dialogueNode.speaker
                 };
                 StartCoroutine(DestroyDialogObj(dialogObjClass));
                 lastDialogObjs.Add(dialogObjClass);
-                
+            
                 yield return new WaitForSeconds(1.5f);
             }
+            
+            if (dialogueNode.baseOutput is EndDialogueNode) break;
+            
+            dialogueNode = dialogueNode.baseOutput as DialogueNode;
         }
     }
 
@@ -82,25 +103,6 @@ public class DialogController : MonoBehaviour
 }
 
 [Serializable]
-public class Conversation
-{
-    public List<Dialog> dialogs;
-}
-
-[Serializable]
-public class Dialog
-{
-    public enum TypeSpeaker
-    {
-        JUDGE, LAWYERLEFT, NPCLEFT, LAWYERRIGHT, NPCRIGHT
-    }
-    
-    public TypeSpeaker typeSpeaker;
-    [TextArea(3, 10)]
-    public List<string> textDialogs = new List<string>();
-}
-
-[Serializable]
 public class Speaker
 {
     public GameObject speakerObj;
@@ -112,5 +114,5 @@ public class Speaker
 public class DialogObj
 {
     public GameObject dialogObj;
-    public Dialog.TypeSpeaker lastTypeSpeaker;
+    public DialogController.TypeSpeaker lastTypeSpeaker;
 }

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 
 [NodeWidth(400)]
-public class DialogueNode : BaseNode
+public class DialogueNode : ConectionsNode
 {
-	public Dialog.TypeSpeaker speaker;
+	public DialogController.TypeSpeaker speaker;
 	public List<DialogueData> dialogues = new List<DialogueData>();
 }
 

@@ -3,6 +3,6 @@ using UnityEngine;
 
 public class Document : ScriptableObject
 {
-    public List<Dialog.TypeSpeaker> speakersAssigned = new List<Dialog.TypeSpeaker>();
-    public DialogueCreator dialogue;
+    public List<DialogController.TypeSpeaker> speakersAssigned = new List<DialogController.TypeSpeaker>();
+    public List<DialogueCreator> posibleDialogues;
 }

@@ -1,13 +1,15 @@
+using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using Resources.Scripts.Hammer;
 using Resources.Scripts.Holder;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Random = UnityEngine.Random;
 
 public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    public List<Conversation> posibleConversations = new List<Conversation>();
+    public Document document;
     
     public float multiplyScaleForBig = 5;
 
@@ -137,12 +139,23 @@ public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandl
                 EventBus<InteractNPCEvent>.Raise(new InteractNPCEvent
                 {
                     obj = obj.gameObject,
-                    objConversation = gameObject
+                    dialogue = GetConversation(obj.gameObject)
                 });
                 
                 return;
             }
         }
+    }
+    
+    private DialogueCreator GetConversation(GameObject npcObj)
+    {
+        foreach (var speaker in document.speakersAssigned)
+        {
+            if (npcObj.transform.parent.name.Equals(speaker.ToString()))
+                return document.posibleDialogues[Random.Range(0, document.posibleDialogues.Count)];
+        }
+
+        return null;
     }
 
     protected virtual void GlobalOnEndDrag()

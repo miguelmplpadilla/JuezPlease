@@ -1,6 +1,6 @@
 ﻿using XNode;
 
-public class StartDialogueNode : Node {
+public class StartDialogueNode : BaseNode {
 
 	[Output] public BaseNode baseOutput;
 	
@@ -26,5 +26,10 @@ public class StartDialogueNode : Node {
 		base.OnRemoveConnection(port);
 
 		if (port.fieldName.Equals("baseOutput")) baseOutput = null;
+	}
+
+	public override object GetValue(NodePort port)
+	{
+		return null;
 	}
 }

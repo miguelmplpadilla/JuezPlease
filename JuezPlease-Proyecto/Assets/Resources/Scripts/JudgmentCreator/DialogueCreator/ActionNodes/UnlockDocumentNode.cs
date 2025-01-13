@@ -1,4 +1,4 @@
-﻿public class UnlockDocumentNode : BaseNode
+﻿public class UnlockDocumentNode : ConectionsNode
 {
     public Document documentToUnlock;
 }
