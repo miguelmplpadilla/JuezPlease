@@ -14,9 +14,10 @@ public class NpcSo : ScriptableObject
     public bool isGuilty = true;
     public TypeCrime crime;
     public float crimeLevel;
-    public List<DialogueData.TypeEmotion> emotions;
+    public List<Emotion> emotions;
     
-    public NPCImages npcImages;
+    public Texture2D npcImages;
+    public Sprite npcBig;
 
     public enum TypeCrime
     {

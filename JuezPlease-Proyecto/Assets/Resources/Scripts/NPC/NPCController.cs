@@ -8,25 +8,26 @@ using Random = UnityEngine.Random;
 
 public class NPCController : MonoBehaviour
 {
-    public Image imageNPC;
-
-    public Sprite spriteNoBlink;
-    public Sprite spriteBlink;
+    public GameObject eyeLids;
 
     public RectTransform eyesRt;
+
+    public Animator animator;
     
     private void Start()
     {
         EventBus<InteractNPCEvent>.Register(new EventBinding<InteractNPCEvent>(Interact, gameObject));
         EventBus<LookToEvent>.Register(new EventBinding<LookToEvent>(LookTo, gameObject));
+        EventBus<PlayAnimationNPCEvent>.Register(new EventBinding<PlayAnimationNPCEvent>(PlayAnimationNPC, gameObject));
         
-        if (spriteBlink != null) StartCoroutine(Blink());
+        StartCoroutine(Blink());
     }
     
     private void OnDestroy()
     {
         EventBus<InteractNPCEvent>.Deregister(new EventBinding<InteractNPCEvent>(Interact, gameObject));
         EventBus<LookToEvent>.Deregister(new EventBinding<LookToEvent>(LookTo, gameObject));
+        EventBus<PlayAnimationNPCEvent>.Deregister(new EventBinding<PlayAnimationNPCEvent>(PlayAnimationNPC, gameObject));
     }
 
     private void Interact(InteractNPCEvent i)
@@ -45,14 +46,36 @@ public class NPCController : MonoBehaviour
         {
             yield return null;
             yield return new WaitForSeconds(Random.Range(2, 10 + 1));
-            imageNPC.sprite = spriteBlink;
+            eyeLids.transform.localScale = Vector3.one;
             yield return new WaitForSeconds(0.05f);
-            imageNPC.sprite = spriteNoBlink;
+            eyeLids.transform.localScale = Vector3.zero;
+        }
+    }
+
+    private void PlayAnimationNPC(PlayAnimationNPCEvent p)
+    {
+        if (!p.obj.Equals(gameObject.transform.parent.gameObject)) return;
+
+        foreach (var emotion in p.emotions)
+        {
+            string animationName = emotion.emotion.ToString().ToLower() + emotion.arm.ToString().ToLower();
+            Debug.Log("Play Animation: "+animationName);
+            //animator.SetTrigger(animationName);
+            if (animator.HasState((int)emotion.arm, Animator.StringToHash(animationName)))
+            {
+                animator.SetLayerWeight((int)emotion.arm, 1);
+                animator.Play(animationName, (int)emotion.arm, 0);
+            }
+            else
+            {
+                Debug.LogWarning("Animation not found: " + animationName);
+            }
         }
     }
 
     private void LookTo(LookToEvent l)
     {
+        return;
         if (l.lookToJudge)
         {
             eyesRt.DOAnchorPosX(10, 0);

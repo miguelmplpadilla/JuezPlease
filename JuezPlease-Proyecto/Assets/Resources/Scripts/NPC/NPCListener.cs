@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SendDialogEvent : IEvent
@@ -15,4 +16,10 @@ public class LookToEvent : IEvent
 {
     public bool lookToJudge = false;
     public GameObject objToLook;
+}
+
+public class PlayAnimationNPCEvent : IEvent
+{
+    public GameObject obj;
+    public List<Emotion> emotions = new List<Emotion>();
 }

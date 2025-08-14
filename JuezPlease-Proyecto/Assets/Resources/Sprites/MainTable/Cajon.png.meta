@@ -145,10 +145,10 @@ TextureImporter:
         x: 0
         y: 0
         width: 208
-        height: 274
+        height: 263
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 70, y: 0, z: 80, w: 27}
+      border: {x: 19, y: 0, z: 19, w: 27}
       customData: 
       outline: []
       physicsShape: []
@@ -156,6 +156,28 @@ TextureImporter:
       bones: []
       spriteID: 2f9b1edf9024e5f00800000000000000
       internalID: 1107395169061288434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cajon_1
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 263
+        width: 78
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b483e1f05557d6f49b2325062489245b
+      internalID: -1590098131
       vertices: []
       indices: 
       edges: []
@@ -175,6 +197,7 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       Cajon_0: 1107395169061288434
+      Cajon_1: -1590098131
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

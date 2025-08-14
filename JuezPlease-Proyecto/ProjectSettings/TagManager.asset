@@ -8,6 +8,7 @@ TagManager:
   - BigObjects
   - DragObject
   - NPC
+  - BlockDrag
   layers:
   - Default
   - TransparentFX

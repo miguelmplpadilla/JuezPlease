@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using Resources.Scripts.Hammer;
@@ -26,7 +27,9 @@ public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandl
     protected GameObject continer;
     protected GameObject currentParent;
     protected GameObject originalParent;
-    protected GameObject canvas;
+    public GameObject canvas;
+
+    protected Vector3 startPositionDrag;
 
     protected bool isAnimating = false;
     protected bool isDragging = false;
@@ -37,9 +40,18 @@ public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandl
     
     public string objTag = "BigObjects";
 
+    private bool isInShreeder = false;
+    public bool isCrushable = true;
+
     private void Awake()
     {
         originalParent = transform.parent.gameObject;
+        
+        originalScale = transform.localScale.x;
+        scaleBig = originalScale * multiplyScaleForBig;
+        
+        GameObject parent = transform.parent.gameObject;
+        SetDataObject(parent, parent.GetComponent<HolderController>(), !parent.CompareTag("LittleObjects"));
     }
     
     protected virtual void Start()
@@ -47,15 +59,27 @@ public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandl
         EventBus<SlamHammerAnimationEvent>.Register(
             new EventBinding<SlamHammerAnimationEvent>(HammerSlamJump, gameObject));
         
-        canvas = GameObject.Find("CanvasTable");
-        originalScale = transform.localScale.x;
-        scaleBig = originalScale * multiplyScaleForBig;
+        EventBus<OnBeginDragEvent>.Register(
+            new EventBinding<OnBeginDragEvent>(BeginDrag, gameObject));
+        EventBus<OnDragEvent>.Register(
+            new EventBinding<OnDragEvent>(Drag, gameObject));
+        EventBus<OnEndDragEvent>.Register(
+            new EventBinding<OnEndDragEvent>(EndDrag, gameObject));
+        
+        if (canvas == null) canvas = GameObject.Find("CanvasTable");
     }
 
-    private void OnDestroy()
+    protected virtual void OnDestroy()
     {
         EventBus<SlamHammerAnimationEvent>.Deregister(
             new EventBinding<SlamHammerAnimationEvent>(HammerSlamJump, gameObject));
+        
+        EventBus<OnBeginDragEvent>.Deregister(
+            new EventBinding<OnBeginDragEvent>(BeginDrag, gameObject));
+        EventBus<OnDragEvent>.Deregister(
+            new EventBinding<OnDragEvent>(Drag, gameObject));
+        EventBus<OnEndDragEvent>.Deregister(
+            new EventBinding<OnEndDragEvent>(EndDrag, gameObject));
     }
 
     protected virtual void Update()
@@ -64,9 +88,11 @@ public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandl
             SetData();
     }
 
-    public void OnBeginDrag(PointerEventData eventData)
+    private void BeginDrag(OnBeginDragEvent onBeginDragEvent)
     {
-        if (isAnimating) return;
+        if (isAnimating || !onBeginDragEvent.obj.Equals(gameObject)) return;
+
+        startPositionDrag = transform.position;
         
         isDragging = true;
         
@@ -91,17 +117,57 @@ public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandl
         });
     }
 
-    public void OnDrag(PointerEventData eventData)
+    public void OnBeginDrag(PointerEventData eventData)
     {
-        if (isAnimating) return;
+        BeginDrag(new OnBeginDragEvent
+        {
+            eventData = eventData,
+            obj = gameObject
+        });
+    }
+
+    private void Drag(OnDragEvent onDragEvent)
+    {
+        if (isAnimating || !onDragEvent.obj.Equals(gameObject)) return;
         
         isDragging = true;
-        transform.position = eventData.position;
+        transform.position = onDragEvent.eventData.position;
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        Drag(new OnDragEvent
+        {
+            eventData = eventData,
+            obj = gameObject
+        });
+    }
+    
+    private void EndDrag(OnEndDragEvent onEndDragEvent)
+    {
+        if (!onEndDragEvent.obj.Equals(gameObject)) return;
+        
+        StartCoroutine(EndDragIE(onEndDragEvent.eventData));
     }
 
     public virtual void OnEndDrag(PointerEventData eventData)
     {
-        if (isAnimating) return;
+        EndDrag(new OnEndDragEvent
+        {
+            eventData = eventData,
+            obj = gameObject
+        });
+    }
+
+    private IEnumerator EndDragIE(PointerEventData eventData)
+    {
+        if (isAnimating) yield break;
+
+        if (isInShreeder)
+        {
+            StartCoroutine(CrushPaper());
+            yield break;
+        }
         
         foreach (var shadow in shadowsRectTransform)
         {
@@ -119,10 +185,55 @@ public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandl
             objHolder = currentParent,
             add = true
         });
+
+        yield return CheckIfIsInBlock();
         
         isDragging = false;
         
         GlobalOnEndDrag();
+    }
+
+    private IEnumerator CrushPaper()
+    {
+        isAnimating = true;
+        
+        GameObject startPosition = GameObject.Find("StartPositionShredderTableData");
+        GameObject endPosition = GameObject.Find("EndPositionShredderTableData");
+
+        transform.DOMoveY(startPosition.transform.position.y, 0.3f);
+
+        yield return new WaitForSeconds(0.4f);
+        
+        transform.DOMoveX(startPosition.transform.position.x, 0.3f);
+        
+        yield return new WaitForSeconds(0.3f);
+        
+        transform.DOMoveX(endPosition.transform.position.x, 4);
+
+        yield return new WaitForSeconds(4.1f);
+        
+        Destroy(gameObject);
+    }
+
+    protected virtual IEnumerator CheckIfIsInBlock()
+    {
+        List<RaycastResult> results = new List<RaycastResult>();
+        PointerEventData pointerEventData = new PointerEventData(EventSystem.current)
+            { position = transform.position };
+        EventSystem.current.RaycastAll(pointerEventData, results);
+        
+        foreach (var obj in results)
+        {
+            if (obj.gameObject.CompareTag("BlockDrag"))
+            {
+                isAnimating = true;
+                transform.DOMove(startPositionDrag, 0.3f);
+                yield return new WaitForSeconds(0.3f);
+                isAnimating = false;
+
+                yield break;
+            }
+        }
     }
 
     protected void CheckNPCDraged()
@@ -136,10 +247,13 @@ public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandl
         {
             if (obj.gameObject.CompareTag("NPC"))
             {
+                DialogueCreator dialogueCreator = GetConversation(obj.gameObject);
+                if (dialogueCreator == null) return;
+                
                 EventBus<InteractNPCEvent>.Raise(new InteractNPCEvent
                 {
                     obj = obj.gameObject,
-                    dialogue = GetConversation(obj.gameObject)
+                    dialogue = dialogueCreator
                 });
                 
                 return;
@@ -190,12 +304,40 @@ public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandl
             if (holderController != null)
             {
                 SetDataObject(result.gameObject, holderController, result.gameObject.CompareTag(objTag));
-                return;
+                break;
             }
+        }
+
+        if (isCrushable)
+        {
+            foreach (var result in results)
+            {
+                if (result.gameObject.name.Equals("ShredderCollider"))
+                {
+                    RotateToShredder();
+                    return;
+                }
+            }
+
+            if (!isInShreeder) return;
+            
+            allImages.transform.DOKill();
+            allImages.transform.DORotate(new Vector3(0, 0, 0), 0.5f);
+            isInShreeder = false;
         }
     }
 
-    protected void SetDataObject(GameObject result, HolderController holderController, bool isBig)
+    private void RotateToShredder()
+    {
+        if (isInShreeder) return;
+        
+        allImages.transform.DOKill();
+        allImages.transform.DORotate(new Vector3(0, 0, 90), 0.5f);
+
+        isInShreeder = true;
+    }
+
+    public void SetDataObject(GameObject result, HolderController holderController, bool isBig)
     {
         if (result.gameObject.Equals(currentParent)) return;
         

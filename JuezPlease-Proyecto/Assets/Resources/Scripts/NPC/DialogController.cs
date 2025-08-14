@@ -36,6 +36,7 @@ public class DialogController : MonoBehaviour
     private IEnumerator ShowDialog(SendDialogEvent s)
     {
         DialogueNode dialogueNode = null;
+        Debug.Log(s.dialogue);
         foreach (var node in s.dialogue.nodes)
         {
             if (node is StartDialogueNode)
@@ -64,7 +65,13 @@ public class DialogController : MonoBehaviour
                 EventBus<LookToEvent>.Raise(new LookToEvent
                 {
                     lookToJudge = dialogueNode.speaker == TypeSpeaker.JUDGE,
-                    objToLook = speakers[(int)dialogueNode.speaker].speakerObj
+                    objToLook = speakers[(int)dialogueNode.speaker].speakerObj.transform.parent.gameObject
+                });
+
+                EventBus<PlayAnimationNPCEvent>.Raise(new PlayAnimationNPCEvent
+                {
+                    obj = speakers[(int)dialogueNode.speaker].speakerObj.transform.parent.gameObject,
+                    emotions = dialogue.emotionsToPlay
                 });
 
                 GameObject dialogObj = Instantiate(prefabDialog,

@@ -1,0 +1,369 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9124883824291479825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31c2179c91d5ec547a75812016f674ff, type: 3}
+  m_Name: Acused Acusator Page
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -248, y: -968}
+  ports:
+    keys:
+    - baseInput
+    - baseOutput
+    values:
+    - _fieldName: baseInput
+      _node: {fileID: -9124883824291479825}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: acusedOutput
+        node: {fileID: -5855636975040253366}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: baseOutput
+      _node: {fileID: -9124883824291479825}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  baseOutput: {fileID: 0}
+  baseInput: {fileID: 0}
+  data:
+    photo: {fileID: 8348670922972553302, guid: d563087492f485841bffa9f173307708, type: 3}
+    isAcused: 1
+    litigantName:
+      valueSpanish: Manolo
+      valueEnglish: 
+    surnames:
+      valueSpanish: Antonio Martinez
+      valueEnglish: 
+    gender: 0
+    birthDate: 12 - 04 - 1935
+    profession:
+      valueSpanish: En paro
+      valueEnglish: 
+    criminalRecord:
+      valueSpanish: Varios intentos de robo de ropa i pajearse en el mercadona
+      valueEnglish: 
+    fingerPrint: {fileID: 7221131645545309127, guid: 2168a36defd180749a6ed455e24bab10, type: 3}
+--- !u!114 &-8195110489389602369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31c2179c91d5ec547a75812016f674ff, type: 3}
+  m_Name: Acused Acusator Page
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 152, y: -728}
+  ports:
+    keys:
+    - baseInput
+    - baseOutput
+    values:
+    - _fieldName: baseInput
+      _node: {fileID: -8195110489389602369}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: acusatorOutput
+        node: {fileID: -5855636975040253366}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: baseOutput
+      _node: {fileID: -8195110489389602369}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  baseOutput: {fileID: 0}
+  baseInput: {fileID: 0}
+  data:
+    photo: {fileID: 8348670922972553302, guid: d563087492f485841bffa9f173307708, type: 3}
+    isAcused: 0
+    litigantName:
+      valueSpanish: Paca
+      valueEnglish: 
+    surnames:
+      valueSpanish: Pacheco Diaz
+      valueEnglish: 
+    gender: 1
+    birthDate: 03  - 01 - 1908
+    profession:
+      valueSpanish: Profesora
+      valueEnglish: 
+    criminalRecord:
+      valueSpanish: Ninguno
+      valueEnglish: 
+    fingerPrint: {fileID: 3591591198834612326, guid: b6871e649bf29ca47bee79dda65eedaa, type: 3}
+--- !u!114 &-6168114762794227343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97cd63726b2696540826a9685db94355, type: 3}
+  m_Name: Evidences
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 168, y: -264}
+  ports:
+    keys:
+    - baseInput
+    - baseOutput
+    values:
+    - _fieldName: baseInput
+      _node: {fileID: -6168114762794227343}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: baseOutput
+        node: {fileID: -5063889059383407040}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: baseOutput
+      _node: {fileID: -6168114762794227343}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: baseInput
+        node: {fileID: 6002462420008105213}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  baseOutput: {fileID: 6002462420008105213}
+  baseInput: {fileID: 0}
+  evidences:
+  - isUnlocked: 1
+    textPage:
+      valueSpanish: '- El hijo de puta este es un cabron de manual, se le ha visto
+        robando ropa a los pobres.
+
+
+        - Tamben tiene toda la cara que se hace
+        pajas en la seccion de congelados del mercadona.'
+      valueEnglish: 
+  - isUnlocked: 1
+    textPage:
+      valueSpanish: '- Un testigo acaba de decir que ha visto al acusado haciendose
+        pajas en la seccion de congelados del marcadona.'
+      valueEnglish: 
+--- !u!114 &-5855636975040253366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b922608748e04547acc86b91b992e77, type: 3}
+  m_Name: Log Book
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -568, y: -440}
+  ports:
+    keys:
+    - acusedOutput
+    - acusatorOutput
+    - startRightPages
+    values:
+    - _fieldName: acusedOutput
+      _node: {fileID: -5855636975040253366}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: baseInput
+        node: {fileID: -9124883824291479825}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: acusatorOutput
+      _node: {fileID: -5855636975040253366}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: baseInput
+        node: {fileID: -8195110489389602369}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: startRightPages
+      _node: {fileID: -5855636975040253366}
+      _typeQualifiedName: OutputConectionNode, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: baseInput
+        node: {fileID: -5063889059383407040}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  acusedOutput: {fileID: -9124883824291479825}
+  acusatorOutput: {fileID: -8195110489389602369}
+  startRightPages: {fileID: -5063889059383407040}
+--- !u!114 &-5063889059383407040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 555e6cb1745412947af5c36ed7d324d6, type: 3}
+  m_Name: Witness
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -184, y: -264}
+  ports:
+    keys:
+    - baseInput
+    - baseOutput
+    values:
+    - _fieldName: baseInput
+      _node: {fileID: -5063889059383407040}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: startRightPages
+        node: {fileID: -5855636975040253366}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: baseOutput
+      _node: {fileID: -5063889059383407040}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: baseInput
+        node: {fileID: -6168114762794227343}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  baseOutput: {fileID: -6168114762794227343}
+  baseInput: {fileID: 0}
+  photo: {fileID: 8348670922972553302, guid: d563087492f485841bffa9f173307708, type: 3}
+  witnessName:
+    valueSpanish: Paquito
+    valueEnglish: 
+  surnames:
+    valueSpanish: Ramirez Molina
+    valueEnglish: 
+  gender: 0
+  description:
+    valueSpanish: "Este tio es un putero profesional, pero m\xE1s que eso, es un
+      chivato."
+    valueEnglish: 
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be3f972da39b4644e914cbb3b4ef8c34, type: 3}
+  m_Name: LogBookTest
+  m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: -5855636975040253366}
+  - {fileID: -8195110489389602369}
+  - {fileID: 6002462420008105213}
+  - {fileID: -5063889059383407040}
+  - {fileID: -6168114762794227343}
+  - {fileID: -9124883824291479825}
+--- !u!114 &6002462420008105213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d90dc82fee9512240972a2161f8175c9, type: 3}
+  m_Name: Charges
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 520, y: -264}
+  ports:
+    keys:
+    - baseInput
+    - baseOutput
+    values:
+    - _fieldName: baseInput
+      _node: {fileID: 6002462420008105213}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: baseOutput
+        node: {fileID: -6168114762794227343}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: baseOutput
+      _node: {fileID: 6002462420008105213}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  baseOutput: {fileID: 0}
+  baseInput: {fileID: 0}
+  acusations:
+    valueSpanish: Robo en mercadona
+    valueEnglish: 
+  chargesPages:
+  - valueSpanish: Se le ha pillado robando y haciendose pajas en la seccion de congelados
+      del mercadona
+    valueEnglish: 
+  - valueSpanish: Tambien ha sospechas de que se haya hecho pajas en la seccion de
+      congelados del mercadona
+    valueEnglish: 

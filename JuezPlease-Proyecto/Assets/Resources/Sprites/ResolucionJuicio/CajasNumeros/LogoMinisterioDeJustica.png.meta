@@ -1,0 +1,250 @@
+fileFormatVersion: 2
+guid: f9de6087376b0324e9b9d17846f9b104
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4327974658060970173
+    second: LogoMinisterioDeJustica_0
+  - first:
+      213: -8303811400001966074
+    second: LogoMinisterioDeJustica_1
+  - first:
+      213: -2803551177622421162
+    second: LogoMinisterioDeJustica_2
+  - first:
+      213: -1700270371332801012
+    second: LogoMinisterioDeJustica_3
+  - first:
+      213: 7970522789599872874
+    second: LogoMinisterioDeJustica_4
+  - first:
+      213: 7160731687009452574
+    second: LogoMinisterioDeJustica_5
+  - first:
+      213: 2114720441664133771
+    second: LogoMinisterioDeJustica_6
+  - first:
+      213: 44361891640571208
+    second: LogoMinisterioDeJustica_7
+  - first:
+      213: -4207978870992970998
+    second: LogoMinisterioDeJustica_8
+  - first:
+      213: 6545871111204047161
+    second: LogoMinisterioDeJustica_9
+  - first:
+      213: -8941660087317537569
+    second: LogoMinisterioDeJustica_10
+  - first:
+      213: -8170481177507417669
+    second: LogoMinisterioDeJustica_11
+  - first:
+      213: 275362696665445276
+    second: LogoMinisterioDeJustica_12
+  - first:
+      213: 4996536344923036797
+    second: LogoMinisterioDeJustica_13
+  - first:
+      213: 9034723315596900024
+    second: LogoMinisterioDeJustica_14
+  - first:
+      213: 4349700233635811413
+    second: LogoMinisterioDeJustica_15
+  - first:
+      213: 88826649975858930
+    second: LogoMinisterioDeJustica_16
+  - first:
+      213: 544490178710705016
+    second: LogoMinisterioDeJustica_17
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: LogoMinisterioDeJustica_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 55
+        width: 121
+        height: 122
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3471265aaf1ffe3c0800000000000000
+      internalID: -4327974658060970173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 9b9dafe4f008440479e33cf5f4345b36
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      LogoMinisterioDeJustica_0: -4327974658060970173
+      LogoMinisterioDeJustica_1: -8303811400001966074
+      LogoMinisterioDeJustica_10: -8941660087317537569
+      LogoMinisterioDeJustica_11: -8170481177507417669
+      LogoMinisterioDeJustica_12: 275362696665445276
+      LogoMinisterioDeJustica_13: 4996536344923036797
+      LogoMinisterioDeJustica_14: 9034723315596900024
+      LogoMinisterioDeJustica_15: 4349700233635811413
+      LogoMinisterioDeJustica_16: 88826649975858930
+      LogoMinisterioDeJustica_17: 544490178710705016
+      LogoMinisterioDeJustica_2: -2803551177622421162
+      LogoMinisterioDeJustica_3: -1700270371332801012
+      LogoMinisterioDeJustica_4: 7970522789599872874
+      LogoMinisterioDeJustica_5: 7160731687009452574
+      LogoMinisterioDeJustica_6: 2114720441664133771
+      LogoMinisterioDeJustica_7: 44361891640571208
+      LogoMinisterioDeJustica_8: -4207978870992970998
+      LogoMinisterioDeJustica_9: 6545871111204047161
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

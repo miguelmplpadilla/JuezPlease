@@ -28,6 +28,16 @@ public class HammerController : MonoBehaviour
         //hammer.SetTrigger("Slam");
         
         indexDots++;
+        
+        if (indexDots >= dots.transform.childCount)
+        {
+            EventBus<TransitionSceneEvent>.Raise(new TransitionSceneEvent
+            {
+                currentSceneName = "JudgedScene",
+                sceneNameToTransition = "ResolutionScene"
+            });
+            return;
+        }
 
         if (indexDots < dots.transform.childCount)
             coroutine = StartCoroutine(RestartDots());

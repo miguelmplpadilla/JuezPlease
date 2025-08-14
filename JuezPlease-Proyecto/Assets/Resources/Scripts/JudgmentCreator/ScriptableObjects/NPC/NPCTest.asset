@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f75bf03aeecac6a4e8458b4c367fadd5, type: 3}
+  m_Name: NPCTest
+  m_EditorClassIdentifier: 
+  npcName: 
+  isAccused: 1
+  professionalPosition: 
+  criminalRecord: 
+  levelCriminalRecord: 0
+  dateBirth: 
+  faction: 0
+  isGuilty: 1
+  crime: 0
+  crimeLevel: 0
+  emotions: 
+  npcImages: {fileID: 0}
+  npcBig: {fileID: 0}

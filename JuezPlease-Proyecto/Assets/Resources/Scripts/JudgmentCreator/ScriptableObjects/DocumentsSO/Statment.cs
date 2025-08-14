@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "Statment", menuName = "ScriptableObjects/Statment", order = 1)]
+[CreateAssetMenu(fileName = "Statment", menuName = "ScriptableObjects/Documents/Statment", order = 1)]
 public class Statment : Document
 {
     public LocalizableString textStatment;
