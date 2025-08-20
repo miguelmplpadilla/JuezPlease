@@ -7,6 +7,8 @@ using UnityEngine;
 
 public class DialogController : MonoBehaviour
 {
+    public static DialogController instance;
+    
     public enum TypeSpeaker
     {
         JUDGE, LAWYERLEFT, NPCLEFT, LAWYERRIGHT, NPCRIGHT
@@ -17,7 +19,14 @@ public class DialogController : MonoBehaviour
     private List<DialogObj> lastDialogObjs = new List<DialogObj>();
 
     public List<Speaker> speakers;
-    
+
+    public bool isSpeaking = false;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     private void Start()
     {
         EventBus<SendDialogEvent>.Register(new EventBinding<SendDialogEvent>(StartDialog, gameObject));
@@ -35,16 +44,9 @@ public class DialogController : MonoBehaviour
 
     private IEnumerator ShowDialog(SendDialogEvent s)
     {
-        DialogueNode dialogueNode = null;
-        Debug.Log(s.dialogue);
-        foreach (var node in s.dialogue.nodes)
-        {
-            if (node is StartDialogueNode)
-            {
-                dialogueNode = (node as StartDialogueNode).baseOutput as DialogueNode;
-                break;
-            }
-        }
+        isSpeaking = true;
+        
+        DialogueNode dialogueNode = s.dialogueStartNode;
 
         while (true)
         {
@@ -95,6 +97,8 @@ public class DialogController : MonoBehaviour
             
             dialogueNode = dialogueNode.baseOutput as DialogueNode;
         }
+        
+        isSpeaking = false;
     }
 
     private IEnumerator DestroyDialogObj(DialogObj dialog)

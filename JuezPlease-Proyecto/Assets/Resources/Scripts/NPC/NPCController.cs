@@ -1,9 +1,7 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class NPCController : MonoBehaviour
@@ -13,10 +11,17 @@ public class NPCController : MonoBehaviour
     public RectTransform eyesRt;
 
     public Animator animator;
+
+    public DialogController.TypeSpeaker speaker;
+    
+    public GameObject iconConversation;
+    public bool canInteract = false;
     
     private void Start()
     {
         EventBus<InteractNPCEvent>.Register(new EventBinding<InteractNPCEvent>(Interact, gameObject));
+        EventBus<AboveInteractNPCEvent>.Register(new EventBinding<AboveInteractNPCEvent>(AboveInteract, gameObject));
+        
         EventBus<LookToEvent>.Register(new EventBinding<LookToEvent>(LookTo, gameObject));
         EventBus<PlayAnimationNPCEvent>.Register(new EventBinding<PlayAnimationNPCEvent>(PlayAnimationNPC, gameObject));
         
@@ -26,8 +31,17 @@ public class NPCController : MonoBehaviour
     private void OnDestroy()
     {
         EventBus<InteractNPCEvent>.Deregister(new EventBinding<InteractNPCEvent>(Interact, gameObject));
+        EventBus<AboveInteractNPCEvent>.Deregister(new EventBinding<AboveInteractNPCEvent>(AboveInteract, gameObject));
+        
         EventBus<LookToEvent>.Deregister(new EventBinding<LookToEvent>(LookTo, gameObject));
         EventBus<PlayAnimationNPCEvent>.Deregister(new EventBinding<PlayAnimationNPCEvent>(PlayAnimationNPC, gameObject));
+    }
+    
+    private void AboveInteract(AboveInteractNPCEvent i)
+    {
+        if (!i.obj.Equals(gameObject)) return;
+
+        canInteract = i.canInteract;
     }
 
     private void Interact(InteractNPCEvent i)
@@ -36,8 +50,14 @@ public class NPCController : MonoBehaviour
         
         EventBus<SendDialogEvent>.Raise(new SendDialogEvent
         {
-            dialogue = i.dialogue
+            dialogueStartNode = i.dialogueNode,
+            speaker = speaker
         });
+    }
+
+    private void Update()
+    {
+        iconConversation.transform.localScale = canInteract ? Vector3.one : Vector3.zero;
     }
 
     private IEnumerator Blink()

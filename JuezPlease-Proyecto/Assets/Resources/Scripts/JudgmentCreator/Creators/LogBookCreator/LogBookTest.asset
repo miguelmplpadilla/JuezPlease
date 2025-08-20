@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Acused Acusator Page
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -248, y: -968}
+  position: {x: -232, y: -1096}
   ports:
     keys:
     - baseInput
@@ -35,18 +35,21 @@ MonoBehaviour:
       _node: {fileID: -9124883824291479825}
       _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-      connections: []
+      connections:
+      - fieldName: baseInput
+        node: {fileID: -245101373200399153}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  baseOutput: {fileID: 0}
+  baseOutput: {fileID: -245101373200399153}
   baseInput: {fileID: 0}
   data:
     photo: {fileID: 8348670922972553302, guid: d563087492f485841bffa9f173307708, type: 3}
     isAcused: 1
     litigantName:
-      valueSpanish: Manolo
+      valueSpanish: Mario
       valueEnglish: 
     surnames:
       valueSpanish: Antonio Martinez
@@ -60,6 +63,48 @@ MonoBehaviour:
       valueSpanish: Varios intentos de robo de ropa i pajearse en el mercadona
       valueEnglish: 
     fingerPrint: {fileID: 7221131645545309127, guid: 2168a36defd180749a6ed455e24bab10, type: 3}
+--- !u!114 &-8870443332212793236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df872a1f64a5de04cb8d04b2dd703f23, type: 3}
+  m_Name: Character
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 616, y: -1368}
+  ports:
+    keys:
+    - baseInput
+    values:
+    - _fieldName: baseInput
+      _node: {fileID: -8870443332212793236}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: clientOutput
+        node: {fileID: -245101373200399153}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  baseInput: {fileID: 0}
+  characterType: 0
+  characterSprites:
+    body: {fileID: 0}
+    eyes: {fileID: 0}
+    eyelids: {fileID: 0}
+    armRight:
+      normalArm: {fileID: 0}
+      actionArm: {fileID: 0}
+    amrLeft:
+      normalArm: {fileID: 0}
+      actionArm: {fileID: 0}
 --- !u!114 &-8195110489389602369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,7 +118,7 @@ MonoBehaviour:
   m_Name: Acused Acusator Page
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 152, y: -728}
+  position: {x: 328, y: -792}
   ports:
     keys:
     - baseInput
@@ -95,12 +140,15 @@ MonoBehaviour:
       _node: {fileID: -8195110489389602369}
       _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-      connections: []
+      connections:
+      - fieldName: baseInput
+        node: {fileID: 802544783878205983}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  baseOutput: {fileID: 0}
+  baseOutput: {fileID: 802544783878205983}
   baseInput: {fileID: 0}
   data:
     photo: {fileID: 8348670922972553302, guid: d563087492f485841bffa9f173307708, type: 3}
@@ -296,6 +344,65 @@ MonoBehaviour:
     valueSpanish: "Este tio es un putero profesional, pero m\xE1s que eso, es un
       chivato."
     valueEnglish: 
+--- !u!114 &-245101373200399153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96db91887aacc4d4e9b623c1edd34d4b, type: 3}
+  m_Name: Characters
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 200, y: -1336}
+  ports:
+    keys:
+    - clientOutput
+    - lawyerOutput
+    - baseInput
+    values:
+    - _fieldName: clientOutput
+      _node: {fileID: -245101373200399153}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: baseInput
+        node: {fileID: -8870443332212793236}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: lawyerOutput
+      _node: {fileID: -245101373200399153}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: baseInput
+        node: {fileID: 8775563973258268543}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: baseInput
+      _node: {fileID: -245101373200399153}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: baseOutput
+        node: {fileID: -9124883824291479825}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  baseInput: {fileID: 0}
+  clientOutput: {fileID: -8870443332212793236}
+  lawyerOutput: {fileID: 8775563973258268543}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,6 +422,155 @@ MonoBehaviour:
   - {fileID: -5063889059383407040}
   - {fileID: -6168114762794227343}
   - {fileID: -9124883824291479825}
+  - {fileID: -245101373200399153}
+  - {fileID: -8870443332212793236}
+  - {fileID: 8775563973258268543}
+  - {fileID: 802544783878205983}
+  - {fileID: 2375025597162611228}
+  - {fileID: 1751793915884833262}
+--- !u!114 &802544783878205983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96db91887aacc4d4e9b623c1edd34d4b, type: 3}
+  m_Name: Characters
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 776, y: -712}
+  ports:
+    keys:
+    - clientOutput
+    - lawyerOutput
+    - baseInput
+    values:
+    - _fieldName: clientOutput
+      _node: {fileID: 802544783878205983}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: baseInput
+        node: {fileID: 2375025597162611228}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: lawyerOutput
+      _node: {fileID: 802544783878205983}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: baseInput
+        node: {fileID: 1751793915884833262}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: baseInput
+      _node: {fileID: 802544783878205983}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: baseOutput
+        node: {fileID: -8195110489389602369}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  baseInput: {fileID: 0}
+  clientOutput: {fileID: 0}
+  lawyerOutput: {fileID: 0}
+--- !u!114 &1751793915884833262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df872a1f64a5de04cb8d04b2dd703f23, type: 3}
+  m_Name: Character
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1144, y: -552}
+  ports:
+    keys:
+    - baseInput
+    values:
+    - _fieldName: baseInput
+      _node: {fileID: 1751793915884833262}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: lawyerOutput
+        node: {fileID: 802544783878205983}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  baseInput: {fileID: 0}
+  characterType: 1
+  characterSprites:
+    body: {fileID: 0}
+    eyes: {fileID: 0}
+    eyelids: {fileID: 0}
+    armRight:
+      normalArm: {fileID: 0}
+      actionArm: {fileID: 0}
+    amrLeft:
+      normalArm: {fileID: 0}
+      actionArm: {fileID: 0}
+--- !u!114 &2375025597162611228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df872a1f64a5de04cb8d04b2dd703f23, type: 3}
+  m_Name: Character
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1160, y: -744}
+  ports:
+    keys:
+    - baseInput
+    values:
+    - _fieldName: baseInput
+      _node: {fileID: 2375025597162611228}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: clientOutput
+        node: {fileID: 802544783878205983}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  baseInput: {fileID: 0}
+  characterType: 0
+  characterSprites:
+    body: {fileID: 0}
+    eyes: {fileID: 0}
+    eyelids: {fileID: 0}
+    armRight:
+      normalArm: {fileID: 0}
+      actionArm: {fileID: 0}
+    amrLeft:
+      normalArm: {fileID: 0}
+      actionArm: {fileID: 0}
 --- !u!114 &6002462420008105213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -367,3 +623,45 @@ MonoBehaviour:
   - valueSpanish: Tambien ha sospechas de que se haya hecho pajas en la seccion de
       congelados del mercadona
     valueEnglish: 
+--- !u!114 &8775563973258268543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df872a1f64a5de04cb8d04b2dd703f23, type: 3}
+  m_Name: Character
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 616, y: -1080}
+  ports:
+    keys:
+    - baseInput
+    values:
+    - _fieldName: baseInput
+      _node: {fileID: 8775563973258268543}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: lawyerOutput
+        node: {fileID: -245101373200399153}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  baseInput: {fileID: 0}
+  characterType: 1
+  characterSprites:
+    body: {fileID: 0}
+    eyes: {fileID: 0}
+    eyelids: {fileID: 0}
+    armRight:
+      normalArm: {fileID: 0}
+      actionArm: {fileID: 0}
+    amrLeft:
+      normalArm: {fileID: 0}
+      actionArm: {fileID: 0}

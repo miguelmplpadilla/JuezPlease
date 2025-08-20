@@ -7,7 +7,6 @@ public class Document : ScriptableObject
     
     public bool isUnlocked = false;
     
-    public List<DialogController.TypeSpeaker> speakersAssigned = new List<DialogController.TypeSpeaker>();
     public List<DialogueCreator> posibleDialogues;
     
     public void Awake()

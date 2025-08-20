@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class StatmentsController : MonoBehaviour
 {
     public GameObject statmentPrefab;
-    public List<Statment> startStatments = new List<Statment>();
     
     public bool isAnimating = false;
     public bool isShowed = false;
@@ -19,6 +18,9 @@ public class StatmentsController : MonoBehaviour
 
     private void Start()
     {
+        List<Statment> startStatments =
+            new List<Statment>(JudgedSceneController.instance.allStartStatments.allstatmentsStart);
+        
         for (int i = 0; i < startStatments.Count; i++)
         {
             Statment statment = startStatments[i];

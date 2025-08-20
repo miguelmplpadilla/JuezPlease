@@ -3,13 +3,20 @@ using UnityEngine;
 
 public class SendDialogEvent : IEvent
 {
-    public DialogueCreator dialogue;
+    public DialogueNode dialogueStartNode;
+    public DialogController.TypeSpeaker speaker;
+}
+
+public class AboveInteractNPCEvent : IEvent
+{
+    public GameObject obj;
+    public bool canInteract = false;
 }
 
 public class InteractNPCEvent : IEvent
 {
     public GameObject obj;
-    public DialogueCreator dialogue;
+    public DialogueNode dialogueNode;
 }
 
 public class LookToEvent : IEvent

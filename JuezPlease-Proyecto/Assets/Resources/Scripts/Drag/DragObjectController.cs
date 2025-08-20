@@ -1,6 +1,6 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
 using Resources.Scripts.Hammer;
 using Resources.Scripts.Holder;
@@ -42,6 +42,9 @@ public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandl
 
     private bool isInShreeder = false;
     public bool isCrushable = true;
+    private bool isBigObject = false;
+
+    private NPCController npcControllerSelected;
 
     private void Awake()
     {
@@ -115,6 +118,8 @@ public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandl
             objHolder = currentParent,
             add = false
         });
+        
+        if (!DialogController.instance.isSpeaking) CheckAllNPC();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -132,6 +137,8 @@ public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandl
         
         isDragging = true;
         transform.position = onDragEvent.eventData.position;
+
+        if (!DialogController.instance.isSpeaking) CheckNPCDraged();
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -235,7 +242,7 @@ public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandl
             }
         }
     }
-
+    
     protected void CheckNPCDraged()
     {
         List<RaycastResult> results = new List<RaycastResult>();
@@ -245,35 +252,73 @@ public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandl
 
         foreach (var obj in results)
         {
-            if (obj.gameObject.CompareTag("NPC"))
+            if (obj.gameObject.TryGetComponent(out NPCController npcController))
             {
-                DialogueCreator dialogueCreator = GetConversation(obj.gameObject);
-                if (dialogueCreator == null) return;
-                
-                EventBus<InteractNPCEvent>.Raise(new InteractNPCEvent
-                {
-                    obj = obj.gameObject,
-                    dialogue = dialogueCreator
-                });
+                if (!npcController.canInteract) return;
+
+                npcControllerSelected = npcController;
+                allImages.transform.localScale = Vector3.one * 1.4f;
                 
                 return;
             }
         }
+        
+        allImages.transform.localScale = Vector3.one * 1.05f;
     }
     
-    private DialogueCreator GetConversation(GameObject npcObj)
+    protected void CheckAllNPC()
     {
-        foreach (var speaker in document.speakersAssigned)
+        NPCController[] allNPCController = FindObjectsOfType<NPCController>();
+        
+        foreach (var npcController in allNPCController)
         {
-            if (npcObj.transform.parent.name.Equals(speaker.ToString()))
-                return document.posibleDialogues[Random.Range(0, document.posibleDialogues.Count)];
-        }
+            if (GetConversation(npcController) == null) continue;
 
-        return null;
+            EventBus<AboveInteractNPCEvent>.Raise(new AboveInteractNPCEvent
+            {
+                obj = npcController.gameObject,
+                canInteract = true
+            });
+        }
+    }
+    
+    protected void UnCheckAllNPC()
+    {
+        NPCController[] allNPCController = FindObjectsOfType<NPCController>();
+        
+        foreach (var npcController in allNPCController)
+        {
+            EventBus<AboveInteractNPCEvent>.Raise(new AboveInteractNPCEvent
+            {
+                obj = npcController.gameObject,
+                canInteract = false
+            });
+        }
+    }
+    
+    private DialogueNode GetConversation(NPCController npcController)
+    {
+        List<DialogueNode> filteredBySpeaker = new List<DialogueNode>();
+
+        foreach (var dialogueCreator in document.posibleDialogues)
+        {
+            var startDialogueNode = dialogueCreator.nodes
+                .OfType<StartDialogueNode>().FirstOrDefault();
+
+            if (startDialogueNode.GetDialogueNodeBySpeaker(npcController.speaker) is DialogueNode dialogueNode && dialogueNode != null)
+                filteredBySpeaker.Add(dialogueNode);
+        }
+        
+        if (filteredBySpeaker.Count == 0) return null;
+
+        return filteredBySpeaker[Random.Range(0, filteredBySpeaker.Count)];
     }
 
     protected virtual void GlobalOnEndDrag()
     {
+        UnCheckAllNPC();
+        allImages.transform.localScale = Vector3.one * 1.05f;
+        
         if (!currentParent.name.Equals("PublicPanel")) return;
         
         isAnimating = true;
@@ -285,8 +330,15 @@ public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandl
             {
                 SetData();
             });
-        
-        CheckNPCDraged();
+
+        if (!DialogController.instance.isSpeaking)
+        {
+            EventBus<InteractNPCEvent>.Raise(new InteractNPCEvent
+            {
+                obj = npcControllerSelected.gameObject,
+                dialogueNode =  GetConversation(npcControllerSelected)
+            });
+        }
     }
 
     protected void SetData()
@@ -342,6 +394,7 @@ public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandl
         if (result.gameObject.Equals(currentParent)) return;
         
         GameObject currentImages = isBig ? imagesBig : imagesLittle;
+        isBigObject = isBig;
         
         imagesBig.transform.localScale = Vector3.zero;
         imagesLittle.transform.localScale = Vector3.zero;

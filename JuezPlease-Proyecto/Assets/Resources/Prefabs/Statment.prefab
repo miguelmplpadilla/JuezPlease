@@ -733,6 +733,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5d178123a12aa1458ffe58d2f86fab8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  document: {fileID: 0}
   multiplyScaleForBig: 0.3
   imagesRectTransform:
   - {fileID: 2241346163120839661}
@@ -743,7 +744,9 @@ MonoBehaviour:
   imagesLittle: {fileID: 5713477965393857818}
   imagesBig: {fileID: 7518172050777382907}
   allImages: {fileID: 3306598217504616366}
+  canvas: {fileID: 0}
   objTag: LittleObjects
+  isCrushable: 1
   textStatment: {fileID: 4154260772284149098}
   textNumber: {fileID: 531218793427167843}
 --- !u!114 &6920856116813108670
