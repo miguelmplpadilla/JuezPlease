@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 
@@ -29,14 +30,23 @@ public class BenchController : MonoBehaviour
         SetInitialScaleAndPosition();
     }
 
-    public void CallWitness()
+    public IEnumerator CallWitness(CallWitnessNode callWitnessNode)
     {
+        if (callWitnessNode != null)
+        {
+            //TODO: Setear sprites en el testigo
+        }
+        
         tableLeft.transform.DOLocalMoveX(hasShow ? -390 : originalPositionTableLeft.x, 0.6f);
         tableRight.transform.DOLocalMoveX(hasShow ? 390 : originalPositionTableRight.x, 0.6f);
         
         wintessTable.transform.DOScale(hasShow ? 0 : 1, 0.6f);
+
+        yield return new WaitForSeconds(0.6f);
         
         hasShow = !hasShow;
+
+        if (callWitnessNode != null && !hasShow) StartCoroutine(CallWitness(null));
     }
 
     private void SetInitialScaleAndPosition()

@@ -108,18 +108,18 @@ public class StartDialogueNode : BaseNode {
 		if (port.fieldName.Equals("lawyerRightOutput")) lawyerRightOutput = null;
 	}
 
-	public DialogueNode GetDialogueNodeBySpeaker(DialogController.TypeSpeaker speaker)
+	public BaseNode GetDialogueNodeBySpeaker(DialogController.TypeSpeaker speaker)
 	{
 		switch (speaker)
 		{
 			case DialogController.TypeSpeaker.NPCLEFT:
-				return npcLeftOutput as DialogueNode;
+				return npcLeftOutput;
 			case DialogController.TypeSpeaker.LAWYERLEFT:
-				return lawyerLeftOutput as DialogueNode;
+				return lawyerLeftOutput;
 			case DialogController.TypeSpeaker.NPCRIGHT:
-				return npcRightOutput as DialogueNode;
+				return npcRightOutput;
 			case DialogController.TypeSpeaker.LAWYERRIGHT:
-				return lawyerRightOutput as DialogueNode;
+				return lawyerRightOutput;
 			default:
 				return null;
 		}

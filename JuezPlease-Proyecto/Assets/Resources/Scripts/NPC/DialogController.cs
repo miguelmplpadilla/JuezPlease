@@ -46,77 +46,93 @@ public class DialogController : MonoBehaviour
     {
         isSpeaking = true;
         
-        DialogueNode dialogueNode = s.dialogueStartNode;
+        ConectionsNode baseNode = s.dialogueStartNode as ConectionsNode;
 
         while (true)
         {
             yield return null;
-            
-            foreach (var dialogue in dialogueNode.dialogues)
+
+            if (baseNode is DialogueNode dialogueNode)
             {
-                if (lastDialogObjs.Count > 0)
-                {
-                    foreach (var lastDialogObj in lastDialogObjs)
-                    {
-                        if (lastDialogObj.lastTypeSpeaker != dialogueNode.speaker) continue;
-                        float yLocalPosition = lastDialogObj.dialogObj.transform.localPosition.y;
-                        lastDialogObj.dialogObj.transform.DOLocalMoveY(yLocalPosition + speakers[(int)dialogueNode.speaker].sumY, 0.3f);
-                    }
-                }
-            
-                EventBus<LookToEvent>.Raise(new LookToEvent
-                {
-                    lookToJudge = dialogueNode.speaker == TypeSpeaker.JUDGE,
-                    objToLook = speakers[(int)dialogueNode.speaker].speakerObj.transform.parent.gameObject
-                });
-
-                EventBus<PlayAnimationNPCEvent>.Raise(new PlayAnimationNPCEvent
-                {
-                    obj = speakers[(int)dialogueNode.speaker].speakerObj.transform.parent.gameObject,
-                    emotions = dialogue.emotionsToPlay
-                });
-
-                GameObject dialogObj = Instantiate(prefabDialog,
-                    speakers[(int)dialogueNode.speaker].speakerObj.transform);
-                dialogObj.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = dialogue.text.value;
-                dialogObj.transform.localScale = Vector3.zero;
-                
-                dialogObj.transform.DOScale(speakers[(int)dialogueNode.speaker].scaleDialog, 0.3f);
-                dialogObj.transform.DOLocalMoveY(speakers[(int)dialogueNode.speaker].sumYFirst, 0.3f);
-            
-                DialogObj dialogObjClass = new DialogObj
-                {
-                    dialogObj = dialogObj,
-                    lastTypeSpeaker = dialogueNode.speaker
-                };
-                StartCoroutine(DestroyDialogObj(dialogObjClass));
-                lastDialogObjs.Add(dialogObjClass);
-            
-                yield return new WaitForSeconds(1.5f);
+                yield return PlayDialogue(dialogueNode);
+            } else if (baseNode is CallWitnessNode || baseNode is HideWitnessNode) //TODO: Añadir sprites a el testigo
+            {
+                yield return CallWitness(baseNode is CallWitnessNode ? baseNode as CallWitnessNode : null);
             }
             
-            if (dialogueNode.baseOutput is CallWitnessNode callWitnessNode)
-            {
-                BenchController.instance.CallWitness();
-                if (callWitnessNode.baseOutput is EndDialogueNode) break;
-                dialogueNode = callWitnessNode.baseOutput as DialogueNode;
-
-                yield return new WaitForSeconds(1);
-                
-                continue;
-            }
+            if (baseNode.baseOutput == null) break;
             
-            if (dialogueNode.baseOutput is EndDialogueNode) break;
-            
-            dialogueNode = dialogueNode.baseOutput as DialogueNode;
+            baseNode = baseNode.baseOutput as ConectionsNode;
         }
         
         isSpeaking = false;
     }
 
+    private IEnumerator PlayDialogue(DialogueNode dialogueNode)
+    {
+        foreach (var dialogue in dialogueNode.dialogues)
+        {
+            if (lastDialogObjs.Count > 0)
+            {
+                foreach (var lastDialogObj in lastDialogObjs)
+                {
+                    if (lastDialogObj.lastTypeSpeaker != dialogueNode.speaker) continue;
+                    float yLocalPosition = lastDialogObj.dialogObj.transform.localPosition.y;
+                    lastDialogObj.dialogObj.transform.DOLocalMoveY(yLocalPosition + speakers[(int)dialogueNode.speaker].sumY, 0.3f);
+                }
+            }
+        
+            EventBus<LookToEvent>.Raise(new LookToEvent
+            {
+                lookToJudge = dialogueNode.speaker == TypeSpeaker.JUDGE,
+                objToLook = speakers[(int)dialogueNode.speaker].speakerObj.transform.parent.gameObject
+            });
+
+            EventBus<PlayAnimationNPCEvent>.Raise(new PlayAnimationNPCEvent
+            {
+                obj = speakers[(int)dialogueNode.speaker].speakerObj.transform.parent.gameObject,
+                emotions = dialogue.emotionsToPlay
+            });
+
+            GameObject dialogObj = Instantiate(prefabDialog,
+                speakers[(int)dialogueNode.speaker].speakerObj.transform);
+            dialogObj.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = dialogue.text.value;
+            dialogObj.transform.localScale = Vector3.zero;
+            
+            dialogObj.transform.DOScale(speakers[(int)dialogueNode.speaker].scaleDialog, 0.3f);
+            dialogObj.transform.DOLocalMoveY(speakers[(int)dialogueNode.speaker].sumYFirst, 0.3f);
+        
+            DialogObj dialogObjClass = new DialogObj
+            {
+                dialogObj = dialogObj,
+                lastTypeSpeaker = dialogueNode.speaker
+            };
+            StartCoroutine(DestroyDialogObj(dialogObjClass));
+            lastDialogObjs.Add(dialogObjClass);
+        
+            yield return new WaitForSeconds(1.5f);
+        }
+    }
+
+    private IEnumerator CallWitness(CallWitnessNode callWitnessNode)
+    {
+        if (callWitnessNode != null)
+        {
+            GameObject dialogParent = speakers[(int)TypeSpeaker.WITNESS].speakerObj;
+            for (int i = 0; i < dialogParent.transform.childCount; i++)
+                Destroy(dialogParent.transform.GetChild(i).gameObject);
+            
+            lastDialogObjs.Clear();
+        }
+        StartCoroutine(BenchController.instance.CallWitness(callWitnessNode));
+        yield return new WaitForSeconds(1);
+    }
+
     private IEnumerator DestroyDialogObj(DialogObj dialog)
     {
         yield return new WaitForSeconds(3);
+        
+        if (dialog.dialogObj == null) yield break;
 
         dialog.dialogObj.GetComponent<CanvasGroup>().DOFade(0, 1);
         yield return new WaitForSeconds(1);

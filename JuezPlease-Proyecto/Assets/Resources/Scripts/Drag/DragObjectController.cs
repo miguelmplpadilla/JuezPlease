@@ -296,17 +296,17 @@ public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandl
         }
     }
     
-    private DialogueNode GetConversation(NPCController npcController)
+    private BaseNode GetConversation(NPCController npcController)
     {
-        List<DialogueNode> filteredBySpeaker = new List<DialogueNode>();
+        List<BaseNode> filteredBySpeaker = new List<BaseNode>();
 
         foreach (var dialogueCreator in document.posibleDialogues)
         {
             var startDialogueNode = dialogueCreator.nodes
                 .OfType<StartDialogueNode>().FirstOrDefault();
 
-            if (startDialogueNode.GetDialogueNodeBySpeaker(npcController.speaker) is DialogueNode dialogueNode && dialogueNode != null)
-                filteredBySpeaker.Add(dialogueNode);
+            if (startDialogueNode.GetDialogueNodeBySpeaker(npcController.speaker) is BaseNode baseNode && baseNode != null)
+                filteredBySpeaker.Add(baseNode);
         }
         
         if (filteredBySpeaker.Count == 0) return null;
@@ -336,7 +336,7 @@ public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandl
             EventBus<InteractNPCEvent>.Raise(new InteractNPCEvent
             {
                 obj = npcControllerSelected.gameObject,
-                dialogueNode =  GetConversation(npcControllerSelected)
+                dialogueNode = GetConversation(npcControllerSelected)
             });
         }
     }
