@@ -11,7 +11,7 @@ public class DialogController : MonoBehaviour
     
     public enum TypeSpeaker
     {
-        JUDGE, LAWYERLEFT, NPCLEFT, LAWYERRIGHT, NPCRIGHT
+        JUDGE, LAWYERLEFT, NPCLEFT, LAWYERRIGHT, NPCRIGHT, WITNESS
     }
     
     public GameObject prefabDialog;
@@ -79,7 +79,9 @@ public class DialogController : MonoBehaviour
                 GameObject dialogObj = Instantiate(prefabDialog,
                     speakers[(int)dialogueNode.speaker].speakerObj.transform);
                 dialogObj.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = dialogue.text.value;
-                dialogObj.transform.localScale = speakers[(int)dialogueNode.speaker].scaleDialog * Vector3.one;
+                dialogObj.transform.localScale = Vector3.zero;
+                
+                dialogObj.transform.DOScale(speakers[(int)dialogueNode.speaker].scaleDialog, 0.3f);
                 dialogObj.transform.DOLocalMoveY(speakers[(int)dialogueNode.speaker].sumYFirst, 0.3f);
             
                 DialogObj dialogObjClass = new DialogObj
@@ -91,6 +93,17 @@ public class DialogController : MonoBehaviour
                 lastDialogObjs.Add(dialogObjClass);
             
                 yield return new WaitForSeconds(1.5f);
+            }
+            
+            if (dialogueNode.baseOutput is CallWitnessNode callWitnessNode)
+            {
+                BenchController.instance.CallWitness();
+                if (callWitnessNode.baseOutput is EndDialogueNode) break;
+                dialogueNode = callWitnessNode.baseOutput as DialogueNode;
+
+                yield return new WaitForSeconds(1);
+                
+                continue;
             }
             
             if (dialogueNode.baseOutput is EndDialogueNode) break;

@@ -1,6 +1,6 @@
-﻿using UnityEngine;
-using XNode;
+﻿using XNode;
 
+[CreateNodeMenu("DialogueCreator/StartDialogue")]
 public class StartDialogueNode : BaseNode {
 
 	[Output] public BaseNode npcLeftOutput;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 [NodeWidth(400)]
+[CreateNodeMenu("DialogueCreator/Dialogue")]
 public class DialogueNode : ConectionsNode
 {
 	public DialogController.TypeSpeaker speaker;
