@@ -1,4 +1,6 @@
-﻿public class ModifyReputationNode : ConectionsNode
+﻿
+[CreateNodeMenu("DialogueCreator/Actions/ModifyReputation")]
+public class ModifyReputationNode : ConectionsNode
 {
     public TypeFaction faction;
     public float cantReputation;

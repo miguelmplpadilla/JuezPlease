@@ -262,6 +262,8 @@ public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandl
                 return;
             }
         }
+
+        npcControllerSelected = null;
         
         allImages.transform.localScale = Vector3.one * 1.05f;
     }
@@ -331,12 +333,12 @@ public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandl
                 SetData();
             });
 
-        if (!DialogController.instance.isSpeaking)
+        if (!DialogController.instance.isSpeaking && npcControllerSelected != null && (GetConversation(npcControllerSelected) is BaseNode nodeDialog))
         {
             EventBus<InteractNPCEvent>.Raise(new InteractNPCEvent
             {
                 obj = npcControllerSelected.gameObject,
-                dialogueNode = GetConversation(npcControllerSelected)
+                dialogueNode = nodeDialog
             });
         }
     }

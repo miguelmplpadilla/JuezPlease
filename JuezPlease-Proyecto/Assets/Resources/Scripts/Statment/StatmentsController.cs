@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class StatmentsController : MonoBehaviour
 {
+    public static StatmentsController instance;
+    
     public GameObject statmentPrefab;
     
     public bool isAnimating = false;
@@ -16,22 +18,22 @@ public class StatmentsController : MonoBehaviour
 
     public Button dropDownButton;
 
+    public RectTransform cantNewStatmentsIndicator;
+
+    private int cantStatmentsCreated = 0;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     private void Start()
     {
         List<Statment> startStatments =
             new List<Statment>(JudgedSceneController.instance.allStartStatments.allstatmentsStart);
         
         for (int i = 0; i < startStatments.Count; i++)
-        {
-            Statment statment = startStatments[i];
-            GameObject statmentObject = Instantiate(statmentPrefab, continerStatments.transform);
-            
-            DragStatmentController dragStatmentController = statmentObject.GetComponent<DragStatmentController>();
-            dragStatmentController.document = statment;
-            
-            dragStatmentController.textStatment.text = statment.textStatment.value;
-            dragStatmentController.textNumber.text = (i + 1).ToString();
-        }
+            CreateNewStatment(startStatments[i]);
         
         dropDownButton.onClick.AddListener(() =>
         { ShowStatments(); });
@@ -52,6 +54,23 @@ public class StatmentsController : MonoBehaviour
             isAnimating = false;
         }).SetEase(Ease.InOutBack);
         
+        cantNewStatmentsIndicator.DOAnchorPosY(-45, 0.6f).SetEase(Ease.OutBack);
+        
         isShowed = !isShowed;
+    }
+
+    public void CreateNewStatment(Statment statment)
+    {
+        cantStatmentsCreated++;
+        
+        GameObject statmentObject = Instantiate(statmentPrefab, continerStatments.transform);
+            
+        DragStatmentController dragStatmentController = statmentObject.GetComponent<DragStatmentController>();
+        dragStatmentController.document = statment;
+            
+        dragStatmentController.textStatment.text = statment.textStatment.value;
+        dragStatmentController.textNumber.text = (cantStatmentsCreated).ToString();
+
+        cantNewStatmentsIndicator.DOAnchorPosY(0, 0.6f).SetEase(Ease.InOutBack);
     }
 }

@@ -35,12 +35,15 @@ MonoBehaviour:
       _node: {fileID: -5806932421116377563}
       _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-      connections: []
+      connections:
+      - fieldName: baseInput
+        node: {fileID: 6747934792976263026}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  baseOutput: {fileID: 2768522139243189569}
+  baseOutput: {fileID: 6747934792976263026}
   baseInput: {fileID: 0}
   speaker: 4
   dialogues:
@@ -62,7 +65,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cc87b2419b442f5a996b9588961959d, type: 3}
   m_Name: Statment
   m_EditorClassIdentifier: 
-  guid: 164d0a16-6bc8-41f8-8542-2ede0e782461
+  guid: 3fa23e2c-b99c-4f93-aaeb-00a2b54c0697
   isUnlocked: 0
   posibleDialogues: []
   textStatment:
@@ -254,10 +257,11 @@ MonoBehaviour:
   - {fileID: 9087360733944078747}
   - {fileID: 4005077772943528668}
   - {fileID: -3853397069476243764}
-  - {fileID: 0}
   - {fileID: -3913485321380521892}
   - {fileID: -865324801793400296}
   - {fileID: 4170081529213155536}
+  - {fileID: 6747934792976263026}
+  - {fileID: 0}
 --- !u!114 &204709665863077654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -555,6 +559,49 @@ MonoBehaviour:
       _dynamic: 0
   baseOutput: {fileID: 0}
   baseInput: {fileID: 0}
+--- !u!114 &6747934792976263026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53ebbd7a863e49908a4025138c9fa346, type: 3}
+  m_Name: Unlock Document
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1128, y: -136}
+  ports:
+    keys:
+    - baseInput
+    - baseOutput
+    values:
+    - _fieldName: baseInput
+      _node: {fileID: 6747934792976263026}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: baseOutput
+        node: {fileID: -5806932421116377563}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: baseOutput
+      _node: {fileID: 6747934792976263026}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  baseOutput: {fileID: 0}
+  baseInput: {fileID: 0}
+  documentToUnlock: {fileID: 11400000, guid: 5c962a3fff40fc644add82c5b15e5fac, type: 2}
 --- !u!114 &8034226983653310322
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -58,6 +58,9 @@ public class DialogController : MonoBehaviour
             } else if (baseNode is CallWitnessNode || baseNode is HideWitnessNode) //TODO: Añadir sprites a el testigo
             {
                 yield return CallWitness(baseNode is CallWitnessNode ? baseNode as CallWitnessNode : null);
+            } else if (baseNode is UnlockDocumentNode unlockDocumentNode)
+            {
+                UnlockDocument(unlockDocumentNode.documentToUnlock);
             }
             
             if (baseNode.baseOutput == null) break;
@@ -139,6 +142,11 @@ public class DialogController : MonoBehaviour
 
         lastDialogObjs.Remove(dialog);
         Destroy(dialog.dialogObj);
+    }
+
+    private void UnlockDocument(Document document)
+    {
+        if (document is Statment statment) StatmentsController.instance.CreateNewStatment(statment);
     }
 }
 
