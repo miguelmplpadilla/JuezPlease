@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 680, y: -136}
+  position: {x: 680, y: -376}
   ports:
     keys:
     - baseInput
@@ -65,9 +65,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cc87b2419b442f5a996b9588961959d, type: 3}
   m_Name: Statment
   m_EditorClassIdentifier: 
-  guid: 3fa23e2c-b99c-4f93-aaeb-00a2b54c0697
+  guid: f772e7c6-104b-4ede-b47b-d339a2a807f4
   isUnlocked: 0
-  posibleDialogues: []
+  dialogue: {fileID: 0}
   textStatment:
     valueSpanish: 
     valueEnglish: 
@@ -84,7 +84,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1288, y: 392}
+  position: {x: 1192, y: 120}
   ports:
     keys:
     - baseInput
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 264, y: 424}
+  position: {x: 280, y: 120}
   ports:
     keys:
     - baseInput
@@ -194,7 +194,7 @@ MonoBehaviour:
   m_Name: Call Witness
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 760, y: 440}
+  position: {x: 712, y: 120}
   ports:
     keys:
     - baseInput
@@ -232,10 +232,75 @@ MonoBehaviour:
     eyelids: {fileID: 0}
     armRight:
       normalArm: {fileID: 0}
-      actionArm: {fileID: 0}
-    amrLeft:
+      fistArm: {fileID: 0}
+      pointArm: {fileID: 0}
+    armLeft:
       normalArm: {fileID: 0}
-      actionArm: {fileID: 0}
+      fistArm: {fileID: 0}
+      pointArm: {fileID: 0}
+--- !u!114 &-583836153955146346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88fd2d03caa0fe64683ec841772ec40d, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -696, y: 392}
+  ports:
+    keys:
+    - baseInput
+    - baseOutput
+    values:
+    - _fieldName: baseInput
+      _node: {fileID: -583836153955146346}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: npcRightOutput
+        node: {fileID: 8034226983653310322}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: baseOutput
+      _node: {fileID: -583836153955146346}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: baseInput
+        node: {fileID: 4850055265908234643}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  baseOutput: {fileID: 4850055265908234643}
+  baseInput: {fileID: 0}
+  speaker: 4
+  dialogues:
+  - emotionsToPlay: []
+    text:
+      valueSpanish: "Si se\xF1or"
+      valueEnglish: 
+  - emotionsToPlay: []
+    text:
+      valueSpanish: Este asqueroso
+      valueEnglish: 
+  - emotionsToPlay: []
+    text:
+      valueSpanish: Se pajeo en plena
+      valueEnglish: 
+  - emotionsToPlay: []
+    text:
+      valueSpanish: Seccion de congelados
+      valueEnglish: 
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,6 +326,11 @@ MonoBehaviour:
   - {fileID: -865324801793400296}
   - {fileID: 4170081529213155536}
   - {fileID: 6747934792976263026}
+  - {fileID: -583836153955146346}
+  - {fileID: 4850055265908234643}
+  - {fileID: 8913258386723009187}
+  - {fileID: 7396106338848988061}
+  - {fileID: 8853287119918773577}
   - {fileID: 0}
 --- !u!114 &204709665863077654
 MonoBehaviour:
@@ -275,7 +345,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 248, y: -152}
+  position: {x: 248, y: -392}
   ports:
     keys:
     - baseInput
@@ -330,7 +400,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -664, y: -152}
+  position: {x: -680, y: -408}
   ports:
     keys:
     - baseInput
@@ -341,8 +411,8 @@ MonoBehaviour:
       _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
       connections:
-      - fieldName: npcLeftOutput
-        node: {fileID: 8034226983653310322}
+      - fieldName: decision1
+        node: {fileID: 7396106338848988061}
         reroutePoints: []
       _direction: 0
       _connectionType: 0
@@ -393,7 +463,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -216, y: -152}
+  position: {x: -216, y: -392}
   ports:
     keys:
     - baseInput
@@ -475,7 +545,7 @@ MonoBehaviour:
   m_Name: Call Witness
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -216, y: 440}
+  position: {x: -168, y: 120}
   ports:
     keys:
     - baseInput
@@ -513,10 +583,12 @@ MonoBehaviour:
     eyelids: {fileID: 0}
     armRight:
       normalArm: {fileID: 0}
-      actionArm: {fileID: 0}
-    amrLeft:
+      fistArm: {fileID: 0}
+      pointArm: {fileID: 0}
+    armLeft:
       normalArm: {fileID: 0}
-      actionArm: {fileID: 0}
+      fistArm: {fileID: 0}
+      pointArm: {fileID: 0}
 --- !u!114 &4170081529213155536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -530,7 +602,7 @@ MonoBehaviour:
   m_Name: Hide Witness
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1816.5968, y: 445.54437}
+  position: {x: 1720, y: 168}
   ports:
     keys:
     - baseInput
@@ -559,6 +631,61 @@ MonoBehaviour:
       _dynamic: 0
   baseOutput: {fileID: 0}
   baseInput: {fileID: 0}
+--- !u!114 &4850055265908234643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88fd2d03caa0fe64683ec841772ec40d, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -216, y: 440}
+  ports:
+    keys:
+    - baseInput
+    - baseOutput
+    values:
+    - _fieldName: baseInput
+      _node: {fileID: 4850055265908234643}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: baseOutput
+        node: {fileID: -583836153955146346}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: baseOutput
+      _node: {fileID: 4850055265908234643}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: baseInput
+        node: {fileID: 8913258386723009187}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  baseOutput: {fileID: 8913258386723009187}
+  baseInput: {fileID: 0}
+  speaker: 3
+  dialogues:
+  - emotionsToPlay: []
+    text:
+      valueSpanish: Esta es la persona
+      valueEnglish: 
+  - emotionsToPlay: []
+    text:
+      valueSpanish: Que le vio
+      valueEnglish: 
 --- !u!114 &6747934792976263026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -572,7 +699,7 @@ MonoBehaviour:
   m_Name: Unlock Document
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1128, y: -136}
+  position: {x: 1128, y: -376}
   ports:
     keys:
     - baseInput
@@ -602,6 +729,99 @@ MonoBehaviour:
   baseOutput: {fileID: 0}
   baseInput: {fileID: 0}
   documentToUnlock: {fileID: 11400000, guid: 5c962a3fff40fc644add82c5b15e5fac, type: 2}
+--- !u!114 &7396106338848988061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2321814a0c284ee9a5e5c7cb20b49448, type: 3}
+  m_Name: Decisions
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -1128, y: -232}
+  ports:
+    keys:
+    - decision1
+    - decision2
+    - decision3
+    - decision4
+    - baseInput
+    values:
+    - _fieldName: decision1
+      _node: {fileID: 7396106338848988061}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: baseInput
+        node: {fileID: 253781883772540003}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: decision2
+      _node: {fileID: 7396106338848988061}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: baseInput
+        node: {fileID: 8853287119918773577}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: decision3
+      _node: {fileID: 7396106338848988061}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: decision4
+      _node: {fileID: 7396106338848988061}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: baseInput
+      _node: {fileID: 7396106338848988061}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: npcLeftOutput
+        node: {fileID: 8034226983653310322}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  baseInput: {fileID: 0}
+  decision1: {fileID: 253781883772540003}
+  decisionText1:
+    valueSpanish: Que tiene que decir?
+    valueEnglish: 
+  decision2: {fileID: 8853287119918773577}
+  decisionText2:
+    valueSpanish: "Se caga se\xF1or?"
+    valueEnglish: 
+  decision3: {fileID: 0}
+  decisionText3:
+    valueSpanish: 
+    valueEnglish: 
+  decision4: {fileID: 0}
+  decisionText4:
+    valueSpanish: 
+    valueEnglish: 
 --- !u!114 &8034226983653310322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -615,7 +835,7 @@ MonoBehaviour:
   m_Name: Start Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -1112, y: -120}
+  position: {x: -1544, y: 104}
   ports:
     keys:
     - npcLeftOutput
@@ -629,7 +849,7 @@ MonoBehaviour:
         PublicKeyToken=null
       connections:
       - fieldName: baseInput
-        node: {fileID: 253781883772540003}
+        node: {fileID: 7396106338848988061}
         reroutePoints: []
       _direction: 1
       _connectionType: 0
@@ -651,7 +871,10 @@ MonoBehaviour:
       _node: {fileID: 8034226983653310322}
       _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-      connections: []
+      connections:
+      - fieldName: baseInput
+        node: {fileID: -583836153955146346}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
@@ -665,10 +888,101 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  npcLeftOutput: {fileID: 253781883772540003}
+  npcLeftOutput: {fileID: 7396106338848988061}
   lawyerLeftOutput: {fileID: 9087360733944078747}
-  npcRightOutput: {fileID: 0}
+  npcRightOutput: {fileID: -583836153955146346}
   lawyerRightOutput: {fileID: 0}
+--- !u!114 &8853287119918773577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88fd2d03caa0fe64683ec841772ec40d, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -680, y: -136}
+  ports:
+    keys:
+    - baseInput
+    - baseOutput
+    values:
+    - _fieldName: baseInput
+      _node: {fileID: 8853287119918773577}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: decision2
+        node: {fileID: 7396106338848988061}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: baseOutput
+      _node: {fileID: 8853287119918773577}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  baseOutput: {fileID: 0}
+  baseInput: {fileID: 0}
+  speaker: 2
+  dialogues:
+  - emotionsToPlay: []
+    text:
+      valueSpanish: Caca
+      valueEnglish: 
+--- !u!114 &8913258386723009187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53ebbd7a863e49908a4025138c9fa346, type: 3}
+  m_Name: Unlock Document
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 264, y: 456}
+  ports:
+    keys:
+    - baseInput
+    - baseOutput
+    values:
+    - _fieldName: baseInput
+      _node: {fileID: 8913258386723009187}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: baseOutput
+        node: {fileID: 4850055265908234643}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: baseOutput
+      _node: {fileID: 8913258386723009187}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  baseOutput: {fileID: 0}
+  baseInput: {fileID: 0}
+  documentToUnlock: {fileID: 11400000, guid: 7d7fbb8a59ab34c4facfd742b4215f65, type: 2}
 --- !u!114 &9019945736120028931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -713,7 +1027,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -664, y: 424}
+  position: {x: -696, y: 184}
   ports:
     keys:
     - baseInput

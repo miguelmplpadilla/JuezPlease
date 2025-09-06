@@ -9,6 +9,8 @@ public class ResolutionController : MonoBehaviour
     public RectTransform pressRt;
     public Image shadowImage;
 
+    public Animator animatorLever;
+
     public GameObject continerStampsPaper;
     
     public GameObject continerTableStampeds;
@@ -77,6 +79,7 @@ public class ResolutionController : MonoBehaviour
 
     public void PlayAnimationPress()
     {
+        animatorLever.SetTrigger("down");
         StartCoroutine(AnimationPress());
     }
 
@@ -154,11 +157,7 @@ public class ResolutionController : MonoBehaviour
 
         if (sentenceStampDragController.typeStamp == SentenceStampDragController.TypeStamp.INOCENT)
         {
-            EventBus<TransitionSceneEvent>.Raise(new TransitionSceneEvent
-            {
-                currentSceneName = "ResolutionScene",
-                sceneNameToTransition = "JudgedScene"
-            });
+            GoToJudedScene();
 
             Debug.Log("Transition to JudgedScene");
             
@@ -179,11 +178,8 @@ public class ResolutionController : MonoBehaviour
             cantNumbers += stampedsPaper[i].name;
 
         Debug.Log("Cant numbers: "+cantNumbers);
-        
-        GameObject currentPaperSentence = papersContiner.transform.GetChild(0).gameObject;
-        currentPaperSentence.transform.SetParent(GameObject.Find("CanvasTable").transform);
 
-        currentPaperSentence.GetComponent<RectTransform>().DOAnchorPosY(1080, 1.5f);
+        StartCoroutine(AnimationPaperSentenceHide(papersContiner.transform.GetChild(0).gameObject));
         
         boxesLidsLeft[1].DOAnchorPosX(0, 2);
         boxesLidsRight[1].DOAnchorPosX(0, 2);
@@ -195,13 +191,18 @@ public class ResolutionController : MonoBehaviour
         
         yield return new WaitForSeconds(3);
         
-        EventBus<TransitionSceneEvent>.Raise(new TransitionSceneEvent
-        {
-            currentSceneName = "ResolutionScene",
-            sceneNameToTransition = "JudgedScene"
-        });
+        GoToJudedScene();
 
         Debug.Log("Transition to JudgedScene");
+    }
+
+    private IEnumerator AnimationPaperSentenceHide(GameObject paper)
+    {
+        paper.transform.SetParent(GameObject.Find("CanvasTable").transform);
+
+        paper.GetComponent<RectTransform>().DOAnchorPosY(1080, 1.5f);
+
+        yield return new WaitForSeconds(1.5f);
     }
 
     private IEnumerator HideAllStamps()
@@ -308,6 +309,8 @@ public class ResolutionController : MonoBehaviour
 
     private IEnumerator SelectSentencePaper(SelectSentencePaperEvent s)
     {
+        envelopeSentences.DOAnchorPosY(-Screen.height, 1);
+        
         continerStampsPaper = s.paperSentence.transform.Find("ContinerPaper").gameObject;
         if (continerStampsPaper != null) continerStampsPaper.GetComponent<Image>().raycastTarget = true;
         continerPaperStampeds = s.paperSentence.transform.Find("StampPaperContiner").gameObject;
@@ -316,20 +319,30 @@ public class ResolutionController : MonoBehaviour
 
         s.paperSentence.transform.SetParent(canvasGroupEnvelope.transform);
         s.paperSentence.transform.DOMove(papersContiner.transform.position, 1);
-        
-        envelopeSentences.DOAnchorPosY(-Screen.height, 1);
 
-        boxesLidsLeft[0].DOAnchorPosX(-450, 2);
-        boxesLidsRight[0].DOAnchorPosX(450, 2);
+        if (s.sentence != StartJudgmentNode.Sentence.DEATH)
+        {
+            boxesLidsLeft[0].DOAnchorPosX(-450, 2);
+            boxesLidsRight[0].DOAnchorPosX(450, 2);
 
-        yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.2f);
         
-        boxesLidsLeft[1].DOAnchorPosX(-450, 2);
-        boxesLidsRight[1].DOAnchorPosX(450, 2);
+            boxesLidsLeft[1].DOAnchorPosX(-450, 2);
+            boxesLidsRight[1].DOAnchorPosX(450, 2);
+        }
 
         yield return new WaitForSeconds(2);
         
         s.paperSentence.transform.SetParent(papersContiner.transform);
+        
+        if (s.sentence == StartJudgmentNode.Sentence.DEATH)
+        {
+            GoToJudedScene();
+            
+            yield break;
+        }
+
+        yield return new WaitForSeconds(1);
         
         canvasGroup.blocksRaycasts = true;
         canvasGroupEnvelope.blocksRaycasts = false;
@@ -348,9 +361,23 @@ public class ResolutionController : MonoBehaviour
 
         return stamped;
     }
+
+    private void GoToJudedScene()
+    {
+        EventBus<TransitionSceneEvent>.Raise(new TransitionSceneEvent
+        {
+            currentSceneName = "ResolutionScene",
+            sceneNameToTransition = "JudgedScene",
+            callback = () =>
+            {
+                EventBus<ReturnToJudgedEvent>.Raise(new ReturnToJudgedEvent());
+            }
+        });
+    }
 }
 
 public class SelectSentencePaperEvent : IEvent
 {
     public GameObject paperSentence;
+    public StartJudgmentNode.Sentence sentence;
 }

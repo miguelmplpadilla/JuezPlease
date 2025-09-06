@@ -4,6 +4,8 @@ using UnityEngine.EventSystems;
 
 public class SentencePaperController : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler, IPointerExitHandler
 {
+    public StartJudgmentNode.Sentence sentence;
+    
     private RectTransform rt;
 
     private Vector2 originalPosition;
@@ -36,7 +38,8 @@ public class SentencePaperController : MonoBehaviour, IPointerEnterHandler, IPoi
         
         EventBus<SelectSentencePaperEvent>.Raise(new SelectSentencePaperEvent
         {
-            paperSentence = gameObject
+            paperSentence = gameObject,
+            sentence = sentence
         });
     }
 
@@ -46,5 +49,11 @@ public class SentencePaperController : MonoBehaviour, IPointerEnterHandler, IPoi
 
         rt.DOKill();
         rt.DOAnchorPosY(originalPosition.y, 0.5f);
+    }
+    
+    public void SetPosition(Vector2 position)
+    {
+        rt.anchoredPosition = position;
+        originalPosition = position;
     }
 }

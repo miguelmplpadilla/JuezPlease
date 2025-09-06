@@ -51,7 +51,7 @@ public class NPCController : MonoBehaviour
         EventBus<SendDialogEvent>.Raise(new SendDialogEvent
         {
             dialogueStartNode = i.dialogueNode,
-            speaker = speaker
+            document = i.document
         });
     }
 

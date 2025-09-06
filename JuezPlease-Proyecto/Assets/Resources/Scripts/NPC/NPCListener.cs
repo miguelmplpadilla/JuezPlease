@@ -4,7 +4,7 @@ using UnityEngine;
 public class SendDialogEvent : IEvent
 {
     public BaseNode dialogueStartNode;
-    public DialogController.TypeSpeaker speaker;
+    public Document document = null;
 }
 
 public class AboveInteractNPCEvent : IEvent
@@ -17,6 +17,7 @@ public class InteractNPCEvent : IEvent
 {
     public GameObject obj;
     public BaseNode dialogueNode;
+    public Document document;
 }
 
 public class LookToEvent : IEvent

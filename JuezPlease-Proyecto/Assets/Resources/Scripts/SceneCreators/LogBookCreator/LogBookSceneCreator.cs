@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class LogBookSceneCreator : MonoBehaviour
 {
-    public LogBookCreator logBook;
     private LogBookNode logBookNode = null;
 
     public GameObject leftContiner;
@@ -29,7 +28,7 @@ public class LogBookSceneCreator : MonoBehaviour
         FindLogBookNode();
         if (logBookNode == null)
         {
-            Debug.Log("No se ha detectado el LogBookNode en el creador, sin este node no se puede crear en libro");
+            Debug.LogError("No se ha detectado el LogBookNode en el creador, sin este node no se puede crear en libro");
             return;
         }
         StartCoroutine(CreateLogBook());
@@ -83,7 +82,7 @@ public class LogBookSceneCreator : MonoBehaviour
 
     private void FindLogBookNode()
     {
-        foreach (var node in logBook.nodes)
+        foreach (var node in GameManager.instance.logBookCreator.nodes)
         {
             if (node is LogBookNode)
             {

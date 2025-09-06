@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cc87b2419b442f5a996b9588961959d, type: 3}
   m_Name: "StatmentTestMercarro\xF1a"
   m_EditorClassIdentifier: 
-  guid: 21f3b48c-ccc9-4ff9-8622-5e06eb126da4
+  guid: 099d5494-9955-4372-aa38-ef45acc5d947
   isUnlocked: 0
-  posibleDialogues: []
+  dialogue: {fileID: 0}
   textStatment:
     valueSpanish: "El acusado niega hacerse una paja en el mercarro\xF1a"
     valueEnglish: 

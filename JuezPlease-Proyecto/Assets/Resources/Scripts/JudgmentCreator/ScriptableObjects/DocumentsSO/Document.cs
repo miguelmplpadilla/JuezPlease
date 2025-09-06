@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Document : ScriptableObject
 {
@@ -7,7 +6,7 @@ public class Document : ScriptableObject
     
     public bool isUnlocked = false;
     
-    public List<DialogueCreator> posibleDialogues;
+    public DialogueCreator dialogue;
     
     public void Awake()
     {

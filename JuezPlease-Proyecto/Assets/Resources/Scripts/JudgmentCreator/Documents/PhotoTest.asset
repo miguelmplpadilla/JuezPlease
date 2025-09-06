@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7075f55e61c41bcb3d0681380f8ea27, type: 3}
   m_Name: PhotoTest
   m_EditorClassIdentifier: 
-  guid: 2077be98-5e02-4f77-954d-0b0b12a187fe
-  isUnlocked: 0
-  speakersAssigned: 
-  posibleDialogues: []
-  imagePhoto: {fileID: 0}
+  guid: f9343393-7dd3-47a8-be0e-cdf0d761ec45
+  isUnlocked: 1
+  dialogue: {fileID: 11400000, guid: c2234cc939fd2ee4f9ab390c9057ed6d, type: 2}
+  imagePhoto: {fileID: 8348670922972553302, guid: d563087492f485841bffa9f173307708, type: 3}
   backgroundImage: {fileID: 0}
   extraDataDocument:
     guidDocument: 

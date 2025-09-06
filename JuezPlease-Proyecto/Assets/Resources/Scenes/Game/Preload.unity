@@ -251,6 +251,53 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &690285389
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 690285391}
+  - component: {fileID: 690285390}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &690285390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 690285389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f45d03dfe89b8b94db00e5cae64ab0af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  documentsUnlocked: []
+  sentences: 
+  documentsDialoguePlayed: []
+--- !u!4 &690285391
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 690285389}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 637.2386, y: -554.87177, z: 3.965449}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &731242611
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,7 +308,6 @@ GameObject:
   m_Component:
   - component: {fileID: 731242614}
   - component: {fileID: 731242613}
-  - component: {fileID: 731242612}
   - component: {fileID: 731242615}
   m_Layer: 0
   m_Name: Main Camera
@@ -270,14 +316,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &731242612
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 731242611}
-  m_Enabled: 1
 --- !u!20 &731242613
 Camera:
   m_ObjectHideFlags: 0
@@ -589,3 +627,4 @@ SceneRoots:
   - {fileID: 731242614}
   - {fileID: 61076438}
   - {fileID: 765562361}
+  - {fileID: 690285391}

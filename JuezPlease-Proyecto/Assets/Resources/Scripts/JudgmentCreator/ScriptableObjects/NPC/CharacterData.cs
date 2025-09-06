@@ -8,12 +8,13 @@ public class CharacterData
     public Sprite eyes;
     public Sprite eyelids;
     public Arm armRight;
-    public Arm amrLeft;
+    public Arm armLeft;
 }
 
 [Serializable]
 public class Arm
 {
     public Sprite normalArm;
-    public Sprite actionArm;
+    public Sprite fistArm;
+    public Sprite pointArm;
 }

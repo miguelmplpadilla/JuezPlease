@@ -44,7 +44,7 @@ public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandl
     public bool isCrushable = true;
     private bool isBigObject = false;
 
-    private NPCController npcControllerSelected;
+    protected NPCController npcControllerSelected;
 
     private void Awake()
     {
@@ -119,7 +119,7 @@ public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandl
             add = false
         });
         
-        if (!DialogController.instance.isSpeaking) CheckAllNPC();
+        if (!DialogController.instance.isSpeaking && document != null) CheckAllNPC();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -138,7 +138,7 @@ public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandl
         isDragging = true;
         transform.position = onDragEvent.eventData.position;
 
-        if (!DialogController.instance.isSpeaking) CheckNPCDraged();
+        if (!DialogController.instance.isSpeaking && document != null) CheckNPCDraged();
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -298,18 +298,15 @@ public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandl
         }
     }
     
-    private BaseNode GetConversation(NPCController npcController)
+    protected BaseNode GetConversation(NPCController npcController)
     {
         List<BaseNode> filteredBySpeaker = new List<BaseNode>();
 
-        foreach (var dialogueCreator in document.posibleDialogues)
-        {
-            var startDialogueNode = dialogueCreator.nodes
-                .OfType<StartDialogueNode>().FirstOrDefault();
+        var startDialogueNode = document.dialogue.nodes
+            .OfType<StartDialogueNode>().FirstOrDefault();
 
-            if (startDialogueNode.GetDialogueNodeBySpeaker(npcController.speaker) is BaseNode baseNode && baseNode != null)
-                filteredBySpeaker.Add(baseNode);
-        }
+        if (startDialogueNode.GetDialogueNodeBySpeaker(npcController.speaker) is BaseNode baseNode && baseNode != null)
+            filteredBySpeaker.Add(baseNode);
         
         if (filteredBySpeaker.Count == 0) return null;
 
@@ -333,14 +330,26 @@ public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandl
                 SetData();
             });
 
-        if (!DialogController.instance.isSpeaking && npcControllerSelected != null && (GetConversation(npcControllerSelected) is BaseNode nodeDialog))
+        if (!DialogController.instance.isSpeaking && document != null && npcControllerSelected != null && (GetConversation(npcControllerSelected) is BaseNode nodeDialog))
         {
             EventBus<InteractNPCEvent>.Raise(new InteractNPCEvent
             {
                 obj = npcControllerSelected.gameObject,
-                dialogueNode = nodeDialog
+                dialogueNode = nodeDialog,
+                document = document
             });
+
+            CallbackEndDrag();
+            
+            return;
         }
+        
+        CallbackEndDrag();
+    }
+
+    protected virtual void CallbackEndDrag()
+    {
+        
     }
 
     protected void SetData()
@@ -445,5 +454,10 @@ public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandl
         sequenceSlamHammer.Join(sequenceScale);
 
         sequenceSlamHammer.Play();
+    }
+
+    public virtual void SetVisualData(Document document)
+    {
+        
     }
 }

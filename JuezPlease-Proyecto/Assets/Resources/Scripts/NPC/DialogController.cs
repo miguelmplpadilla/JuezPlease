@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DialogController : MonoBehaviour
 {
@@ -15,12 +16,20 @@ public class DialogController : MonoBehaviour
     }
     
     public GameObject prefabDialog;
+    public GameObject prefabDecision;
     
     private List<DialogObj> lastDialogObjs = new List<DialogObj>();
 
     public List<Speaker> speakers;
 
     public bool isSpeaking = false;
+    private bool selectingDecision = false;
+
+    public GameObject panelDecisions;
+
+    public CanvasGroup panelBlock;
+    
+    private BaseNode baseNodeDialog;
 
     private void Awake()
     {
@@ -39,33 +48,46 @@ public class DialogController : MonoBehaviour
 
     private void StartDialog(SendDialogEvent s)
     {
-        StartCoroutine(ShowDialog(s));
+        if (!isSpeaking) StartCoroutine(ShowDialog(s));
     }
 
     private IEnumerator ShowDialog(SendDialogEvent s)
     {
         isSpeaking = true;
         
-        ConectionsNode baseNode = s.dialogueStartNode as ConectionsNode;
+        if (s.document != null) 
+            GameManager.instance.AddDocumentToDialoguePlayed(s.document);
+        
+        baseNodeDialog = s.dialogueStartNode;
 
         while (true)
         {
             yield return null;
 
-            if (baseNode is DialogueNode dialogueNode)
+            if (baseNodeDialog is ConectionsNode connectionNode)
             {
-                yield return PlayDialogue(dialogueNode);
-            } else if (baseNode is CallWitnessNode || baseNode is HideWitnessNode) //TODO: Añadir sprites a el testigo
-            {
-                yield return CallWitness(baseNode is CallWitnessNode ? baseNode as CallWitnessNode : null);
-            } else if (baseNode is UnlockDocumentNode unlockDocumentNode)
-            {
-                UnlockDocument(unlockDocumentNode.documentToUnlock);
+                if (connectionNode is DialogueNode dialogueNode)
+                {
+                    yield return PlayDialogue(dialogueNode);
+                } else if (connectionNode is CallWitnessNode || connectionNode is HideWitnessNode) //TODO: Añadir sprites a el testigo
+                {
+                    yield return CallWitness(connectionNode is CallWitnessNode ? connectionNode as CallWitnessNode : null);
+                } else if (connectionNode is UnlockDocumentNode unlockDocumentNode)
+                {
+                    UnlockDocument(unlockDocumentNode.documentToUnlock);
+                }
+            
+                if (connectionNode == null || connectionNode.baseOutput == null) break;
+            
+                baseNodeDialog = connectionNode.baseOutput;
+                
+                continue;
             }
             
-            if (baseNode.baseOutput == null) break;
-            
-            baseNode = baseNode.baseOutput as ConectionsNode;
+            if (baseNodeDialog is DecisionsNode decisionsNode)
+            {
+                yield return SelectDecision(decisionsNode);
+            }
         }
         
         isSpeaking = false;
@@ -79,7 +101,10 @@ public class DialogController : MonoBehaviour
             {
                 foreach (var lastDialogObj in lastDialogObjs)
                 {
-                    if (lastDialogObj.lastTypeSpeaker != dialogueNode.speaker) continue;
+                    bool isInSameBench = CleanSpeakerName(lastDialogObj.lastTypeSpeaker)
+                        .Equals(CleanSpeakerName(dialogueNode.speaker));
+                    
+                    if (lastDialogObj.lastTypeSpeaker != dialogueNode.speaker && !isInSameBench) continue;
                     float yLocalPosition = lastDialogObj.dialogObj.transform.localPosition.y;
                     lastDialogObj.dialogObj.transform.DOLocalMoveY(yLocalPosition + speakers[(int)dialogueNode.speaker].sumY, 0.3f);
                 }
@@ -117,6 +142,12 @@ public class DialogController : MonoBehaviour
         }
     }
 
+    private string CleanSpeakerName(TypeSpeaker speaker)
+    {
+        return speaker.ToString().Replace("NPC", "")
+            .Replace("LAWYER", "");
+    }
+
     private IEnumerator CallWitness(CallWitnessNode callWitnessNode)
     {
         if (callWitnessNode != null)
@@ -146,7 +177,52 @@ public class DialogController : MonoBehaviour
 
     private void UnlockDocument(Document document)
     {
+        if (GameManager.instance.IsDocumentUnlocked(document)) return;
+        
         if (document is Statment statment) StatmentsController.instance.CreateNewStatment(statment);
+        else if (document is Photo) StartCoroutine(DocumentCreator.instance.CreateDocument(document));
+        
+        GameManager.instance.AddUnlockedDocument(document);
+    }
+
+    private IEnumerator SelectDecision(DecisionsNode decisionsNode)
+    {
+        panelBlock.DOFade(0.4f, 0.5f);
+        panelBlock.blocksRaycasts = true;
+        
+        selectingDecision = true;
+        PlayDecisions(decisionsNode);
+        while (selectingDecision) yield return null;
+        
+        panelBlock.DOFade(0, 0.5f);
+        panelBlock.blocksRaycasts = false;
+    }
+
+    private void SetBaseDialogNode(BaseNode node)
+    {
+        baseNodeDialog = node;
+        selectingDecision = false;
+        for (int i = 0; i < panelDecisions.transform.childCount; i++)
+            for (int j = 0; j < panelDecisions.transform.GetChild(i).childCount; j++)
+                Destroy(panelDecisions.transform.GetChild(i).GetChild(j).gameObject);
+    }
+
+    private void PlayDecisions(DecisionsNode decisionsNode)
+    {
+        SetDecision(decisionsNode.decisionText1, panelDecisions.transform.GetChild(1), decisionsNode.decision1);
+        SetDecision(decisionsNode.decisionText2, panelDecisions.transform.GetChild(1), decisionsNode.decision2);
+        SetDecision(decisionsNode.decisionText3, panelDecisions.transform.GetChild(0), decisionsNode.decision3);
+        SetDecision(decisionsNode.decisionText4, panelDecisions.transform.GetChild(0), decisionsNode.decision4);
+        
+        panelDecisions.transform.localScale = Vector3.one;
+    }
+
+    private void SetDecision(LocalizableString textDecision, Transform parent, BaseNode node)
+    {
+        if (node == null) return;
+        GameObject decision = Instantiate(prefabDecision, parent);
+        decision.GetComponent<Button>().onClick.AddListener(() => SetBaseDialogNode(node));
+        decision.GetComponentInChildren<TextMeshProUGUI>().text = textDecision.value;
     }
 }
 

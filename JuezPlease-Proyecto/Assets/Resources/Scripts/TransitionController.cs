@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using DG.Tweening;
 using UnityEngine;
@@ -57,6 +58,8 @@ public class TransitionController : MonoBehaviour
         topRt.DOAnchorPosX(-Screen.width, 0);
         bottomRt.DOAnchorPosX(Screen.width, 0);
         
+        t.callback?.Invoke();
+        
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
     }
@@ -67,4 +70,6 @@ public class TransitionSceneEvent : IEvent
     public bool playTransition = true;
     public string currentSceneName = "";
     public string sceneNameToTransition = "";
+
+    public Action callback = null;
 }

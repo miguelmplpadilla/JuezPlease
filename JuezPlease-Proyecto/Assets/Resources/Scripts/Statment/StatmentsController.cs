@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
@@ -14,7 +13,7 @@ public class StatmentsController : MonoBehaviour
     public bool isShowed = false;
     
     public RectTransform continer;
-    public GameObject continerStatments;
+    public RectTransform continerStatments;
 
     public Button dropDownButton;
 
@@ -53,6 +52,8 @@ public class StatmentsController : MonoBehaviour
             dropDownButton.transform.localScale = new Vector3(1, -dropDownButton.transform.localScale.y, 1);
             isAnimating = false;
         }).SetEase(Ease.InOutBack);
+
+        if (!isShowed) continerStatments.anchoredPosition = new Vector2(continerStatments.anchoredPosition.x, 0);
         
         cantNewStatmentsIndicator.DOAnchorPosY(-45, 0.6f).SetEase(Ease.OutBack);
         
@@ -64,6 +65,7 @@ public class StatmentsController : MonoBehaviour
         cantStatmentsCreated++;
         
         GameObject statmentObject = Instantiate(statmentPrefab, continerStatments.transform);
+        statmentObject.transform.SetAsFirstSibling();
             
         DragStatmentController dragStatmentController = statmentObject.GetComponent<DragStatmentController>();
         dragStatmentController.document = statment;

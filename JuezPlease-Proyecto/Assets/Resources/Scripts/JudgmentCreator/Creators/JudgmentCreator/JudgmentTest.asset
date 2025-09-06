@@ -1,5 +1,174 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8510908419223497306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88fd2d03caa0fe64683ec841772ec40d, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 568, y: -40}
+  ports:
+    keys:
+    - baseInput
+    - baseOutput
+    values:
+    - _fieldName: baseInput
+      _node: {fileID: -8510908419223497306}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: normalDialogueOutput
+        node: {fileID: 4717659899013006451}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: baseOutput
+      _node: {fileID: -8510908419223497306}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  baseOutput: {fileID: 0}
+  baseInput: {fileID: 0}
+  speaker: 3
+  dialogues:
+  - emotionsToPlay: []
+    text:
+      valueSpanish: Muchas gracias juez
+      valueEnglish: 
+  - emotionsToPlay: []
+    text:
+      valueSpanish: ha sido usted
+      valueEnglish: 
+  - emotionsToPlay: []
+    text:
+      valueSpanish: lo mas justo
+      valueEnglish: 
+  - emotionsToPlay: []
+    text:
+      valueSpanish: posible
+      valueEnglish: 
+--- !u!114 &-8362358760824854857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e54bc44a1b3821458930618a5be35c4, type: 3}
+  m_Name: Start Dialogue Emotions
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 136, y: -328}
+  ports:
+    keys:
+    - normalDialogueOutput
+    - angryDialogueOutput
+    - baseInput
+    values:
+    - _fieldName: normalDialogueOutput
+      _node: {fileID: -8362358760824854857}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: baseInput
+        node: {fileID: 7648912049068819961}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: angryDialogueOutput
+      _node: {fileID: -8362358760824854857}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: baseInput
+        node: {fileID: -5532260225371456392}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: baseInput
+      _node: {fileID: -8362358760824854857}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: envelopeDialoguesNpcLeft
+        node: {fileID: 3264178651127113828}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  baseInput: {fileID: 0}
+  normalDialogueOutput: {fileID: 7648912049068819961}
+  angryDialogueOutput: {fileID: -5532260225371456392}
+--- !u!114 &-5532260225371456392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88fd2d03caa0fe64683ec841772ec40d, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 536, y: -280}
+  ports:
+    keys:
+    - baseInput
+    - baseOutput
+    values:
+    - _fieldName: baseInput
+      _node: {fileID: -5532260225371456392}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: angryDialogueOutput
+        node: {fileID: -8362358760824854857}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: baseOutput
+      _node: {fileID: -5532260225371456392}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  baseOutput: {fileID: 0}
+  baseInput: {fileID: 0}
+  speaker: 2
+  dialogues:
+  - emotionsToPlay:
+    - arm: 0
+      emotion: 1
+    text:
+      valueSpanish: Hijo de puta
+      valueEnglish: 
 --- !u!114 &-868471956202695218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13,7 +182,7 @@ MonoBehaviour:
   m_Name: All Start Statments
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 440, y: -616}
+  position: {x: -264, y: -648}
   ports:
     keys:
     - baseInput
@@ -64,6 +233,63 @@ MonoBehaviour:
   - {fileID: 1352004243731479850}
   - {fileID: 8029406995493335909}
   - {fileID: -868471956202695218}
+  - {fileID: -8362358760824854857}
+  - {fileID: 4717659899013006451}
+  - {fileID: 7648912049068819961}
+  - {fileID: -8510908419223497306}
+  - {fileID: 3264178651127113828}
+  - {fileID: -5532260225371456392}
+  - {fileID: 518131448419608984}
+--- !u!114 &518131448419608984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88fd2d03caa0fe64683ec841772ec40d, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 568, y: 152}
+  ports:
+    keys:
+    - baseInput
+    - baseOutput
+    values:
+    - _fieldName: baseInput
+      _node: {fileID: 518131448419608984}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: angryDialogueOutput
+        node: {fileID: 4717659899013006451}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: baseOutput
+      _node: {fileID: 518131448419608984}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  baseOutput: {fileID: 0}
+  baseInput: {fileID: 0}
+  speaker: 4
+  dialogues:
+  - emotionsToPlay:
+    - arm: 0
+      emotion: 1
+    text:
+      valueSpanish: Hijo de puta
+      valueEnglish: 
 --- !u!114 &1352004243731479850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,7 +303,7 @@ MonoBehaviour:
   m_Name: All Start Documents
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 440, y: -840}
+  position: {x: -248, y: -824}
   ports:
     keys:
     - baseInput
@@ -106,9 +332,129 @@ MonoBehaviour:
       _dynamic: 0
   baseOutput: {fileID: 0}
   baseInput: {fileID: 0}
-  allDocumentsStart:
-  - {fileID: 11400000, guid: 7d7fbb8a59ab34c4facfd742b4215f65, type: 2}
-  - {fileID: 11400000, guid: 7d7fbb8a59ab34c4facfd742b4215f65, type: 2}
+  allDocumentsStart: []
+--- !u!114 &3264178651127113828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06f4cdb396e0436dae92b98abb04d688, type: 3}
+  m_Name: Correct Sentence
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -392, y: -392}
+  ports:
+    keys:
+    - envelopeDialoguesNpcLeft
+    - envelopeDialoguesNpcRight
+    - baseInput
+    values:
+    - _fieldName: envelopeDialoguesNpcLeft
+      _node: {fileID: 3264178651127113828}
+      _typeQualifiedName: StartDialogueEmotionsNode, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: baseInput
+        node: {fileID: -8362358760824854857}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: envelopeDialoguesNpcRight
+      _node: {fileID: 3264178651127113828}
+      _typeQualifiedName: StartDialogueEmotionsNode, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: baseInput
+        node: {fileID: 4717659899013006451}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: baseInput
+      _node: {fileID: 3264178651127113828}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: correctSentenceOutput
+        node: {fileID: 8029406995493335909}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  baseInput: {fileID: 0}
+  minCantQuestionsToAsk: 3
+  sentence: 1
+  cantSentence: 5
+  correctAcused: 0
+  envelopeDialoguesNpcLeft: {fileID: -8362358760824854857}
+  envelopeDialoguesNpcRight: {fileID: 4717659899013006451}
+--- !u!114 &4717659899013006451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e54bc44a1b3821458930618a5be35c4, type: 3}
+  m_Name: Start Dialogue Emotions
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 152, y: -24}
+  ports:
+    keys:
+    - normalDialogueOutput
+    - angryDialogueOutput
+    - baseInput
+    values:
+    - _fieldName: normalDialogueOutput
+      _node: {fileID: 4717659899013006451}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: baseInput
+        node: {fileID: -8510908419223497306}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: angryDialogueOutput
+      _node: {fileID: 4717659899013006451}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: baseInput
+        node: {fileID: 518131448419608984}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: baseInput
+      _node: {fileID: 4717659899013006451}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: envelopeDialoguesNpcRight
+        node: {fileID: 3264178651127113828}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  baseInput: {fileID: 0}
+  normalDialogueOutput: {fileID: -8510908419223497306}
+  angryDialogueOutput: {fileID: 518131448419608984}
 --- !u!114 &5343410421512998709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,6 +530,58 @@ MonoBehaviour:
           valueSpanish: Hola mundo
           valueEnglish: 
         fontText: {fileID: 11400000, guid: ef3ebe0577fb8b640a7098ef93adf201, type: 2}
+--- !u!114 &7648912049068819961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88fd2d03caa0fe64683ec841772ec40d, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 552, y: -520}
+  ports:
+    keys:
+    - baseInput
+    - baseOutput
+    values:
+    - _fieldName: baseInput
+      _node: {fileID: 7648912049068819961}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: normalDialogueOutput
+        node: {fileID: -8362358760824854857}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: baseOutput
+      _node: {fileID: 7648912049068819961}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  baseOutput: {fileID: 0}
+  baseInput: {fileID: 0}
+  speaker: 2
+  dialogues:
+  - emotionsToPlay: []
+    text:
+      valueSpanish: Es lo que hay
+      valueEnglish: 
+  - emotionsToPlay: []
+    text:
+      valueSpanish: me lo merezco
+      valueEnglish: 
 --- !u!114 &8029406995493335909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,12 +595,13 @@ MonoBehaviour:
   m_Name: Start Judgment
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -8, y: -904}
+  position: {x: -792, y: -680}
   ports:
     keys:
     - baseOutput
     - startDocuments
     - startStatments
+    - correctSentenceOutput
     values:
     - _fieldName: baseOutput
       _node: {fileID: 8029406995493335909}
@@ -237,9 +636,22 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: correctSentenceOutput
+      _node: {fileID: 8029406995493335909}
+      _typeQualifiedName: Resources.Scripts.JudgmentCreator.Creators.JudgmentCreator.Nodes.CorrectSentenceNode,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: baseInput
+        node: {fileID: 3264178651127113828}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
   baseOutput: {fileID: 0}
   startDocuments: {fileID: 1352004243731479850}
   startStatments: {fileID: -868471956202695218}
-  sentencesGuilty: 0200000003000000
-  sentencesInsane: 
+  sentences: 0100000004000000
   logBook: {fileID: 11400000, guid: 520c45414bcb4454cbbd8cccf25f41e3, type: 2}
+  dialogueReturnToJudged: {fileID: 11400000, guid: 5bd24a9f04fed47418b7585e4054f725, type: 2}
+  correctSentenceOutput: {fileID: 3264178651127113828}

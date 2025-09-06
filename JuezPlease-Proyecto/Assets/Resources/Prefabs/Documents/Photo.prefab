@@ -306,6 +306,7 @@ MonoBehaviour:
   allImages: {fileID: 5433209027937477535}
   canvas: {fileID: 0}
   objTag: BigObjects
+  isCrushable: 1
 --- !u!1 &5433209027937477535
 GameObject:
   m_ObjectHideFlags: 0

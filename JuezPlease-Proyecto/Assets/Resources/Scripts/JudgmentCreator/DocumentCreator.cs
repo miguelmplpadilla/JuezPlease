@@ -1,62 +1,78 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using DG.Tweening;
+using Resources.Scripts.JudgmentCreator.ScriptableObjects.DocumentsSO;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class DocumentCreator : MonoBehaviour
 {
-    public JudgmentCreator judgmentCreator;
-
+    public static DocumentCreator instance;
+    
     public GameObject photoPrefab;
+    public GameObject envelopePrefab;
 
     public RectTransform parentDocuments;
 
-    public GameObject canvasObjs;
-    
+    public RectTransform positionCreateObject;
+
+    public bool isBig = true;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     private void Start()
     {
-        foreach (var node in judgmentCreator.nodes)
-        {
-            if (node is AllStartDocuments allStartDocuments)
-            {
-                StartCoroutine(CreateDocumentsStart(allStartDocuments));
-                break;
-            }
-        }
+        StartCoroutine(CreateDocumentsStart(JudgedSceneController.instance.allStartDocuments));
     }
 
     protected virtual IEnumerator CreateDocumentsStart(AllStartDocuments allStartDocuments)
     {
         yield return new WaitForSeconds(1);
-
-        RectTransform currentDocumentCreated = null;
-
+        
         foreach (var document in allStartDocuments.allDocumentsStart)
-        {
-            if (document is Photo photo) currentDocumentCreated = CreatePhoto(photo);
-
-            yield return AfterCreateDocument(currentDocumentCreated);
-        }
+            yield return CreateDocument(document);
     }
 
-    protected virtual IEnumerator AfterCreateDocument(RectTransform currentDocument)
+    public IEnumerator CreateDocument(Document document)
     {
-        currentDocument.anchoredPosition = new Vector2(parentDocuments.rect.size.x, Random.Range(-200, 200));
+        RectTransform currentDocumentCreated = null;
+
+        float randomDiferenceY = 50;
+        
+        if (document is Photo photo) currentDocumentCreated = CreateDocumentObj(photo, photoPrefab);
+        if (document is EnvelopeDocument envelope) 
+        {
+            currentDocumentCreated = CreateDocumentObj(envelope, envelopePrefab);
+            randomDiferenceY = 0;
+        }
+
+        yield return AfterCreateDocument(currentDocumentCreated, randomDiferenceY);
+    }
+
+    protected virtual IEnumerator AfterCreateDocument(RectTransform currentDocument, float diference)
+    {
+        currentDocument.anchoredPosition = new Vector2(positionCreateObject.anchoredPosition.x, positionCreateObject.anchoredPosition.y + Random.Range(-200, 200));
 
         yield return null;
             
-        currentDocument.DOAnchorPosX(Random.Range(-50, 50), 1f);
+        currentDocument.DOAnchorPosX(Random.Range(-diference, diference), 1f);
 
         yield return new WaitForSeconds(0.4f);
     }
 
-    protected RectTransform CreatePhoto(Photo photo)
+    protected RectTransform CreateDocumentObj(Document document, GameObject prefab)
     {
-        RectTransform photoObject = Instantiate(photoPrefab, parentDocuments.transform).GetComponent<RectTransform>();
+        RectTransform photoObject = Instantiate(prefab, parentDocuments.transform).GetComponent<RectTransform>();
         DragObjectController dragObjectController = photoObject.GetComponent<DragObjectController>();
-        dragObjectController.document = photo;
+        dragObjectController.document = document;
         dragObjectController.SetDataObject(parentDocuments.gameObject, parentDocuments.GetComponent<HolderController>(),
-            !parentDocuments.tag.Equals("LittleObjects"));
-        dragObjectController.canvas = canvasObjs;
+            isBig);
+        dragObjectController.canvas = parentDocuments.gameObject;
+        
+        dragObjectController.SetVisualData(document);
         
         return photoObject;
     }
