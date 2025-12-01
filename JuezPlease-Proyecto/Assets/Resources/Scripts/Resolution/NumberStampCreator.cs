@@ -18,8 +18,8 @@ public class NumberStampCreator : MonoBehaviour, IDragHandler, IPointerDownHandl
 
     private IEnumerator PointerDown(PointerEventData eventData)
     {
-        GameObject parentStamp = GameObject.Find("ObjectsContiner");
-        stampInstantiated = Instantiate(prefabStamp, GameObject.Find("ObjectsContiner").transform);
+        GameObject parentStamp = GameObject.Find("ContinersObjects");
+        stampInstantiated = Instantiate(prefabStamp, parentStamp.transform);
         NumberStampDragController stampDragController = stampInstantiated.GetComponent<NumberStampDragController>();
         
         stampInstantiated.transform.position = eventData.position;

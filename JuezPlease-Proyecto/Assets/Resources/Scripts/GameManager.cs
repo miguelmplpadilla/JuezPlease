@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Resources.Scripts.JudgmentCreator.ScriptableObjects.DocumentsSO;
 using UnityEngine;
@@ -7,6 +8,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     
     public LogBookCreator logBookCreator;
+
+    [NonSerialized] public StartJudgmentNode startJudgmentNode;
     
     public List<Document> documentsUnlocked = new List<Document>();
     public List<StartJudgmentNode.Sentence> sentences = new List<StartJudgmentNode.Sentence>();
@@ -14,7 +17,8 @@ public class GameManager : MonoBehaviour
     public List<Document> documentsDialoguePlayed = new List<Document>();
 
     public EnvelopeDocument.TypeAcused finalAcused;
-    public StartJudgmentNode.Sentence finalSentence;
+    [NonSerialized] public StartJudgmentNode.Sentence finalSentence = StartJudgmentNode.Sentence.INNOCENT;
+    public int numFinalSentence = 0;
     
     private void Awake()
     {

@@ -6,13 +6,19 @@ using UnityEngine.SceneManagement;
 
 public class TransitionController : MonoBehaviour
 {
+    public static TransitionController instance;
+    
     public RectTransform topRt;
     public RectTransform bottomRt;
 
     public CanvasGroup canvasGroup;
+
+    public string lastSceneName = "";
     
     void Awake()
     {
+        instance = this;
+        
         EventBus<TransitionSceneEvent>.Register(new EventBinding<TransitionSceneEvent>(PlayTransitionScene, gameObject));
     }
 
@@ -35,6 +41,8 @@ public class TransitionController : MonoBehaviour
         bottomRt.DOAnchorPosX(0, t.playTransition ? 1 : 0);
 
         yield return new WaitForSeconds(t.playTransition ? 1 : 0);
+        
+        lastSceneName = t.currentSceneName;
         
         AsyncOperation asyncOperation =
             SceneManager.LoadSceneAsync(t.sceneNameToTransition, LoadSceneMode.Additive);

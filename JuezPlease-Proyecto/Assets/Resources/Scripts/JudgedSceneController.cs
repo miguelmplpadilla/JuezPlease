@@ -15,6 +15,8 @@ public class JudgedSceneController : MonoBehaviour
    [NonSerialized] public AllStartDocuments allStartDocuments;
 
    public EnvelopeDocument.TypeAcused realAcused;
+   
+   public int cantQuestionsAsked = 0;
 
    private void Awake()
    {
@@ -31,7 +33,9 @@ public class JudgedSceneController : MonoBehaviour
          }
       }
       
-      GameManager.instance.sentences = new List<StartJudgmentNode.Sentence>();
+      GameManager.instance.startJudgmentNode = startJudgmentNode;
+      
+      GameManager.instance.sentences = new List<StartJudgmentNode.Sentence>(startJudgmentNode.sentences);
       GameManager.instance.logBookCreator = (judgmentCreator.nodes.Find(it => it is StartJudgmentNode) as StartJudgmentNode).logBook;
    }
 
@@ -90,20 +94,50 @@ public class JudgedSceneController : MonoBehaviour
 
       CorrectSentenceNode correctSentenceNode = startJudgmentNode.correctSentenceOutput;
 
-      // TODO: Cambiar normal dialogue por el adecuado en este momento
+      BaseNode nodeDialogue = GetCorrectEnvelopeDialogue(
+         GameManager.instance.finalAcused == EnvelopeDocument.TypeAcused.NPCLEFT
+            ? correctSentenceNode.envelopeDialoguesNpcLeft
+            : correctSentenceNode.envelopeDialoguesNpcRight);
+
       if (GameManager.instance.finalAcused == EnvelopeDocument.TypeAcused.NPCLEFT)
       {
-         startDialogueNode.npcLeftOutput = correctSentenceNode.envelopeDialoguesNpcLeft.normalDialogueOutput;
-         startDialogueNode.lawyerLeftOutput = correctSentenceNode.envelopeDialoguesNpcLeft.normalDialogueOutput;
+         startDialogueNode.npcLeftOutput = nodeDialogue;
+         startDialogueNode.lawyerLeftOutput = nodeDialogue;
       } else if (GameManager.instance.finalAcused == EnvelopeDocument.TypeAcused.NPCRIGHT)
       {
-         startDialogueNode.npcRightOutput = correctSentenceNode.envelopeDialoguesNpcRight.normalDialogueOutput;
-         startDialogueNode.lawyerRightOutput = correctSentenceNode.envelopeDialoguesNpcRight.normalDialogueOutput;
+         startDialogueNode.npcRightOutput = nodeDialogue;
+         startDialogueNode.lawyerRightOutput = nodeDialogue;
       }
 
       envelopeDocument.dialogue = finalDialogue;
 
-      StartCoroutine(DocumentCreator.instance.CreateDocument(envelopeDocument));
+      StartCoroutine(DocumentCreator.instance.CreateDocument(envelopeDocument, 1));
+   }
+
+   private BaseNode GetCorrectEnvelopeDialogue(StartDialogueEmotionsNode startDialogueNode)
+   {
+      BaseNode nodeDialogue = IsFinalSentenceCorrect()
+         ? startDialogueNode.normalDialogueOutput
+         : startDialogueNode.angryDialogueOutput;
+         
+      if (GameManager.instance.finalSentence == StartJudgmentNode.Sentence.INNOCENT)
+         nodeDialogue = startDialogueNode.innocentDialogueOutput;
+
+      return nodeDialogue;
+   }
+
+   private bool IsFinalSentenceCorrect()
+   {
+      if (GameManager.instance.finalSentence > startJudgmentNode.correctSentenceOutput.sentence || 
+          (GameManager.instance.finalSentence == startJudgmentNode.correctSentenceOutput.sentence && 
+           GameManager.instance.numFinalSentence > startJudgmentNode.correctSentenceOutput.maxCantSentence) ||
+          cantQuestionsAsked < startJudgmentNode.correctSentenceOutput.minCantQuestionsToAsk || 
+          GameManager.instance.finalAcused != startJudgmentNode.correctSentenceOutput.correctAcused)
+      {
+         return false;
+      }
+      
+      return true;
    }
 }
 

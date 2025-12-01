@@ -3,8 +3,10 @@ using Resources.Scripts.JudgmentCreator.Creators.JudgmentCreator.Nodes;
 using UnityEngine;
 using XNode;
 
-public class StartJudgmentNode : OutputConectionNode 
+public class StartJudgmentNode : BaseNode 
 {
+    [Space(15)]
+    [Output] public LawBookNode lawBookOutput;
     [Space(15)]
     [Output] public BaseNode startDocuments;
     [Output] public BaseNode startStatments;
@@ -23,15 +25,15 @@ public class StartJudgmentNode : OutputConectionNode
     public enum Sentence
     {
         NONE = 0,
-        INNOCENT = 0,
-        MONEY = 1,
-        WORK = 2,
-        PRISON = 3,
-        DEATH = 4,
-        PSYCHIATRIC = 1,
-        LOBOTOMY = 2,
-        ELECTROSHOCK = 3,
-        CHEMICALSTRAITJACKET = 4
+        INNOCENT = 1,
+        MONEY = 2,
+        WORK = 3,
+        PRISON = 4,
+        DEATH = 5,
+        PSYCHIATRIC = 6,
+        LOBOTOMY = 7,
+        ELECTROSHOCK = 8,
+        CHEMICALSTRAITJACKET = 9
     }
     
     public override void OnCreateConnection(NodePort from, NodePort to) {
@@ -41,6 +43,7 @@ public class StartJudgmentNode : OutputConectionNode
         if (ConnectDocuments(from, to)) return;
         if (ConnectStatments(from, to)) return;
         if (ConnectCorrectSentence(from, to)) return;
+        if (ConnectLawBook(from, to)) return;
     }
 
     private bool ConnectDocuments(NodePort from, NodePort to)
@@ -102,6 +105,26 @@ public class StartJudgmentNode : OutputConectionNode
 
         return false;
     }
+    
+    private bool ConnectLawBook(NodePort from, NodePort to)
+    {
+        StartJudgmentNode fromNode = from.node as StartJudgmentNode;
+        LawBookNode toNode = to.node as LawBookNode;
+        
+        if (fromNode == null || toNode == null) return false;
+
+        if (from.GetConnections().Count > 1)
+            for (int i = 0; i < from.GetConnections().Count; i++)
+                from.Disconnect(i);
+
+        if (to.fieldName == "baseInput" && from.fieldName == "lawBookOutput")
+        {
+            fromNode.lawBookOutput = toNode;
+            return true;
+        }
+
+        return false;
+    }
 
     public override void OnRemoveConnection(NodePort port)
     {
@@ -110,5 +133,6 @@ public class StartJudgmentNode : OutputConectionNode
         if (port.fieldName.Equals("startDocuments")) startDocuments = null;
         if (port.fieldName.Equals("startStatments")) startStatments = null;
         if (port.fieldName.Equals("correctSentenceOutput")) correctSentenceOutput = null;
+        if (port.fieldName.Equals("lawBookOutput")) lawBookOutput = null;
     }
 }

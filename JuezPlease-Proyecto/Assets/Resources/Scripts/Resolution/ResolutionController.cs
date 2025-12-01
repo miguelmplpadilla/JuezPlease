@@ -309,6 +309,7 @@ public class ResolutionController : MonoBehaviour
 
     private IEnumerator SelectSentencePaper(SelectSentencePaperEvent s)
     {
+        GameManager.instance.finalSentence = s.sentence;
         envelopeSentences.DOAnchorPosY(-Screen.height, 1);
         
         continerStampsPaper = s.paperSentence.transform.Find("ContinerPaper").gameObject;

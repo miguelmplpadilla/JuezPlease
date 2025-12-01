@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Acused Acusator Page
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -232, y: -1096}
+  position: {x: -360, y: -1208}
   ports:
     keys:
     - baseInput
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Name: Character
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 632, y: -1464}
+  position: {x: 664, y: -1960}
   ports:
     keys:
     - baseInput
@@ -95,17 +95,17 @@ MonoBehaviour:
       _dynamic: 0
   baseInput: {fileID: 0}
   characterData:
-    body: {fileID: 0}
-    eyes: {fileID: 0}
-    eyelids: {fileID: 0}
+    body: {fileID: 1864252027, guid: 6177f0a3c14e4d54e894b11660235d76, type: 3}
+    eyes: {fileID: 1415670582, guid: 6177f0a3c14e4d54e894b11660235d76, type: 3}
+    eyelids: {fileID: 1078263909, guid: 6177f0a3c14e4d54e894b11660235d76, type: 3}
     armRight:
-      normalArm: {fileID: 0}
-      fistArm: {fileID: 0}
-      pointArm: {fileID: 0}
+      normalArm: {fileID: 1857840105, guid: 6177f0a3c14e4d54e894b11660235d76, type: 3}
+      fistArm: {fileID: 1916664717, guid: 6177f0a3c14e4d54e894b11660235d76, type: 3}
+      pointArm: {fileID: -1910415892, guid: 6177f0a3c14e4d54e894b11660235d76, type: 3}
     armLeft:
-      normalArm: {fileID: 0}
-      fistArm: {fileID: 0}
-      pointArm: {fileID: 0}
+      normalArm: {fileID: -1323032331, guid: 6177f0a3c14e4d54e894b11660235d76, type: 3}
+      fistArm: {fileID: 1786568306, guid: 6177f0a3c14e4d54e894b11660235d76, type: 3}
+      pointArm: {fileID: -1702713671, guid: 6177f0a3c14e4d54e894b11660235d76, type: 3}
   armAnimationToShowLeft: 0
   armAnimationToShowRight: 0
 --- !u!114 &-8195110489389602369
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Name: Acused Acusator Page
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 264, y: -840}
+  position: {x: 88, y: -808}
   ports:
     keys:
     - baseInput
@@ -244,7 +244,7 @@ MonoBehaviour:
   m_Name: Log Book
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -568, y: -440}
+  position: {x: -792, y: -616}
   ports:
     keys:
     - acusedOutput
@@ -444,7 +444,7 @@ MonoBehaviour:
   m_Name: Characters
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 680, y: -792}
+  position: {x: 552, y: -744}
   ports:
     keys:
     - clientOutput
@@ -645,7 +645,7 @@ MonoBehaviour:
   m_Name: Character
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 632, y: -1208}
+  position: {x: 616, y: -1192}
   ports:
     keys:
     - baseInput

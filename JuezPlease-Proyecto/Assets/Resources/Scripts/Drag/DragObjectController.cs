@@ -24,7 +24,7 @@ public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandl
     public GameObject imagesBig;
 
     public GameObject allImages;
-    protected GameObject continer;
+    [SerializeField] protected GameObject continer;
     protected GameObject currentParent;
     protected GameObject originalParent;
     public GameObject canvas;
@@ -255,7 +255,7 @@ public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandl
             if (obj.gameObject.TryGetComponent(out NPCController npcController))
             {
                 if (!npcController.canInteract) return;
-
+                
                 npcControllerSelected = npcController;
                 allImages.transform.localScale = Vector3.one * 1.4f;
                 
@@ -275,6 +275,8 @@ public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandl
         foreach (var npcController in allNPCController)
         {
             if (GetConversation(npcController) == null) continue;
+            
+            StartCoroutine(npcController.ShowHideNPCAnimation(true, false));
 
             EventBus<AboveInteractNPCEvent>.Raise(new AboveInteractNPCEvent
             {
@@ -286,10 +288,13 @@ public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandl
     
     protected void UnCheckAllNPC()
     {
+        Debug.Log("UnCheckAllNPC");
         NPCController[] allNPCController = FindObjectsOfType<NPCController>();
         
         foreach (var npcController in allNPCController)
         {
+            Debug.Log(npcController);
+            StartCoroutine(npcController.ShowHideNPCAnimation(false, npcControllerSelected == npcController));
             EventBus<AboveInteractNPCEvent>.Raise(new AboveInteractNPCEvent
             {
                 obj = npcController.gameObject,
@@ -315,10 +320,13 @@ public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandl
 
     protected virtual void GlobalOnEndDrag()
     {
-        UnCheckAllNPC();
         allImages.transform.localScale = Vector3.one * 1.05f;
-        
-        if (!currentParent.name.Equals("PublicPanel")) return;
+
+        if (!currentParent.name.Equals("PublicPanel"))
+        {
+            UnCheckAllNPC();
+            return;
+        }
         
         isAnimating = true;
         transform.DOMoveY(GameObject.Find("YEndTable").transform.position.y, 0.2f)
@@ -338,13 +346,11 @@ public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandl
                 dialogueNode = nodeDialog,
                 document = document
             });
-
-            CallbackEndDrag();
             
-            return;
+            CallbackEndDrag();
         }
         
-        CallbackEndDrag();
+        UnCheckAllNPC();
     }
 
     protected virtual void CallbackEndDrag()

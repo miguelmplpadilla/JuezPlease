@@ -44,7 +44,7 @@ public class NPCController : MonoBehaviour
         canInteract = i.canInteract;
     }
 
-    private void Interact(InteractNPCEvent i)
+    protected virtual void Interact(InteractNPCEvent i)
     {
         if (!i.obj.Equals(gameObject)) return;
         
@@ -57,11 +57,13 @@ public class NPCController : MonoBehaviour
 
     private void Update()
     {
-        iconConversation.transform.localScale = canInteract ? Vector3.one : Vector3.zero;
+        if (iconConversation != null) iconConversation.transform.localScale = canInteract ? Vector3.one : Vector3.zero;
     }
 
     private IEnumerator Blink()
     {
+        if (eyeLids == null) yield break;
+        
         while (true)
         {
             yield return null;
@@ -74,7 +76,7 @@ public class NPCController : MonoBehaviour
 
     private void PlayAnimationNPC(PlayAnimationNPCEvent p)
     {
-        if (!p.obj.Equals(gameObject.transform.parent.gameObject)) return;
+        if (!p.obj.Equals(gameObject.transform.parent.gameObject) || animator == null) return;
 
         foreach (var emotion in p.emotions)
         {
@@ -93,9 +95,16 @@ public class NPCController : MonoBehaviour
         }
     }
 
+    public virtual IEnumerator ShowHideNPCAnimation(bool show, bool isThisSpeaking)
+    {
+        yield break;
+    }
+
     private void LookTo(LookToEvent l)
     {
         return;
+        if (eyesRt == null) return;
+        
         if (l.lookToJudge)
         {
             eyesRt.DOAnchorPosX(10, 0);

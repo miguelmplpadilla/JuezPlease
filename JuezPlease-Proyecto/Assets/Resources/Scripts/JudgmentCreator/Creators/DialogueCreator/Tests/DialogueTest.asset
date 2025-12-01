@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 680, y: -376}
+  position: {x: 1464, y: -1432}
   ports:
     keys:
     - baseInput
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cc87b2419b442f5a996b9588961959d, type: 3}
   m_Name: Statment
   m_EditorClassIdentifier: 
-  guid: f772e7c6-104b-4ede-b47b-d339a2a807f4
+  guid: 04f0c551-8b83-476c-88b4-c8ce947cb5bc
   isUnlocked: 0
   dialogue: {fileID: 0}
   textStatment:
@@ -84,7 +84,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1192, y: 120}
+  position: {x: 1784, y: -376}
   ports:
     keys:
     - baseInput
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 280, y: 120}
+  position: {x: 872, y: -376}
   ports:
     keys:
     - baseInput
@@ -181,6 +181,68 @@ MonoBehaviour:
     text:
       valueSpanish: Mercadona
       valueEnglish: 
+--- !u!114 &-1155732181991817918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88fd2d03caa0fe64683ec841772ec40d, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 696, y: 1448}
+  ports:
+    keys:
+    - baseInput
+    - baseOutput
+    values:
+    - _fieldName: baseInput
+      _node: {fileID: -1155732181991817918}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: decision1
+        node: {fileID: -517782675521938912}
+        reroutePoints: []
+      - fieldName: baseOutput
+        node: {fileID: 1857586046862062294}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: baseOutput
+      _node: {fileID: -1155732181991817918}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: baseInput
+        node: {fileID: 5531060435951887963}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  baseOutput: {fileID: 5531060435951887963}
+  baseInput: {fileID: 0}
+  speaker: 6
+  dialogues:
+  - emotionsToPlay: []
+    text:
+      valueSpanish: "Hola, si se\xF1or"
+      valueEnglish: 
+  - emotionsToPlay: []
+    text:
+      valueSpanish: este cerdo se hizo
+      valueEnglish: 
+  - emotionsToPlay: []
+    text:
+      valueSpanish: la paja
+      valueEnglish: 
 --- !u!114 &-865324801793400296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,7 +256,7 @@ MonoBehaviour:
   m_Name: Call Witness
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 712, y: 120}
+  position: {x: 1304, y: -376}
   ports:
     keys:
     - baseInput
@@ -251,7 +313,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -696, y: 392}
+  position: {x: 8, y: 632}
   ports:
     keys:
     - baseInput
@@ -301,6 +363,99 @@ MonoBehaviour:
     text:
       valueSpanish: Seccion de congelados
       valueEnglish: 
+--- !u!114 &-517782675521938912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2321814a0c284ee9a5e5c7cb20b49448, type: 3}
+  m_Name: Decisions
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: -376, y: 1384}
+  ports:
+    keys:
+    - decision1
+    - decision2
+    - decision3
+    - decision4
+    - baseInput
+    values:
+    - _fieldName: decision1
+      _node: {fileID: -517782675521938912}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: baseInput
+        node: {fileID: -1155732181991817918}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: decision2
+      _node: {fileID: -517782675521938912}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: baseInput
+        node: {fileID: 1857586046862062294}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: decision3
+      _node: {fileID: -517782675521938912}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: decision4
+      _node: {fileID: -517782675521938912}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: baseInput
+      _node: {fileID: -517782675521938912}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: telephoneOutput
+        node: {fileID: 8034226983653310322}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  baseInput: {fileID: 0}
+  decision1: {fileID: -1155732181991817918}
+  decisionText1:
+    valueSpanish: "Este se\xF1or se hizo la paja?"
+    valueEnglish: 
+  decision2: {fileID: 1857586046862062294}
+  decisionText2:
+    valueSpanish: "Como se llama se\xF1or?"
+    valueEnglish: 
+  decision3: {fileID: 0}
+  decisionText3:
+    valueSpanish: 
+    valueEnglish: 
+  decision4: {fileID: 0}
+  decisionText4:
+    valueSpanish: 
+    valueEnglish: 
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,6 +486,11 @@ MonoBehaviour:
   - {fileID: 8913258386723009187}
   - {fileID: 7396106338848988061}
   - {fileID: 8853287119918773577}
+  - {fileID: -1155732181991817918}
+  - {fileID: 5531060435951887963}
+  - {fileID: 2894461950486378751}
+  - {fileID: -517782675521938912}
+  - {fileID: 1857586046862062294}
   - {fileID: 0}
 --- !u!114 &204709665863077654
 MonoBehaviour:
@@ -345,7 +505,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 248, y: -392}
+  position: {x: 1032, y: -1448}
   ports:
     keys:
     - baseInput
@@ -400,7 +560,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -680, y: -408}
+  position: {x: 104, y: -1512}
   ports:
     keys:
     - baseInput
@@ -434,7 +594,11 @@ MonoBehaviour:
   baseInput: {fileID: 0}
   speaker: 2
   dialogues:
-  - emotionsToPlay: []
+  - emotionsToPlay:
+    - arm: 0
+      emotion: 1
+    - arm: 1
+      emotion: 1
     text:
       valueSpanish: Nada de lo que
       valueEnglish: 
@@ -463,7 +627,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -216, y: -392}
+  position: {x: 568, y: -1448}
   ports:
     keys:
     - baseInput
@@ -501,6 +665,61 @@ MonoBehaviour:
     text:
       valueSpanish: "Se\xF1or, esto lo acaba de declarar unsted mismo"
       valueEnglish: 
+--- !u!114 &1857586046862062294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88fd2d03caa0fe64683ec841772ec40d, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 56, y: 1656}
+  ports:
+    keys:
+    - baseInput
+    - baseOutput
+    values:
+    - _fieldName: baseInput
+      _node: {fileID: 1857586046862062294}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: decision2
+        node: {fileID: -517782675521938912}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: baseOutput
+      _node: {fileID: 1857586046862062294}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: baseInput
+        node: {fileID: -1155732181991817918}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  baseOutput: {fileID: -1155732181991817918}
+  baseInput: {fileID: 0}
+  speaker: 6
+  dialogues:
+  - emotionsToPlay: []
+    text:
+      valueSpanish: 'A usted que '
+      valueEnglish: 
+  - emotionsToPlay: []
+    text:
+      valueSpanish: le importa?
+      valueEnglish: 
 --- !u!114 &2768522139243189569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -532,6 +751,56 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   baseInput: {fileID: 0}
+--- !u!114 &2894461950486378751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88fd2d03caa0fe64683ec841772ec40d, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1640, y: 1624}
+  ports:
+    keys:
+    - baseInput
+    - baseOutput
+    values:
+    - _fieldName: baseInput
+      _node: {fileID: 2894461950486378751}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: baseOutput
+        node: {fileID: 5531060435951887963}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: baseOutput
+      _node: {fileID: 2894461950486378751}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  baseOutput: {fileID: 0}
+  baseInput: {fileID: 0}
+  speaker: 2
+  dialogues:
+  - emotionsToPlay:
+    - arm: 0
+      emotion: 1
+    text:
+      valueSpanish: Mentirosoooooooooooooo
+      valueEnglish: 
 --- !u!114 &4005077772943528668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -545,7 +814,7 @@ MonoBehaviour:
   m_Name: Call Witness
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -168, y: 120}
+  position: {x: 424, y: -376}
   ports:
     keys:
     - baseInput
@@ -602,7 +871,7 @@ MonoBehaviour:
   m_Name: Hide Witness
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1720, y: 168}
+  position: {x: 2312, y: -328}
   ports:
     keys:
     - baseInput
@@ -644,7 +913,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -216, y: 440}
+  position: {x: 488, y: 872}
   ports:
     keys:
     - baseInput
@@ -686,6 +955,61 @@ MonoBehaviour:
     text:
       valueSpanish: Que le vio
       valueEnglish: 
+--- !u!114 &5531060435951887963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88fd2d03caa0fe64683ec841772ec40d, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: 
+  graph: {fileID: 11400000}
+  position: {x: 1176, y: 1496}
+  ports:
+    keys:
+    - baseInput
+    - baseOutput
+    values:
+    - _fieldName: baseInput
+      _node: {fileID: 5531060435951887963}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: baseOutput
+        node: {fileID: -1155732181991817918}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: baseOutput
+      _node: {fileID: 5531060435951887963}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: baseInput
+        node: {fileID: 2894461950486378751}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  baseOutput: {fileID: 2894461950486378751}
+  baseInput: {fileID: 0}
+  speaker: 0
+  dialogues:
+  - emotionsToPlay: []
+    text:
+      valueSpanish: El testigo telefonico ha declarado
+      valueEnglish: 
+  - emotionsToPlay: []
+    text:
+      valueSpanish: "dice que le vio pajeandose se\xF1or"
+      valueEnglish: 
 --- !u!114 &6747934792976263026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -699,7 +1023,7 @@ MonoBehaviour:
   m_Name: Unlock Document
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 1128, y: -376}
+  position: {x: 1912, y: -1432}
   ports:
     keys:
     - baseInput
@@ -742,7 +1066,7 @@ MonoBehaviour:
   m_Name: Decisions
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -1128, y: -232}
+  position: {x: -344, y: -1288}
   ports:
     keys:
     - decision1
@@ -842,6 +1166,7 @@ MonoBehaviour:
     - lawyerLeftOutput
     - npcRightOutput
     - lawyerRightOutput
+    - telephoneOutput
     values:
     - _fieldName: npcLeftOutput
       _node: {fileID: 8034226983653310322}
@@ -888,10 +1213,23 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: telephoneOutput
+      _node: {fileID: 8034226983653310322}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: baseInput
+        node: {fileID: -517782675521938912}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
   npcLeftOutput: {fileID: 7396106338848988061}
   lawyerLeftOutput: {fileID: 9087360733944078747}
   npcRightOutput: {fileID: -583836153955146346}
   lawyerRightOutput: {fileID: 0}
+  telephoneOutput: {fileID: -517782675521938912}
 --- !u!114 &8853287119918773577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -905,7 +1243,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -680, y: -136}
+  position: {x: 72, y: -936}
   ports:
     keys:
     - baseInput
@@ -953,7 +1291,7 @@ MonoBehaviour:
   m_Name: Unlock Document
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 264, y: 456}
+  position: {x: 1112, y: 952}
   ports:
     keys:
     - baseInput
@@ -1027,7 +1365,7 @@ MonoBehaviour:
   m_Name: Dialogue
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: -696, y: 184}
+  position: {x: -120, y: -424}
   ports:
     keys:
     - baseInput

@@ -77,7 +77,8 @@ MonoBehaviour:
     keys:
     - startDocuments
     - startStatments
-    - baseOutput
+    - lawBookOutput
+    - correctSentenceOutput
     values:
     - _fieldName: startDocuments
       _node: {fileID: 1149989768993517693}
@@ -100,18 +101,28 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-    - _fieldName: baseOutput
+    - _fieldName: lawBookOutput
       _node: {fileID: 1149989768993517693}
-      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      _typeQualifiedName: LawBookNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
       connections: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-  baseOutput: {fileID: 0}
+    - _fieldName: correctSentenceOutput
+      _node: {fileID: 1149989768993517693}
+      _typeQualifiedName: Resources.Scripts.JudgmentCreator.Creators.JudgmentCreator.Nodes.CorrectSentenceNode,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  lawBookOutput: {fileID: 0}
   startDocuments: {fileID: 0}
   startStatments: {fileID: -6256729490473727539}
-  sentencesGuilty: 
-  sentencesInsane: 
-  logBook: {fileID: 0}
+  sentences: 
+  logBook: {fileID: 11400000, guid: 520c45414bcb4454cbbd8cccf25f41e3, type: 2}
+  dialogueReturnToJudged: {fileID: 0}
+  correctSentenceOutput: {fileID: 0}

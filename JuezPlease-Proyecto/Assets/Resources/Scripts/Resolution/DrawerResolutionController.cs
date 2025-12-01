@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class DrawerResolutionController : DocumentCreator
 {
-    protected override IEnumerator AfterCreateDocument(RectTransform currentDocument, float diference)
+    protected override IEnumerator AfterCreateDocument(RectTransform currentDocument, float diference, float animationTime = 1)
     {
         yield return null;
         

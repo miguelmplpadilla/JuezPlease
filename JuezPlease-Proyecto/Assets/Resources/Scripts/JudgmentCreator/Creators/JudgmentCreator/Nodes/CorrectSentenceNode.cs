@@ -11,7 +11,8 @@ namespace Resources.Scripts.JudgmentCreator.Creators.JudgmentCreator.Nodes
         [Tooltip("Sentencia correcta en el juicio")]
         public StartJudgmentNode.Sentence sentence;
         [Tooltip("Cantidad de años, dinero o dias que tendra la sentencia (No aplicable a muerte)")]
-        public int cantSentence = 5;
+        public int minCantSentence = 5;
+        public int maxCantSentence = 5;
         [Tooltip("Acusado correcto del juicio")]
         public EnvelopeDocument.TypeAcused correctAcused;
         

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a06ff2b1cb0441a49b651a0d1b7686a6
+guid: 6b6c3344639a09046b5844562b5680de
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5452697474232489737
-    second: Telefono_0
+      213: -549174824831880723
+    second: LineaFija_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -139,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Telefono_0
+      name: LineaFija_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 75
-        height: 281
+        width: 145
+        height: 1
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9071c43967fdbab40800000000000000
-      internalID: 5452697474232489737
+      spriteID: de1fe4e0860f068f0800000000000000
+      internalID: -549174824831880723
       vertices: []
       indices: 
       edges: []
@@ -174,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Telefono_0: 5452697474232489737
+      LineaFija_0: -549174824831880723
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

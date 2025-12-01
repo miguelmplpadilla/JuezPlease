@@ -12,7 +12,7 @@ public class DialogController : MonoBehaviour
     
     public enum TypeSpeaker
     {
-        JUDGE, LAWYERLEFT, NPCLEFT, LAWYERRIGHT, NPCRIGHT, WITNESS
+        JUDGE, LAWYERLEFT, NPCLEFT, LAWYERRIGHT, NPCRIGHT, WITNESS, PHONE
     }
     
     public GameObject prefabDialog;
@@ -126,6 +126,9 @@ public class DialogController : MonoBehaviour
                 speakers[(int)dialogueNode.speaker].speakerObj.transform);
             dialogObj.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = dialogue.text.value;
             dialogObj.transform.localScale = Vector3.zero;
+
+            if (dialogueNode.speaker.Equals(TypeSpeaker.PHONE))
+                dialogObj.GetComponent<RectTransform>().pivot = new Vector2(1, 0);
             
             dialogObj.transform.DOScale(speakers[(int)dialogueNode.speaker].scaleDialog, 0.3f);
             dialogObj.transform.DOLocalMoveY(speakers[(int)dialogueNode.speaker].sumYFirst, 0.3f);
@@ -180,7 +183,7 @@ public class DialogController : MonoBehaviour
         if (GameManager.instance.IsDocumentUnlocked(document)) return;
         
         if (document is Statment statment) StatmentsController.instance.CreateNewStatment(statment);
-        else if (document is Photo) StartCoroutine(DocumentCreator.instance.CreateDocument(document));
+        else if (document is Photo) StartCoroutine(DocumentCreator.instance.CreateDocument(document, 1));
         
         GameManager.instance.AddUnlockedDocument(document);
     }
