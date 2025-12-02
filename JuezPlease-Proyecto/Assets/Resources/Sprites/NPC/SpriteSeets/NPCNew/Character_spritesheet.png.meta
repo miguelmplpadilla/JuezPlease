@@ -38,9 +38,6 @@ TextureImporter:
   - first:
       213: 4142700267872904579
     second: Character_spritesheet_11
-  - first:
-      213: 5343097112891114175
-    second: Character_spritesheet_12
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -73,7 +70,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -111,7 +108,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -178,12 +175,12 @@ TextureImporter:
       name: Character_spritesheet_0
       rect:
         serializedVersion: 2
-        x: 8
-        y: 303
-        width: 78
-        height: 76
+        x: 0
+        y: 200
+        width: 200
+        height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -200,12 +197,12 @@ TextureImporter:
       name: Character_spritesheet_1
       rect:
         serializedVersion: 2
-        x: 137
-        y: 351
-        width: 8
-        height: 8
+        x: 200
+        y: 200
+        width: 200
+        height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -222,12 +219,12 @@ TextureImporter:
       name: Character_spritesheet_2
       rect:
         serializedVersion: 2
-        x: 148
-        y: 351
-        width: 8
-        height: 8
+        x: 400
+        y: 200
+        width: 200
+        height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -244,12 +241,12 @@ TextureImporter:
       name: Character_spritesheet_3
       rect:
         serializedVersion: 2
-        x: 222
-        y: 337
-        width: 68
-        height: 27
+        x: 600
+        y: 200
+        width: 200
+        height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -266,12 +263,12 @@ TextureImporter:
       name: Character_spritesheet_4
       rect:
         serializedVersion: 2
-        x: 324
-        y: 341
-        width: 43
-        height: 23
+        x: 0
+        y: 100
+        width: 200
+        height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -288,12 +285,12 @@ TextureImporter:
       name: Character_spritesheet_5
       rect:
         serializedVersion: 2
-        x: 7
-        y: 207
-        width: 81
-        height: 76
+        x: 200
+        y: 100
+        width: 200
+        height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -310,12 +307,12 @@ TextureImporter:
       name: Character_spritesheet_6
       rect:
         serializedVersion: 2
-        x: 136
-        y: 251
-        width: 10
-        height: 8
+        x: 400
+        y: 100
+        width: 200
+        height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -332,12 +329,12 @@ TextureImporter:
       name: Character_spritesheet_7
       rect:
         serializedVersion: 2
-        x: 147
-        y: 251
-        width: 10
-        height: 8
+        x: 600
+        y: 100
+        width: 200
+        height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -354,12 +351,12 @@ TextureImporter:
       name: Character_spritesheet_8
       rect:
         serializedVersion: 2
-        x: 8
-        y: 130
-        width: 73
-        height: 29
+        x: 0
+        y: 0
+        width: 200
+        height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -376,12 +373,12 @@ TextureImporter:
       name: Character_spritesheet_9
       rect:
         serializedVersion: 2
-        x: 132
-        y: 140
-        width: 43
-        height: 23
+        x: 200
+        y: 0
+        width: 200
+        height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -394,77 +391,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Character_spritesheet_10
-      rect:
-        serializedVersion: 2
-        x: 237
-        y: 0
-        width: 128
-        height: 247
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 01fb0d87d3caa7410800000000000000
-      internalID: 1475681207937187600
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Character_spritesheet_11
-      rect:
-        serializedVersion: 2
-        x: 41
-        y: 40
-        width: 16
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 385ea75d1f3dd7930800000000000000
-      internalID: 4142700267872904579
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Character_spritesheet_12
-      rect:
-        serializedVersion: 2
-        x: 144
-        y: 40
-        width: 17
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fb24a46e38e762a40800000000000000
-      internalID: 5343097112891114175
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 35138190de3e08c4aaf197334bf0b953
     internalID: 0
     vertices: []
     indices: 
@@ -472,13 +403,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":200.0,"y":100.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       Character_spritesheet_0: 2477387573749363672
       Character_spritesheet_1: 7533848226300450408
-      Character_spritesheet_10: 1475681207937187600
-      Character_spritesheet_11: 4142700267872904579
-      Character_spritesheet_12: 5343097112891114175
       Character_spritesheet_2: 5500384762882214928
       Character_spritesheet_3: 1946193427685848587
       Character_spritesheet_4: -8767169894160951986

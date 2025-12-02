@@ -51,7 +51,9 @@ MonoBehaviour:
     text:
       valueSpanish: "Si se\xF1or"
       valueEnglish: 
-  - emotionsToPlay: []
+  - emotionsToPlay:
+    - arm: 0
+      emotion: 0
     text:
       valueSpanish: Esa es a la mujer
       valueEnglish: 
@@ -71,9 +73,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cc87b2419b442f5a996b9588961959d, type: 3}
   m_Name: Statment
   m_EditorClassIdentifier: 
-  guid: 67e76b97-1cc1-4faa-a0ff-a5966240024b
+  guid: 5ee91da6-75b7-42e1-b843-25dffae676f9
   isUnlocked: 0
-  posibleDialogues: []
+  dialogue: {fileID: 0}
   textStatment:
     valueSpanish: 
     valueEnglish: 
@@ -92,9 +94,9 @@ MonoBehaviour:
   nodes:
   - {fileID: 253781883772540003}
   - {fileID: 8034226983653310322}
-  - {fileID: 0}
   - {fileID: -5792672606584754800}
   - {fileID: 2159392568658865809}
+  - {fileID: 0}
 --- !u!114 &253781883772540003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,6 +251,7 @@ MonoBehaviour:
     - lawyerLeftOutput
     - npcRightOutput
     - lawyerRightOutput
+    - telephoneOutput
     values:
     - _fieldName: npcLeftOutput
       _node: {fileID: 8034226983653310322}
@@ -289,10 +292,20 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: telephoneOutput
+      _node: {fileID: 8034226983653310322}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
   npcLeftOutput: {fileID: 253781883772540003}
   lawyerLeftOutput: {fileID: 0}
   npcRightOutput: {fileID: 0}
   lawyerRightOutput: {fileID: 0}
+  telephoneOutput: {fileID: 0}
 --- !u!114 &9019945736120028931
 MonoBehaviour:
   m_ObjectHideFlags: 0
