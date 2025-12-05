@@ -30,9 +30,9 @@ public class BenchController : MonoBehaviour
         SetInitialScaleAndPosition();
     }
 
-    public IEnumerator CallWitness(CallWitnessNode callWitnessNode)
+    public IEnumerator CallWitness(CharacterData characterData)
     {
-        if (callWitnessNode != null)
+        if (characterData != null)
         {
             //TODO: Setear sprites en el testigo
         }
@@ -46,7 +46,7 @@ public class BenchController : MonoBehaviour
         
         hasShow = !hasShow;
 
-        if (callWitnessNode != null && !hasShow) StartCoroutine(CallWitness(null));
+        if (!hasShow) StartCoroutine(CallWitness(null));
     }
 
     private void SetInitialScaleAndPosition()

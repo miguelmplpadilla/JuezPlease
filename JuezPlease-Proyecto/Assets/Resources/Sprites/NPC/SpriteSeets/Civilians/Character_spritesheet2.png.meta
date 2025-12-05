@@ -1,43 +1,43 @@
 fileFormatVersion: 2
-guid: 1a53d0dbb091713449f81c66ba9a8932
+guid: 8f8409cd61ac2c84caee016050435770
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2477387573749363672
-    second: Character_spritesheet_0
+      213: -6317739080015613043
+    second: Character_spritesheet2_0
   - first:
-      213: 7533848226300450408
-    second: Character_spritesheet_1
+      213: -8910344625640656701
+    second: Character_spritesheet2_1
   - first:
-      213: 5500384762882214928
-    second: Character_spritesheet_2
+      213: -2833592230122680890
+    second: Character_spritesheet2_2
   - first:
-      213: 1946193427685848587
-    second: Character_spritesheet_3
+      213: 3369244325741609322
+    second: Character_spritesheet2_3
   - first:
-      213: -8767169894160951986
-    second: Character_spritesheet_4
+      213: 7256233063228355563
+    second: Character_spritesheet2_4
   - first:
-      213: -3973288188072413024
-    second: Character_spritesheet_5
+      213: -1159886648273874000
+    second: Character_spritesheet2_5
   - first:
-      213: -7470496463497026336
-    second: Character_spritesheet_6
+      213: 4038039140092214227
+    second: Character_spritesheet2_6
   - first:
-      213: -377703215329632554
-    second: Character_spritesheet_7
+      213: 4243541341300066887
+    second: Character_spritesheet2_7
   - first:
-      213: 365645043820334330
-    second: Character_spritesheet_8
+      213: -5829962708148555139
+    second: Character_spritesheet2_8
   - first:
-      213: 8716403059893358705
-    second: Character_spritesheet_9
+      213: -7291455777601217069
+    second: Character_spritesheet2_9
   - first:
-      213: 1475681207937187600
-    second: Character_spritesheet_10
+      213: 2393705223814686591
+    second: Character_spritesheet2_10
   - first:
-      213: 4142700267872904579
-    second: Character_spritesheet_11
+      213: -7408249262289821123
+    second: Character_spritesheet2_11
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -172,7 +172,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Character_spritesheet_0
+      name: Character_spritesheet2_0
       rect:
         serializedVersion: 2
         x: 0
@@ -187,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8d33c406fd2716220800000000000000
-      internalID: 2477387573749363672
+      spriteID: d83f01097c1e258a0800000000000000
+      internalID: -6317739080015613043
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_spritesheet_1
+      name: Point_Left
       rect:
         serializedVersion: 2
         x: 200
@@ -209,14 +209,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8665858bb0b9d8860800000000000000
-      internalID: 7533848226300450408
+      spriteID: 3c0b062a5c8185480800000000000000
+      internalID: -8910344625640656701
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_spritesheet_2
+      name: Point_Right
       rect:
         serializedVersion: 2
         x: 400
@@ -231,14 +231,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 01cc09facca455c40800000000000000
-      internalID: 5500384762882214928
+      spriteID: 6cd0b3531ee0da8d0800000000000000
+      internalID: -2833592230122680890
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_spritesheet_3
+      name: Punch_Left
       rect:
         serializedVersion: 2
         x: 600
@@ -253,14 +253,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b063a617c94420b10800000000000000
-      internalID: 1946193427685848587
+      spriteID: a61445dfcd5f1ce20800000000000000
+      internalID: 3369244325741609322
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_spritesheet_4
+      name: Punch_Right
       rect:
         serializedVersion: 2
         x: 0
@@ -275,14 +275,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e4599058e61c45680800000000000000
-      internalID: -8767169894160951986
+      spriteID: be3bb2d968153b460800000000000000
+      internalID: 7256233063228355563
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_spritesheet_5
+      name: Normal_Left
       rect:
         serializedVersion: 2
         x: 200
@@ -297,14 +297,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0a830bfb17b0cd8c0800000000000000
-      internalID: -3973288188072413024
+      spriteID: 0b3daed1d3147efe0800000000000000
+      internalID: -1159886648273874000
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_spritesheet_6
+      name: Normal_Right
       rect:
         serializedVersion: 2
         x: 400
@@ -319,14 +319,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0e4a27dfb07735890800000000000000
-      internalID: -7470496463497026336
+      spriteID: 3dbf156143ff90830800000000000000
+      internalID: 4038039140092214227
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_spritesheet_7
+      name: Body
       rect:
         serializedVersion: 2
         x: 600
@@ -341,14 +341,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6de11c34de022caf0800000000000000
-      internalID: -377703215329632554
+      spriteID: 74a00eddd5614ea30800000000000000
+      internalID: 4243541341300066887
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_spritesheet_8
+      name: Eye
       rect:
         serializedVersion: 2
         x: 0
@@ -363,14 +363,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: afc0bc6ea38031500800000000000000
-      internalID: 365645043820334330
+      spriteID: d72f70f2ecfc71fa0800000000000000
+      internalID: -5829962708148555139
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_spritesheet_9
+      name: Eyelids
       rect:
         serializedVersion: 2
         x: 200
@@ -385,8 +385,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1705218c662e6f870800000000000000
-      internalID: 8716403059893358705
+      spriteID: 3dd1c902a9b8fca90800000000000000
+      internalID: -7291455777601217069
       vertices: []
       indices: 
       edges: []
@@ -395,7 +395,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 35138190de3e08c4aaf197334bf0b953
+    spriteID: 5f151470e61fd3d4e8c26be4549f1225
     internalID: 0
     vertices: []
     indices: 
@@ -407,16 +407,16 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":200.0,"y":100.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Character_spritesheet_0: 2477387573749363672
-      Character_spritesheet_1: 7533848226300450408
-      Character_spritesheet_2: 5500384762882214928
-      Character_spritesheet_3: 1946193427685848587
-      Character_spritesheet_4: -8767169894160951986
-      Character_spritesheet_5: -3973288188072413024
-      Character_spritesheet_6: -7470496463497026336
-      Character_spritesheet_7: -377703215329632554
-      Character_spritesheet_8: 365645043820334330
-      Character_spritesheet_9: 8716403059893358705
+      Body: 4243541341300066887
+      Character_spritesheet2_0: -6317739080015613043
+      Eye: -5829962708148555139
+      Eyelids: -7291455777601217069
+      Normal_Left: -1159886648273874000
+      Normal_Right: 4038039140092214227
+      Point_Left: -8910344625640656701
+      Point_Right: -2833592230122680890
+      Punch_Left: 3369244325741609322
+      Punch_Right: 7256233063228355563
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

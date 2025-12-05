@@ -10,7 +10,7 @@ public class CharacterNode : InputConectionNode
 
 	public enum TypeArmAnimation
 	{
-		NORMAL, FIST, POINT
+		NORMAL, POINT
 	}
 
 	public bool IsDataVisualNotSeted()

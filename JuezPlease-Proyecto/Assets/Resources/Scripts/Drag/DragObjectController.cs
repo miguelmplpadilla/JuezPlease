@@ -42,7 +42,7 @@ public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandl
 
     private bool isInShreeder = false;
     public bool isCrushable = true;
-    private bool isBigObject = false;
+    protected bool isBigObject = false;
 
     protected NPCController npcControllerSelected;
 
@@ -406,7 +406,7 @@ public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandl
         isInShreeder = true;
     }
 
-    public void SetDataObject(GameObject result, HolderController holderController, bool isBig)
+    public virtual void SetDataObject(GameObject result, HolderController holderController, bool isBig)
     {
         if (result.gameObject.Equals(currentParent)) return;
         

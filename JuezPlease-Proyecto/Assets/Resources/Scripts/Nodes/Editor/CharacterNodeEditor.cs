@@ -41,47 +41,48 @@ public class CharacterNodeEditor : NodeEditor {
         
         Rect r = GUILayoutUtility.GetRect(200, 150);
         
-        SetSprite(characterNode.characterData.eyes, r);
-        SetSprite(characterNode.characterData.body, r);
-        foreach (var sprite in GetTypeArm(characterNode.characterData.armLeft, characterNode.armAnimationToShowLeft))
-            SetSprite(sprite, r);
-        foreach (var sprite in GetTypeArm(characterNode.characterData.armRight, characterNode.armAnimationToShowRight))
-            SetSprite(sprite, r);
+        SetSprite(characterNode.characterData.eyes, r, new Vector2(-0.005f, -0.005f), 1);
+        SetSprite(characterNode.characterData.body, r, Vector2.zero, 1);
+        
+        if (characterNode.armAnimationToShowLeft != CharacterNode.TypeArmAnimation.POINT)
+            SetSprite(characterNode.characterData.armLeft.normalArm, r, new Vector2(0.004f, 0), 1);
+        if (characterNode.armAnimationToShowRight != CharacterNode.TypeArmAnimation.POINT)
+            SetSprite(characterNode.characterData.armRight.normalArm, r, Vector2.zero, 1);
+
+        SetSprite(GetTypeArm(characterNode.characterData.armLeft, characterNode.armAnimationToShowLeft), r,
+            new Vector2(0.01f, 0.006f),1);
+
+        SetSprite(GetTypeArm(characterNode.characterData.armRight, characterNode.armAnimationToShowRight), r,
+            new Vector2(0.004f, 0),1);
         
         serializedObject.ApplyModifiedProperties();
     }
 
-    private void SetSprite(Sprite sprite, Rect r)
+    private void SetSprite(Sprite sprite, Rect r, Vector2 sumCord, float scaleX)
     {
         if (sprite == null) return;
         
         Texture2D tex = sprite.texture;
         Rect texCoords = new Rect(
-            sprite.rect.x / tex.width,
-            sprite.rect.y / tex.height,
-            sprite.rect.width / tex.width,
+            (sprite.rect.x / tex.width)+sumCord.x,
+            (sprite.rect.y / tex.height)+sumCord.y,
+            sprite.rect.width / tex.width * scaleX,
             sprite.rect.height / tex.height
         );
 
         GUI.DrawTextureWithTexCoords(r, tex, texCoords);
     }
 
-    private List<Sprite> GetTypeArm(Arm arm, CharacterNode.TypeArmAnimation typeArmAnimation)
+    private Sprite GetTypeArm(Arm arm, CharacterNode.TypeArmAnimation typeArmAnimation)
     {
-        List<Sprite> sprites = new List<Sprite>();
-        sprites.Add(arm.normalArm);
-        
         switch (typeArmAnimation)
         {
-            case CharacterNode.TypeArmAnimation.FIST:
-                sprites.Add(arm.fistArm);
-                return sprites;
+            //case CharacterNode.TypeArmAnimation.FIST:
+                //return arm.fistArm;
             case CharacterNode.TypeArmAnimation.POINT:
-                sprites.Clear();
-                sprites.Add(arm.pointArm);
-                return sprites;
+                return arm.pointArm;
         }
 
-        return sprites;
+        return null;
     }
 }

@@ -161,7 +161,7 @@ public class DialogController : MonoBehaviour
             
             lastDialogObjs.Clear();
         }
-        StartCoroutine(BenchController.instance.CallWitness(callWitnessNode));
+        StartCoroutine(BenchController.instance.CallWitness(callWitnessNode.witnessData));
         yield return new WaitForSeconds(1);
     }
 

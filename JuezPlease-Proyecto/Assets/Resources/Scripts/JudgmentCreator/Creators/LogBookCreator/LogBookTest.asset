@@ -95,17 +95,17 @@ MonoBehaviour:
       _dynamic: 0
   baseInput: {fileID: 0}
   characterData:
-    body: {fileID: 1864252027, guid: 6177f0a3c14e4d54e894b11660235d76, type: 3}
-    eyes: {fileID: 1415670582, guid: 6177f0a3c14e4d54e894b11660235d76, type: 3}
-    eyelids: {fileID: 1078263909, guid: 6177f0a3c14e4d54e894b11660235d76, type: 3}
+    body: {fileID: -377703215329632554, guid: 1a53d0dbb091713449f81c66ba9a8932, type: 3}
+    eyes: {fileID: 365645043820334330, guid: 1a53d0dbb091713449f81c66ba9a8932, type: 3}
+    eyelids: {fileID: 8716403059893358705, guid: 1a53d0dbb091713449f81c66ba9a8932, type: 3}
     armRight:
-      normalArm: {fileID: 1857840105, guid: 6177f0a3c14e4d54e894b11660235d76, type: 3}
-      fistArm: {fileID: 1916664717, guid: 6177f0a3c14e4d54e894b11660235d76, type: 3}
-      pointArm: {fileID: -1910415892, guid: 6177f0a3c14e4d54e894b11660235d76, type: 3}
+      normalArm: {fileID: -7470496463497026336, guid: 1a53d0dbb091713449f81c66ba9a8932, type: 3}
+      fistArm: {fileID: -8767169894160951986, guid: 1a53d0dbb091713449f81c66ba9a8932, type: 3}
+      pointArm: {fileID: 5500384762882214928, guid: 1a53d0dbb091713449f81c66ba9a8932, type: 3}
     armLeft:
-      normalArm: {fileID: -1323032331, guid: 6177f0a3c14e4d54e894b11660235d76, type: 3}
-      fistArm: {fileID: 1786568306, guid: 6177f0a3c14e4d54e894b11660235d76, type: 3}
-      pointArm: {fileID: -1702713671, guid: 6177f0a3c14e4d54e894b11660235d76, type: 3}
+      normalArm: {fileID: -3973288188072413024, guid: 1a53d0dbb091713449f81c66ba9a8932, type: 3}
+      fistArm: {fileID: 1946193427685848587, guid: 1a53d0dbb091713449f81c66ba9a8932, type: 3}
+      pointArm: {fileID: 7533848226300450408, guid: 1a53d0dbb091713449f81c66ba9a8932, type: 3}
   armAnimationToShowLeft: 0
   armAnimationToShowRight: 0
 --- !u!114 &-8195110489389602369
@@ -645,7 +645,7 @@ MonoBehaviour:
   m_Name: Character
   m_EditorClassIdentifier: 
   graph: {fileID: 11400000}
-  position: {x: 616, y: -1192}
+  position: {x: 1128, y: -1960}
   ports:
     keys:
     - baseInput
@@ -664,16 +664,16 @@ MonoBehaviour:
       _dynamic: 0
   baseInput: {fileID: 0}
   characterData:
-    body: {fileID: 0}
-    eyes: {fileID: 0}
-    eyelids: {fileID: 0}
+    body: {fileID: -6219190970306983375, guid: f06e19567d46206448fb72549f494396, type: 3}
+    eyes: {fileID: -5688970508423188674, guid: f06e19567d46206448fb72549f494396, type: 3}
+    eyelids: {fileID: -3062842028268795843, guid: f06e19567d46206448fb72549f494396, type: 3}
     armRight:
-      normalArm: {fileID: 0}
-      fistArm: {fileID: 0}
-      pointArm: {fileID: 0}
+      normalArm: {fileID: 7461391827432520457, guid: f06e19567d46206448fb72549f494396, type: 3}
+      fistArm: {fileID: -227547814609107304, guid: f06e19567d46206448fb72549f494396, type: 3}
+      pointArm: {fileID: 250832356844518289, guid: f06e19567d46206448fb72549f494396, type: 3}
     armLeft:
-      normalArm: {fileID: 0}
-      fistArm: {fileID: 0}
-      pointArm: {fileID: 0}
+      normalArm: {fileID: 1095874358223827421, guid: f06e19567d46206448fb72549f494396, type: 3}
+      fistArm: {fileID: -2773056242803729215, guid: f06e19567d46206448fb72549f494396, type: 3}
+      pointArm: {fileID: 3172876670059948314, guid: f06e19567d46206448fb72549f494396, type: 3}
   armAnimationToShowLeft: 0
   armAnimationToShowRight: 0
