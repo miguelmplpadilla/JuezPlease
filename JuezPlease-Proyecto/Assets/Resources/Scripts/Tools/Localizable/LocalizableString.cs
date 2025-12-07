@@ -11,7 +11,9 @@ public class LocalizableString
         {
             var locale = LocalizationSettings.SelectedLocale;
 
-            switch (locale.Identifier.Code)
+            string language = PlayerPrefs.GetString("language", locale.Identifier.Code);
+
+            switch (language)
             {
                 case "es":
                     return valueSpanish;

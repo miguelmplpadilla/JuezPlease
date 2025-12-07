@@ -7,7 +7,7 @@ public class StartDialogueNode : BaseNode {
 	[Output] public BaseNode lawyerLeftOutput;
 	[Output] public BaseNode npcRightOutput;
 	[Output] public BaseNode lawyerRightOutput;
-	
+	[Output] public BaseNode witnessNodeOutput;
 	[Output] public BaseNode telephoneOutput;
 	
 	public override void OnCreateConnection(NodePort from, NodePort to) {
@@ -19,6 +19,7 @@ public class StartDialogueNode : BaseNode {
 		if (ConnectNPCRight(from, to)) return;
 		if (ConnectLawyerRight(from, to)) return;
 		if (ConnectTelephoneNumber(from, to)) return;
+		if (ConnectWitnessNode(from, to)) return;
 	}
 
 	private bool ConnectNPCLeft(NodePort from, NodePort to)
@@ -121,6 +122,26 @@ public class StartDialogueNode : BaseNode {
 		return false;
 	}
 
+	private bool ConnectWitnessNode(NodePort from, NodePort to)
+	{
+		StartDialogueNode fromNode = from.node as StartDialogueNode;
+		BaseNode toNode = to.node as BaseNode;
+
+		if (fromNode == null || toNode == null) return false;
+
+		if (from.GetConnections().Count > 1)
+			for (int i = 0; i < from.GetConnections().Count; i++)
+				from.Disconnect(i);
+
+		if (to.fieldName == "baseInput" && from.fieldName == "witnessNodeOutput")
+		{
+			fromNode.witnessNodeOutput = toNode;
+			return true;
+		}
+
+		return false;
+	}
+
 	public override void OnRemoveConnection(NodePort port)
 	{
 		base.OnRemoveConnection(port);
@@ -130,6 +151,7 @@ public class StartDialogueNode : BaseNode {
 		if (port.fieldName.Equals("npcRightOutput")) npcRightOutput = null;
 		if (port.fieldName.Equals("lawyerRightOutput")) lawyerRightOutput = null;
 		if (port.fieldName.Equals("telephoneOutput")) telephoneOutput = null;
+		if (port.fieldName.Equals("witnessNodeOutput")) witnessNodeOutput = null;
 	}
 
 	public BaseNode GetDialogueNodeBySpeaker(DialogController.TypeSpeaker speaker)
@@ -146,6 +168,8 @@ public class StartDialogueNode : BaseNode {
 				return lawyerRightOutput;
 			case DialogController.TypeSpeaker.PHONE:
 				return telephoneOutput;
+			case DialogController.TypeSpeaker.WITNESS:
+				return BenchController.instance.witnessShowed ? witnessNodeOutput : null;
 			default:
 				return null;
 		}

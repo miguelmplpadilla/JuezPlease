@@ -293,7 +293,6 @@ public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandl
         
         foreach (var npcController in allNPCController)
         {
-            Debug.Log(npcController);
             StartCoroutine(npcController.ShowHideNPCAnimation(false, npcControllerSelected == npcController));
             EventBus<AboveInteractNPCEvent>.Raise(new AboveInteractNPCEvent
             {

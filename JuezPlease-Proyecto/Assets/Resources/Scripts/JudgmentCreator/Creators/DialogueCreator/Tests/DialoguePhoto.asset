@@ -1,5 +1,59 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8211515021900604249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88fd2d03caa0fe64683ec841772ec40d, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
+  graph: {fileID: 11400000}
+  position: {x: 296, y: 472}
+  ports:
+    keys:
+    - baseInput
+    - baseOutput
+    values:
+    - _fieldName: baseInput
+      _node: {fileID: -8211515021900604249}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: baseOutput
+        node: {fileID: 8447572676978256905}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: baseOutput
+      _node: {fileID: -8211515021900604249}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  baseOutput: {fileID: 0}
+  baseInput: {fileID: 0}
+  speaker: 2
+  dialogues:
+  - emotionsToPlay: []
+    text:
+      valueSpanish: Mentirosaaaaa
+      valueEnglish: 
+  - emotionsToPlay:
+    - arm: 0
+      emotion: 1
+    text:
+      valueSpanish: Mentirosa
+      valueEnglish: 
 --- !u!114 &-5792672606584754800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73,10 +127,103 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cc87b2419b442f5a996b9588961959d, type: 3}
   m_Name: Statment
   m_EditorClassIdentifier: 
-  guid: 5ee91da6-75b7-42e1-b843-25dffae676f9
+  guid: 5484149e-d047-4d77-af23-c92f774113d4
   isUnlocked: 0
   dialogue: {fileID: 0}
   textStatment:
+    valueSpanish: 
+    valueEnglish: 
+--- !u!114 &-1039535874906398711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2321814a0c284ee9a5e5c7cb20b49448, type: 3}
+  m_Name: Decisions
+  m_EditorClassIdentifier: Assembly-CSharp::DecisionsNode
+  graph: {fileID: 11400000}
+  position: {x: -680, y: 312}
+  ports:
+    keys:
+    - decision1
+    - decision2
+    - decision3
+    - decision4
+    - baseInput
+    values:
+    - _fieldName: decision1
+      _node: {fileID: -1039535874906398711}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: baseInput
+        node: {fileID: 7628797638006860408}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: decision2
+      _node: {fileID: -1039535874906398711}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: baseInput
+        node: {fileID: 8447572676978256905}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: decision3
+      _node: {fileID: -1039535874906398711}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: decision4
+      _node: {fileID: -1039535874906398711}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: baseInput
+      _node: {fileID: -1039535874906398711}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: witnessNodeOutput
+        node: {fileID: 8034226983653310322}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  baseInput: {fileID: 0}
+  decision1: {fileID: 7628797638006860408}
+  decisionText1:
+    valueSpanish: "Conoce a esta se\xF1ora?"
+    valueEnglish: 
+  decision2: {fileID: 8447572676978256905}
+  decisionText2:
+    valueSpanish: "Esta de aqu\xED es su madre?"
+    valueEnglish: 
+  decision3: {fileID: 0}
+  decisionText3:
+    valueSpanish: 
+    valueEnglish: 
+  decision4: {fileID: 0}
+  decisionText4:
     valueSpanish: 
     valueEnglish: 
 --- !u!114 &11400000
@@ -96,6 +243,10 @@ MonoBehaviour:
   - {fileID: 8034226983653310322}
   - {fileID: -5792672606584754800}
   - {fileID: 2159392568658865809}
+  - {fileID: -1039535874906398711}
+  - {fileID: 7628797638006860408}
+  - {fileID: 8447572676978256905}
+  - {fileID: -8211515021900604249}
   - {fileID: 0}
 --- !u!114 &253781883772540003
 MonoBehaviour:
@@ -231,6 +382,58 @@ MonoBehaviour:
       _typeConstraint: 0
       _dynamic: 0
   baseInput: {fileID: 0}
+--- !u!114 &7628797638006860408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88fd2d03caa0fe64683ec841772ec40d, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
+  graph: {fileID: 11400000}
+  position: {x: -200, y: 184}
+  ports:
+    keys:
+    - baseInput
+    - baseOutput
+    values:
+    - _fieldName: baseInput
+      _node: {fileID: 7628797638006860408}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: decision1
+        node: {fileID: -1039535874906398711}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: baseOutput
+      _node: {fileID: 7628797638006860408}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  baseOutput: {fileID: 0}
+  baseInput: {fileID: 0}
+  speaker: 5
+  dialogues:
+  - emotionsToPlay: []
+    text:
+      valueSpanish: Para nada
+      valueEnglish: 
+  - emotionsToPlay: []
+    text:
+      valueSpanish: No se quien es
+      valueEnglish: 
 --- !u!114 &8034226983653310322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,6 +455,7 @@ MonoBehaviour:
     - npcRightOutput
     - lawyerRightOutput
     - telephoneOutput
+    - witnessNodeOutput
     values:
     - _fieldName: npcLeftOutput
       _node: {fileID: 8034226983653310322}
@@ -301,11 +505,79 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
+    - _fieldName: witnessNodeOutput
+      _node: {fileID: 8034226983653310322}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: baseInput
+        node: {fileID: -1039535874906398711}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
   npcLeftOutput: {fileID: 253781883772540003}
   lawyerLeftOutput: {fileID: 0}
   npcRightOutput: {fileID: 0}
   lawyerRightOutput: {fileID: 0}
+  witnessNodeOutput: {fileID: -1039535874906398711}
   telephoneOutput: {fileID: 0}
+--- !u!114 &8447572676978256905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88fd2d03caa0fe64683ec841772ec40d, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
+  graph: {fileID: 11400000}
+  position: {x: -216, y: 456}
+  ports:
+    keys:
+    - baseInput
+    - baseOutput
+    values:
+    - _fieldName: baseInput
+      _node: {fileID: 8447572676978256905}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: decision2
+        node: {fileID: -1039535874906398711}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: baseOutput
+      _node: {fileID: 8447572676978256905}
+      _typeQualifiedName: BaseNode, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      connections:
+      - fieldName: baseInput
+        node: {fileID: -8211515021900604249}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  baseOutput: {fileID: -8211515021900604249}
+  baseInput: {fileID: 0}
+  speaker: 5
+  dialogues:
+  - emotionsToPlay: []
+    text:
+      valueSpanish: No, es la dependienta
+      valueEnglish: 
+  - emotionsToPlay: []
+    text:
+      valueSpanish: "Del mercarro\xF1a"
+      valueEnglish: 
 --- !u!114 &9019945736120028931
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ public class BenchController : MonoBehaviour
 
     public GameObject wintessTable;
 
-    private bool hasShow = false;
+    public bool witnessShowed = false;
 
     private Vector2 originalPositionTableLeft;
     private Vector2 originalPositionTableRight;
@@ -37,16 +37,16 @@ public class BenchController : MonoBehaviour
             //TODO: Setear sprites en el testigo
         }
         
-        tableLeft.transform.DOLocalMoveX(hasShow ? -390 : originalPositionTableLeft.x, 0.6f);
-        tableRight.transform.DOLocalMoveX(hasShow ? 390 : originalPositionTableRight.x, 0.6f);
+        tableLeft.transform.DOLocalMoveX(witnessShowed ? -390 : originalPositionTableLeft.x, 0.6f);
+        tableRight.transform.DOLocalMoveX(witnessShowed ? 390 : originalPositionTableRight.x, 0.6f);
         
-        wintessTable.transform.DOScale(hasShow ? 0 : 1, 0.6f);
+        wintessTable.transform.DOScale(witnessShowed ? 0 : 1, 0.6f);
 
         yield return new WaitForSeconds(0.6f);
         
-        hasShow = !hasShow;
+        witnessShowed = !witnessShowed;
 
-        if (!hasShow) StartCoroutine(CallWitness(null));
+        if (!witnessShowed) StartCoroutine(CallWitness(null));
     }
 
     private void SetInitialScaleAndPosition()

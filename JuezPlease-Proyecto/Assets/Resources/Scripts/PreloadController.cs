@@ -1,8 +1,14 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class PreloadController : MonoBehaviour
 {
+    private void Awake()
+    {
+        //PlayerPrefs.SetString("language", "es");
+    }
+
     void Start()
     {
         StartCoroutine(StartGame());

@@ -40,6 +40,8 @@ public class NPCController : MonoBehaviour
     private void AboveInteract(AboveInteractNPCEvent i)
     {
         if (!i.obj.Equals(gameObject)) return;
+        
+        if (canInteract) Debug.Log(speaker); 
 
         canInteract = i.canInteract;
     }
