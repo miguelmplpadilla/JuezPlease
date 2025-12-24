@@ -7,6 +7,8 @@ public class Document : ScriptableObject
     public bool isUnlocked = false;
     
     public DialogueCreator dialogue;
+
+    public int phoneNumber = -1;
     
     public void Awake()
     {

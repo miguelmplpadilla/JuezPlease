@@ -1,10 +1,20 @@
 using System.Collections;
+using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
 public class CallWitnessDragController : DragObjectController
 {
     public CharacterData witnessData;
+
+    private List<GameObject> objectsTextIndicatorDrag = new List<GameObject>();
+
+    protected override void Awake()
+    {
+        base.Awake();
+        
+        objectsTextIndicatorDrag.Add(GameObject.Find("PublicPanel"));
+    }
 
     public override void SetDataObject(GameObject result, HolderController holderController, bool isBig)
     {
@@ -25,9 +35,7 @@ public class CallWitnessDragController : DragObjectController
     protected override void GlobalOnEndDrag()
     {
         if (currentParent.name.Equals("PublicPanel"))
-        {
             StartCoroutine(BenchController.instance.CallWitness(witnessData));
-        }
 
         StartCoroutine(ReturnToParent());
     }
@@ -40,5 +48,10 @@ public class CallWitnessDragController : DragObjectController
         transform.SetParent(originalParent.transform);
         transform.DOLocalMove(Vector3.zero, 0.6f);
         yield return new WaitForSeconds(0.6f);
+    }
+
+    protected override void GlobalDrag()
+    {
+        CheckIndicator(objectsTextIndicatorDrag);
     }
 }

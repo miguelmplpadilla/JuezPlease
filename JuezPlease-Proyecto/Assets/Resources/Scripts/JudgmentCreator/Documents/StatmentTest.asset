@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cc87b2419b442f5a996b9588961959d, type: 3}
   m_Name: StatmentTest
   m_EditorClassIdentifier: 
-  guid: 90030a21-dbe0-4925-b5fa-faf5d09d7d55
+  guid: 2ae2b27f-43da-4161-9b82-4913da58eb19
   isUnlocked: 0
   dialogue: {fileID: 11400000, guid: 6fb7fb1727f1d0840819823b6f74752a, type: 2}
+  phoneNumber: 622149156
   textStatment:
     valueSpanish: "Se ha pajeado en la seccion de conjelados del mercarro\xF1a"
     valueEnglish: "He has jerked off in the frozen section of mercarro\xF1a"

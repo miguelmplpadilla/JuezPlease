@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using Resources.Scripts.NPC;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -53,6 +54,8 @@ public class DialogController : MonoBehaviour
 
     private IEnumerator ShowDialog(SendDialogEvent s)
     {
+        EventBus<HideButtonsCloseEvent>.Raise(new HideButtonsCloseEvent { hide = true });
+        
         isSpeaking = true;
         
         if (s.document != null) 
@@ -75,6 +78,12 @@ public class DialogController : MonoBehaviour
                 } else if (connectionNode is UnlockDocumentNode unlockDocumentNode)
                 {
                     UnlockDocument(unlockDocumentNode.documentToUnlock);
+                } else if (connectionNode is HidePhone)
+                {
+                    TelephoneController.instance.HidePhone();
+                } else if (connectionNode is CallPhoneNode)
+                {
+                    yield return CallPhone();
                 }
             
                 if (connectionNode == null || connectionNode.baseOutput == null) break;
@@ -89,6 +98,8 @@ public class DialogController : MonoBehaviour
                 yield return SelectDecision(decisionsNode);
             }
         }
+        
+        EventBus<HideButtonsCloseEvent>.Raise(new HideButtonsCloseEvent { hide = false });
         
         isSpeaking = false;
     }
@@ -188,6 +199,13 @@ public class DialogController : MonoBehaviour
         GameManager.instance.AddUnlockedDocument(document);
     }
 
+    private IEnumerator CallPhone()
+    {
+        yield return TelephoneController.instance.ShowHideNPCAnimation(true);
+        yield return new WaitForSeconds(0.5f);
+        yield return TelephoneController.instance.AnimationCall();
+    }
+
     private IEnumerator SelectDecision(DecisionsNode decisionsNode)
     {
         panelBlock.DOFade(0.4f, 0.5f);
@@ -242,4 +260,9 @@ public class DialogObj
 {
     public GameObject dialogObj;
     public DialogController.TypeSpeaker lastTypeSpeaker;
+}
+
+public class HideButtonsCloseEvent : IEvent
+{
+    public bool hide;
 }

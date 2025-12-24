@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7075f55e61c41bcb3d0681380f8ea27, type: 3}
   m_Name: PhotoTest
   m_EditorClassIdentifier: 
-  guid: f9343393-7dd3-47a8-be0e-cdf0d761ec45
+  guid: ff71b576-148a-4589-a951-e6cb44a8a6f4
   isUnlocked: 1
   dialogue: {fileID: 11400000, guid: c2234cc939fd2ee4f9ab390c9057ed6d, type: 2}
+  phoneNumber: 626616453
   imagePhoto: {fileID: 8348670922972553302, guid: d563087492f485841bffa9f173307708, type: 3}
   backgroundImage: {fileID: 0}
   extraDataDocument:

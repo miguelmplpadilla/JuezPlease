@@ -1,25 +1,31 @@
 ﻿using System.Collections;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Resources.Scripts.NPC
 {
     public class TelephoneController : NPCController
     {
+        public static TelephoneController instance;
         public RectTransform rtImagePhone;
         public RectTransform rtImageCable;
 
-        protected override void Interact(InteractNPCEvent i)
-        {
-            if (!i.obj.Equals(gameObject)) return;
+        public RectTransform rtHangUpButton;
+        public Button hangUpButton;
 
-            StartCoroutine(AnimationCall(i));
+        public bool canHide = true;
+        public bool isCalled = false;
+        
+        public int phoneNumberCalled = -1;
+
+        private void Awake()
+        {
+            EventBus<HideButtonsCloseEvent>.Register(new EventBinding<HideButtonsCloseEvent>(HideButtonHidePhone, gameObject));
         }
 
-        private IEnumerator AnimationCall(InteractNPCEvent i)
+        public IEnumerator AnimationCall()
         {
-            DialogController.instance.isSpeaking = true;
-            
             Sequence sequencePhone = DOTween.Sequence();
             sequencePhone.Append(rtImagePhone.DOAnchorPosY(-10, 0.45f));
             sequencePhone.Append(rtImagePhone.DOAnchorPosY(0, 0.4f).SetDelay(0.1f));
@@ -35,23 +41,60 @@ namespace Resources.Scripts.NPC
             sequenceCable.Append(rtImageCable.DOAnchorPosY(0, 0.4f));
             
             yield return new WaitForSeconds(2.1f);
-            
-            DialogController.instance.isSpeaking = false;
-            
-            base.Interact(i);
         }
 
-        public override IEnumerator ShowHideNPCAnimation(bool show, bool isThisSpeaking)
+        public void StartCall(int number)
         {
-            if (!show) while (DialogController.instance.isSpeaking && isThisSpeaking) yield return null;
+            StartCoroutine(Call(number));
+        }
+
+        private IEnumerator Call(int number)
+        {
+            phoneNumberCalled = number;
+            canHide = false;
+            
+            DialogController.instance.isSpeaking = true;
+
+            yield return AnimationCall();
+            
+            DialogController.instance.isSpeaking = false;
+            isCalled = true;
+        }
+
+        public override IEnumerator ShowHideNPCAnimation(bool show)
+        {
+            if (!canHide) yield break;
             
             rtImagePhone.DOKill();
             rtImageCable.DOKill();
             
             yield return null;
             
-            rtImagePhone.DOAnchorPosY(show ? 0 : -rtImagePhone.rect.size.y, 0.4f);
-            rtImageCable.DOAnchorPosY(show ? 0 : -rtImagePhone.rect.size.y, 0.6f);
+            rtImagePhone.DOAnchorPosY(0, 0.4f);
+            rtImageCable.DOAnchorPosY(0, 0.6f);
+        }
+
+        public void HidePhone()
+        {
+            phoneNumberCalled = -1;
+            
+            rtImagePhone.DOAnchorPosY(-rtImagePhone.rect.size.y, 0.4f);
+            rtImageCable.DOAnchorPosY(-rtImagePhone.rect.size.y, 0.6f);
+
+            canHide = true;
+            isCalled = false;
+        }
+        
+        private void HideButtonHidePhone(HideButtonsCloseEvent e)
+        {
+            hangUpButton.interactable = !e.hide;
+            rtHangUpButton.DOAnchorPosX(
+                e.hide ? 0 : -70, 0.6f);
+        }
+        
+        public void HideButtonHidePhone(bool hide)
+        {
+            HideButtonHidePhone(new HideButtonsCloseEvent { hide = hide });
         }
     }
 }

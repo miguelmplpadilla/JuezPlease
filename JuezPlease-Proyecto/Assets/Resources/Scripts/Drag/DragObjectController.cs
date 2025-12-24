@@ -4,6 +4,7 @@ using System.Linq;
 using DG.Tweening;
 using Resources.Scripts.Hammer;
 using Resources.Scripts.Holder;
+using Resources.Scripts.NPC;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Random = UnityEngine.Random;
@@ -44,10 +45,15 @@ public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandl
     public bool isCrushable = true;
     protected bool isBigObject = false;
 
+    public LocalizableString textIndicator;
+
     protected NPCController npcControllerSelected;
 
-    private void Awake()
+    protected virtual void Awake()
     {
+        if (textIndicator.value.Replace(" ", "").Equals(""))
+            textIndicator = new LocalizableString("Preguntar", "Ask");
+        
         originalParent = transform.parent.gameObject;
         
         originalScale = transform.localScale.x;
@@ -139,6 +145,24 @@ public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandl
         transform.position = onDragEvent.eventData.position;
 
         if (!DialogController.instance.isSpeaking && document != null) CheckNPCDraged();
+        
+        GlobalDrag();
+    }
+
+    protected virtual void GlobalDrag()
+    {
+        if (document == null) return;
+        
+        NPCController[] allNPCController = FindObjectsOfType<NPCController>();
+        List<GameObject> objNPCs = new List<GameObject>();
+
+        foreach (var npcController in allNPCController)
+        {
+            if (GetConversation(npcController) != null)
+                objNPCs.Add(npcController.gameObject);
+        }
+        
+        CheckIndicator(objNPCs);
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -196,6 +220,8 @@ public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandl
         yield return CheckIfIsInBlock();
         
         isDragging = false;
+        
+        TextIndicatorMouseController.instance.ShowHideTextIndicator(false);
         
         GlobalOnEndDrag();
     }
@@ -276,13 +302,36 @@ public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandl
         {
             if (GetConversation(npcController) == null) continue;
             
-            StartCoroutine(npcController.ShowHideNPCAnimation(true, false));
+            StartCoroutine(npcController.ShowHideNPCAnimation(true));
 
             EventBus<AboveInteractNPCEvent>.Raise(new AboveInteractNPCEvent
             {
                 obj = npcController.gameObject,
                 canInteract = true
             });
+        }
+    }
+
+    protected void CheckIndicator(List<GameObject> objectsCheck)
+    {
+        TextIndicatorMouseController.instance.ShowHideTextIndicator(false);
+        
+        if (textIndicator.value.Replace(" ", "").Equals("")) return;
+        
+        List<RaycastResult> results = new List<RaycastResult>();
+        PointerEventData pointerEventData = new PointerEventData(EventSystem.current)
+            { position = transform.position };
+        EventSystem.current.RaycastAll(pointerEventData, results);
+
+        foreach (var obj in results)
+        {
+            foreach (var objCheck in objectsCheck)
+            {
+                if (objCheck == obj.gameObject)
+                {
+                    TextIndicatorMouseController.instance.SetTextIndicator(textIndicator);
+                }
+            }
         }
     }
     
@@ -293,7 +342,7 @@ public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandl
         
         foreach (var npcController in allNPCController)
         {
-            StartCoroutine(npcController.ShowHideNPCAnimation(false, npcControllerSelected == npcController));
+            StartCoroutine(npcController.ShowHideNPCAnimation(false));
             EventBus<AboveInteractNPCEvent>.Raise(new AboveInteractNPCEvent
             {
                 obj = npcController.gameObject,
@@ -337,14 +386,20 @@ public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandl
                 SetData();
             });
 
-        if (!DialogController.instance.isSpeaking && document != null && npcControllerSelected != null && (GetConversation(npcControllerSelected) is BaseNode nodeDialog))
+        if (!DialogController.instance.isSpeaking && npcControllerSelected != null && document != null)
         {
-            EventBus<InteractNPCEvent>.Raise(new InteractNPCEvent
+            if (npcControllerSelected is TelephoneController && document.phoneNumber > -1 && TelephoneController.instance.phoneNumberCalled != document.phoneNumber)
             {
-                obj = npcControllerSelected.gameObject,
-                dialogueNode = nodeDialog,
-                document = document
-            });
+                TelephoneController.instance.StartCall(document.phoneNumber);
+            } else if (GetConversation(npcControllerSelected) is BaseNode nodeDialog)
+            {
+                EventBus<InteractNPCEvent>.Raise(new InteractNPCEvent
+                {
+                    obj = npcControllerSelected.gameObject,
+                    dialogueNode = nodeDialog,
+                    document = document
+                });
+            }
             
             CallbackEndDrag();
         }

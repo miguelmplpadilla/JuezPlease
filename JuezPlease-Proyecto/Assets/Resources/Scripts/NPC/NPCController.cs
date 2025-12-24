@@ -97,7 +97,7 @@ public class NPCController : MonoBehaviour
         }
     }
 
-    public virtual IEnumerator ShowHideNPCAnimation(bool show, bool isThisSpeaking)
+    public virtual IEnumerator ShowHideNPCAnimation(bool show)
     {
         yield break;
     }

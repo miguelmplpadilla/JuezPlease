@@ -194,7 +194,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Point_Left
+      name: Point_Right
       rect:
         serializedVersion: 2
         x: 200
@@ -216,7 +216,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Point_Right
+      name: Point_Left
       rect:
         serializedVersion: 2
         x: 400
@@ -238,7 +238,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fist_Left
+      name: Fist_Right
       rect:
         serializedVersion: 2
         x: 600
@@ -260,7 +260,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fist_Right
+      name: Fist_Left
       rect:
         serializedVersion: 2
         x: 0
@@ -282,7 +282,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Normal_Left
+      name: Normal_Right
       rect:
         serializedVersion: 2
         x: 200
@@ -304,7 +304,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Normal_Right
+      name: Normal_Left
       rect:
         serializedVersion: 2
         x: 400
@@ -411,12 +411,12 @@ TextureImporter:
       Character_spritesheet4_0: 3568441680750885375
       Eyelids: -2890483435872463255
       Eyes: -9204743455011867253
-      Fist_Left: 4711985423574778245
-      Fist_Right: -8978082448003882029
-      Normal_Left: 668270109748292153
-      Normal_Right: -1221550949540981758
-      Point_Left: -8041709804833189863
-      Point_Right: -3699333996653544384
+      Fist_Left: -8978082448003882029
+      Fist_Right: 4711985423574778245
+      Normal_Left: -1221550949540981758
+      Normal_Right: 668270109748292153
+      Point_Left: -3699333996653544384
+      Point_Right: -8041709804833189863
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

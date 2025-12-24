@@ -1284,6 +1284,9 @@ MonoBehaviour:
   canvas: {fileID: 0}
   objTag: LittleObjects
   isCrushable: 0
+  textIndicator:
+    valueSpanish: Llamar testigo
+    valueEnglish: Call witness
   witnessData:
     body: {fileID: 0}
     eyes: {fileID: 0}
