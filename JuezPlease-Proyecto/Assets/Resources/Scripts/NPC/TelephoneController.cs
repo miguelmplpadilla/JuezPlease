@@ -8,6 +8,7 @@ namespace Resources.Scripts.NPC
     public class TelephoneController : NPCController
     {
         public static TelephoneController instance;
+        
         public RectTransform rtImagePhone;
         public RectTransform rtImageCable;
 
@@ -21,6 +22,7 @@ namespace Resources.Scripts.NPC
 
         private void Awake()
         {
+            instance = this;
             EventBus<HideButtonsCloseEvent>.Register(new EventBinding<HideButtonsCloseEvent>(HideButtonHidePhone, gameObject));
         }
 
@@ -63,6 +65,8 @@ namespace Resources.Scripts.NPC
 
         public override IEnumerator ShowHideNPCAnimation(bool show)
         {
+            Debug.Log("Phone ShowHideNPCAnimation " + show);
+            Debug.Log("Can hide " + canHide);
             if (!canHide) yield break;
             
             rtImagePhone.DOKill();
@@ -70,8 +74,8 @@ namespace Resources.Scripts.NPC
             
             yield return null;
             
-            rtImagePhone.DOAnchorPosY(0, 0.4f);
-            rtImageCable.DOAnchorPosY(0, 0.6f);
+            rtImagePhone.DOAnchorPosY(show ? 0 : -rtImagePhone.rect.size.y, 0.4f);
+            rtImageCable.DOAnchorPosY(show ? 0 : -rtImagePhone.rect.size.y, 0.6f);
         }
 
         public void HidePhone()

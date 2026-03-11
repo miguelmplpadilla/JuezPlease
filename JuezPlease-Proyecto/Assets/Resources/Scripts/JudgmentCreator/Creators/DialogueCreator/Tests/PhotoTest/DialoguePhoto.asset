@@ -127,9 +127,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cc87b2419b442f5a996b9588961959d, type: 3}
   m_Name: Statment
   m_EditorClassIdentifier: 
-  guid: 417b4fc5-f2fb-4de1-b477-4e2a026ddd64
+  guid: cc8e8554-1488-4951-a234-a7e12668f0bf
+  principalSpeaker: 0
   isUnlocked: 0
+  isFalse: 0
+  canBeFalse: 0
+  isMarkedHasFalse: 0
   dialogue: {fileID: 0}
+  dialogueFalse:
+    textStatment:
+      valueSpanish: 
+      valueEnglish: 
+    dialogue: {fileID: 0}
   phoneNumber: -1
   textStatment:
     valueSpanish: 

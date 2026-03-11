@@ -1,7 +1,8 @@
 ﻿using XNode;
 
 [CreateNodeMenu("DialogueCreator/StartDialogue")]
-public class StartDialogueNode : BaseNode {
+public class StartDialogueNode : BaseNode
+{
 
 	[Output] public BaseNode npcLeftOutput;
 	[Output] public BaseNode lawyerLeftOutput;
@@ -9,9 +10,10 @@ public class StartDialogueNode : BaseNode {
 	[Output] public BaseNode lawyerRightOutput;
 	[Output] public BaseNode witnessNodeOutput;
 	[Output] public BaseNode telephoneOutput;
-	
-	public override void OnCreateConnection(NodePort from, NodePort to) {
-		
+
+	public override void OnCreateConnection(NodePort from, NodePort to)
+	{
+
 		base.OnCreateConnection(from, to);
 
 		if (ConnectNPCLeft(from, to)) return;
@@ -41,7 +43,7 @@ public class StartDialogueNode : BaseNode {
 
 		return false;
 	}
-	
+
 	private bool ConnectNPCRight(NodePort from, NodePort to)
 	{
 		StartDialogueNode fromNode = from.node as StartDialogueNode;
@@ -61,7 +63,7 @@ public class StartDialogueNode : BaseNode {
 
 		return false;
 	}
-	
+
 	private bool ConnectLawyerLeft(NodePort from, NodePort to)
 	{
 		StartDialogueNode fromNode = from.node as StartDialogueNode;
@@ -81,7 +83,7 @@ public class StartDialogueNode : BaseNode {
 
 		return false;
 	}
-	
+
 	private bool ConnectLawyerRight(NodePort from, NodePort to)
 	{
 		StartDialogueNode fromNode = from.node as StartDialogueNode;
@@ -101,7 +103,7 @@ public class StartDialogueNode : BaseNode {
 
 		return false;
 	}
-	
+
 	private bool ConnectTelephoneNumber(NodePort from, NodePort to)
 	{
 		StartDialogueNode fromNode = from.node as StartDialogueNode;
@@ -172,6 +174,31 @@ public class StartDialogueNode : BaseNode {
 				return BenchController.instance.witnessShowed ? witnessNodeOutput : null;
 			default:
 				return null;
+		}
+	}
+
+	public void SetDialogueNodeBySpeaker(DialogController.TypeSpeaker speaker, DialogueNode dialogueNode) 
+	{
+		switch (speaker)
+		{
+			case DialogController.TypeSpeaker.NPCLEFT:
+			npcLeftOutput = dialogueNode;
+			break;
+			case DialogController.TypeSpeaker.LAWYERLEFT:
+			lawyerLeftOutput = dialogueNode;
+			break;
+			case DialogController.TypeSpeaker.NPCRIGHT:
+			npcRightOutput = dialogueNode;
+			break;
+			case DialogController.TypeSpeaker.LAWYERRIGHT:
+			lawyerRightOutput = dialogueNode;
+			break;
+			case DialogController.TypeSpeaker.PHONE:
+			telephoneOutput = dialogueNode;
+			break;
+			case DialogController.TypeSpeaker.WITNESS:
+			witnessNodeOutput = dialogueNode;
+			break;
 		}
 	}
 }

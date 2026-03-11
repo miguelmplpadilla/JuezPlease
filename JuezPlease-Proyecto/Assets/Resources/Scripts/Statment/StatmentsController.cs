@@ -20,6 +20,8 @@ public class StatmentsController : MonoBehaviour
     public RectTransform cantNewStatmentsIndicator;
 
     private int cantStatmentsCreated = 0;
+    
+    public List<DialogueCreator> notFalseDialogues = new List<DialogueCreator>();
 
     private void Awake()
     {
@@ -74,5 +76,34 @@ public class StatmentsController : MonoBehaviour
         dragStatmentController.textNumber.text = (cantStatmentsCreated).ToString();
 
         cantNewStatmentsIndicator.DOAnchorPosY(0, 0.6f).SetEase(Ease.InOutBack);
+    }
+
+    public DialogueCreator GetNotFalseDialogue(DialogController.TypeSpeaker speaker)
+    {
+        DialogueCreator dialogue = notFalseDialogues[Random.Range(0, notFalseDialogues.Count)];
+
+        StartDialogueNode startDialogue = dialogue.nodes.Find(it => it is StartDialogueNode) as StartDialogueNode;
+        DialogueNode dialogueNode = startDialogue.GetDialogueNodeBySpeaker(speaker) as DialogueNode;
+
+        startDialogue.lawyerLeftOutput = null;
+        startDialogue.lawyerRightOutput = null;
+        startDialogue.npcLeftOutput = null;
+        startDialogue.npcRightOutput = null;
+        startDialogue.telephoneOutput = null;
+        startDialogue.witnessNodeOutput = null;
+        
+        startDialogue.SetDialogueNodeBySpeaker(speaker, dialogueNode);
+
+        DialogueNode nextDialogue = dialogueNode;
+
+        while (nextDialogue != null)
+        {
+            if (nextDialogue.speaker != DialogController.TypeSpeaker.JUDGE)
+                nextDialogue.speaker = speaker;
+            
+            nextDialogue = nextDialogue.baseOutput as DialogueNode;
+        }
+
+        return dialogue;
     }
 }
