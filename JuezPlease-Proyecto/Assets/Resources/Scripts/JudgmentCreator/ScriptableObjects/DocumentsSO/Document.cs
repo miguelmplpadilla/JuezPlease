@@ -1,4 +1,5 @@
 ﻿using System;
+using Resources.Scripts.JudgmentScene;
 using UnityEngine;
 
 public class Document : ScriptableObject
@@ -17,6 +18,8 @@ public class Document : ScriptableObject
     public DialogueFalse dialogueFalse;
 
     public int phoneNumber = -1;
+    
+    public MinistryDocumentsController.Ministry ministryDocument;
     
     public void Awake()
     {

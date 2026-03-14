@@ -4,6 +4,7 @@ using System.Linq;
 using DG.Tweening;
 using Resources.Scripts.Hammer;
 using Resources.Scripts.Holder;
+using Resources.Scripts.JudgmentScene;
 using Resources.Scripts.NPC;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -29,6 +30,8 @@ public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandl
     protected GameObject currentParent;
     protected GameObject originalParent;
     public GameObject canvas;
+
+    public RectTransform stampPosition;
 
     protected Vector3 startPositionDrag;
 
@@ -76,6 +79,9 @@ public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandl
             new EventBinding<OnEndDragEvent>(EndDrag, gameObject));
         
         if (canvas == null) canvas = GameObject.Find("CanvasTable");
+
+        if (stampPosition != null && document != null && document.ministryDocument != MinistryDocumentsController.Ministry.NONE)
+            MinistryDocumentsController.instance.CreateStamp(document.ministryDocument, stampPosition.gameObject, !document.isFalse);
     }
 
     protected virtual void OnDestroy()

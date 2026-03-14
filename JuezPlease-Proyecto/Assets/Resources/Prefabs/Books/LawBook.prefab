@@ -628,9 +628,13 @@ MonoBehaviour:
   imagesLittle: {fileID: 5708734061773246453}
   imagesBig: {fileID: 149023544932269476}
   allImages: {fileID: 335779208725870600}
+  continer: {fileID: 0}
   canvas: {fileID: 0}
   objTag: BigObjects
   isCrushable: 1
+  textIndicator:
+    valueSpanish: 
+    valueEnglish: 
 --- !u!114 &7525213129573115406
 MonoBehaviour:
   m_ObjectHideFlags: 0
