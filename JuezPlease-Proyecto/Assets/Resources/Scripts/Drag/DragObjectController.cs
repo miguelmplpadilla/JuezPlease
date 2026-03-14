@@ -81,7 +81,7 @@ public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandl
         if (canvas == null) canvas = GameObject.Find("CanvasTable");
 
         if (stampPosition != null && document != null && document.ministryDocument != MinistryDocumentsController.Ministry.NONE)
-            MinistryDocumentsController.instance.CreateStamp(document.ministryDocument, stampPosition.gameObject, !document.isFalse);
+            MinistryDocumentsController.instance.CreateStamp(document.ministryDocument, stampPosition, !document.isFalse);
     }
 
     protected virtual void OnDestroy()

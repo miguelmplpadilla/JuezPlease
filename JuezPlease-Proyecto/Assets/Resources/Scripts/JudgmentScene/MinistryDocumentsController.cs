@@ -30,7 +30,7 @@ namespace Resources.Scripts.JudgmentScene
             return ministryStamps.Find(it => it.ministry == ministry);
         }
 
-        public void CreateStamp(Ministry ministry, GameObject parent, bool isCorrect)
+        public void CreateStamp(Ministry ministry, RectTransform parent, bool isCorrect)
         {
             MinistryStamps stamps = GetMinistryStamps(ministry);
 
@@ -38,7 +38,12 @@ namespace Resources.Scripts.JudgmentScene
 
             stamp.GetComponent<Image>().sprite = isCorrect
                 ? stamps.correctStamp
-                : stamps.falseStamps[UnityEngine.Random.Range(0, stamps.falseStamps.Count)];
+                : stamps.falseStamps[Random.Range(0, stamps.falseStamps.Count)];
+
+            var stampRt = stamp.GetComponent<RectTransform>();
+            stampRt.sizeDelta = parent.rect.size;
+
+            parent.GetComponent<Image>().enabled = false;
 
             stamp.transform.DORotate(new Vector3(0, 0, Random.Range(-15, 15)), 0);
         }
