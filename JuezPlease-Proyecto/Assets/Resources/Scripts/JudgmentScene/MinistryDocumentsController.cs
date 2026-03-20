@@ -10,6 +10,8 @@ namespace Resources.Scripts.JudgmentScene
     public class MinistryDocumentsController : MonoBehaviour
     {
         public static MinistryDocumentsController instance;
+
+        public Document documentToCreate;
         
         public List<MinistryStamps> ministryStamps;
 
@@ -23,6 +25,11 @@ namespace Resources.Scripts.JudgmentScene
         private void Awake()
         {
             instance = this;
+        }
+
+        private void Start()
+        {
+            StartCoroutine(DocumentCreator.instance.CreateDocument(documentToCreate, 0));
         }
 
         public MinistryStamps GetMinistryStamps(Ministry ministry)
@@ -43,9 +50,8 @@ namespace Resources.Scripts.JudgmentScene
             var stampRt = stamp.GetComponent<RectTransform>();
             stampRt.sizeDelta = parent.rect.size;
 
-            parent.GetComponent<Image>().enabled = false;
-
             stamp.transform.DORotate(new Vector3(0, 0, Random.Range(-15, 15)), 0);
+            stamp.transform.localPosition = Vector3.zero;
         }
     }
     

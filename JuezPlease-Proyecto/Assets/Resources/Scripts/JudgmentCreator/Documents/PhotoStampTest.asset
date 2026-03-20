@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7075f55e61c41bcb3d0681380f8ea27, type: 3}
+  m_Name: PhotoStampTest
+  m_EditorClassIdentifier: 
+  guid: 524dc97c-7e6b-46ec-9af1-57471c42e7b1
+  principalSpeaker: 1
+  isUnlocked: 1
+  hasStamp: 1
+  isFalse: 1
+  canBeFalse: 1
+  isMarkedHasFalse: 0
+  dialogue: {fileID: 11400000, guid: c2234cc939fd2ee4f9ab390c9057ed6d, type: 2}
+  dialogueFalse:
+    textStatment:
+      valueSpanish: La foto proporcionada es falsa
+      valueEnglish: The photo provided is fake
+    dialogue: {fileID: 11400000, guid: dbf0366ffce442b4b8ebe3538b3b1bea, type: 2}
+  phoneNumber: 626616453
+  ministryDocument: 1
+  imagePhoto: {fileID: 8348670922972553302, guid: d563087492f485841bffa9f173307708, type: 3}
+  backgroundImage: {fileID: 0}
+  extraDataDocument:
+    guidDocument: 
+    extraData: []

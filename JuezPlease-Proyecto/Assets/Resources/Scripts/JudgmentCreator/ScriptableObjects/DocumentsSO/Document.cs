@@ -9,6 +9,8 @@ public class Document : ScriptableObject
     public DialogController.TypeSpeaker principalSpeaker;
     
     public bool isUnlocked = false;
+
+    public bool hasStamp = false;
     
     public bool isFalse = false;
     public bool canBeFalse = false;

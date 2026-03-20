@@ -8,6 +8,7 @@ using Resources.Scripts.JudgmentScene;
 using Resources.Scripts.NPC;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
@@ -80,8 +81,14 @@ public class DragObjectController : MonoBehaviour, IBeginDragHandler, IDragHandl
         
         if (canvas == null) canvas = GameObject.Find("CanvasTable");
 
-        if (stampPosition != null && document != null && document.ministryDocument != MinistryDocumentsController.Ministry.NONE)
-            MinistryDocumentsController.instance.CreateStamp(document.ministryDocument, stampPosition, !document.isFalse);
+        if (stampPosition != null)
+        {
+            stampPosition.GetComponent<Image>().enabled = false;
+            
+            if (document != null && document.ministryDocument != MinistryDocumentsController.Ministry.NONE && 
+                document.hasStamp)
+                MinistryDocumentsController.instance.CreateStamp(document.ministryDocument, stampPosition, !document.isFalse);
+        }
     }
 
     protected virtual void OnDestroy()
