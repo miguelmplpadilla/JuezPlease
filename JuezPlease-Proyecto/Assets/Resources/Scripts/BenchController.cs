@@ -60,7 +60,7 @@ public class BenchController : MonoBehaviour
         
         witnessShowed = !witnessShowed;
 
-        if (!witnessShowed) StartCoroutine(CallWitness(null));
+        // if (!witnessShowed) StartCoroutine(CallWitness(null));
     }
 
     public void HideWitness()

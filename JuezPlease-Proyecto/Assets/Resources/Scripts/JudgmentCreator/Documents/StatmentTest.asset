@@ -12,10 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cc87b2419b442f5a996b9588961959d, type: 3}
   m_Name: StatmentTest
   m_EditorClassIdentifier: 
-  guid: 2ae2b27f-43da-4161-9b82-4913da58eb19
+  guid: 580ec23f-503e-4e28-9d04-1e5d0d93f0e4
+  principalSpeaker: 0
   isUnlocked: 0
+  hasStamp: 0
+  isFalse: 0
+  canBeFalse: 0
+  isMarkedHasFalse: 0
   dialogue: {fileID: 11400000, guid: 6fb7fb1727f1d0840819823b6f74752a, type: 2}
+  dialogueFalse:
+    textStatment:
+      valueSpanish: 
+      valueEnglish: 
+    dialogue: {fileID: 0}
   phoneNumber: 622149156
+  ministryDocument: 0
   textStatment:
-    valueSpanish: "Se ha pajeado en la seccion de conjelados del mercarro\xF1a"
-    valueEnglish: "He has jerked off in the frozen section of mercarro\xF1a"
+    valueSpanish: Se le ha visto robando
+    valueEnglish: He has been seen stealing.

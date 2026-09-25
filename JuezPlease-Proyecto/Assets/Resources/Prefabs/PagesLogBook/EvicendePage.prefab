@@ -484,7 +484,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7413203602572772778, guid: 43aef536feb990d4583896ace1637540, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ccc6ad2645253b04eae5b725f561840c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -506,6 +506,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5487ed970a9f4d27a8918a60bfc00c97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isFirst: 1
   evidencesText: {fileID: 7126446424867033898}
   prefabEvidences: {fileID: 7662574256622243974}

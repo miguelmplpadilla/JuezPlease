@@ -35,7 +35,10 @@ public class LawBookController : MonoBehaviour
     public Button[] tagButtons;
     public Button[] indexButtons;
 
-    private void Start()
+    private GameObject currentLeftPage;
+    private GameObject currentRightPage;
+
+    private IEnumerator Start()
     {
         FindLawBookNode();
         
@@ -43,8 +46,7 @@ public class LawBookController : MonoBehaviour
         turnPageRightButton.onClick.AddListener(() => SetIndex(2));
         
         CreatePages();
-        
-        SetIndex(0);
+        HideAllPages();
 
         foreach (var tagButton in tagButtons)
         {
@@ -68,11 +70,21 @@ public class LawBookController : MonoBehaviour
                 }
             }
         }
+        
+        yield return new WaitForEndOfFrame();
+        Canvas.ForceUpdateCanvases();
+        
+        SetIndex(0);
     }
 
     private void Update()
     {
         pageNumberText.text = (index+1) + " / " + pagesIntantiated.Count;
+    }
+
+    private void LateUpdate()
+    {
+        SyncCurrentPagePositions();
     }
 
     private void CreatePages()
@@ -172,15 +184,16 @@ public class LawBookController : MonoBehaviour
 
     private void SetPage()
     {
-        foreach (var page in pagesIntantiated)
-            page.transform.localScale = Vector3.zero;
+        HideAllPages();
+        currentLeftPage = null;
+        currentRightPage = null;
         
         foreach (var tagButton in tagButtons)
             tagButton.transform.GetChild(0).gameObject.SetActive(false);
 
         if (index - 1 >= 0)
         {
-            StartCoroutine(ActivePage(index-1, leftPosition));
+            StartCoroutine(ActivePage(index-1, leftPosition, true));
 
             foreach (var tagButton in tagButtons)
             {
@@ -189,13 +202,20 @@ public class LawBookController : MonoBehaviour
             }
         }
         
-        StartCoroutine(ActivePage(index, rightPosition));
+        StartCoroutine(ActivePage(index, rightPosition, false));
     }
 
-    private IEnumerator ActivePage(int i, GameObject positionPage)
+    private void HideAllPages()
+    {
+        foreach (var page in pagesIntantiated)
+            page.transform.localScale = Vector3.zero;
+    }
+
+    private IEnumerator ActivePage(int i, GameObject positionPage, bool isLeftPage)
     {
         GameObject page = pagesIntantiated[i];
-        page.transform.position = positionPage.transform.position;
+        if (isLeftPage) currentLeftPage = page;
+        else currentRightPage = page;
 
         if (page.transform.childCount > 0)
         {
@@ -204,8 +224,25 @@ public class LawBookController : MonoBehaviour
         }
 
         yield return new WaitForEndOfFrame();
+        Canvas.ForceUpdateCanvases();
+        
+        SyncPagePosition(page, positionPage);
         
         page.transform.localScale = Vector3.one;
+    }
+
+    private void SyncCurrentPagePositions()
+    {
+        if (currentLeftPage != null)
+            SyncPagePosition(currentLeftPage, leftPosition);
+
+        if (currentRightPage != null)
+            SyncPagePosition(currentRightPage, rightPosition);
+    }
+
+    private void SyncPagePosition(GameObject page, GameObject positionPage)
+    {
+        page.transform.localPosition = continerPages.transform.InverseTransformPoint(positionPage.transform.position);
     }
     
     public void SetIndex(int value)

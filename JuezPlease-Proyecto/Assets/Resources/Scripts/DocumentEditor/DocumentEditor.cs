@@ -1,6 +1,10 @@
 using System.Collections.Generic;
 using TMPro;
+
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -114,6 +118,7 @@ public class DocumentEditor : MonoBehaviour
 
     private void SaveExtraDataPhoto()
     {
+#if UNITY_EDITOR
         Photo photoNode = documentNode as Photo;
 
         for (int i = 0; i < extraDataObjectsCreated.Count; i++)
@@ -150,6 +155,7 @@ public class DocumentEditor : MonoBehaviour
         AssetDatabase.Refresh();
 
         Debug.Log("Photo Saved");
+#endif
     }
 
     private void SetRectTransformData(RectTransform rt, RectTransformData rtData)
